@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rentia · 3 estilos para elegir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--rasp:#8A3F55;--amber:#D9A15B;--blue:#2E6A8A;--green:#3F6B57;--ink:#241B1A}
+html,body{background:#EDE6E4;font-family:Geist,-apple-system,system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+body{min-height:100vh}
+.top{position:sticky;top:0;z-index:50;padding:14px 16px 10px;background:rgba(237,230,228,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.top h1{font-size:20px;font-weight:700;letter-spacing:-.4px}
+.top p{font-size:13px;color:#7A6E6A;margin-top:2px}
+.tabs{display:flex;gap:6px;margin-top:10px}
+.tabs button{flex:1;border:0;border-radius:12px;padding:10px 6px;font:600 13px Geist,system-ui,sans-serif;background:#fff;color:#4a3f3c;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.tabs button.on{background:var(--ink);color:#fff}
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 16px 40px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.opt{scroll-snap-align:center;flex:0 0 min(390px,calc(100vw - 32px))}
+.label{display:flex;align-items:baseline;gap:8px;margin:6px 4px 10px}
+.label b{font-size:15px}.label span{font-size:12px;color:#7A6E6A}
+.phone{position:relative;border-radius:38px;overflow:hidden;height:780px;box-shadow:0 30px 60px -20px rgba(60,20,30,.35),0 0 0 1px rgba(0,0,0,.04)}
+.scroll{height:100%;overflow-y:auto;scrollbar-width:none}.scroll::-webkit-scrollbar{display:none}
+.replay{display:block;margin:12px auto 0;border:0;background:transparent;font:600 13px Geist,system-ui,sans-serif;color:var(--rasp)}
+.n{font-variant-numeric:tabular-nums}
+/* animaciones */
+.rise{opacity:0;transform:translateY(16px)}
+.play .rise{animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.grow{transform:scaleY(0);transform-origin:bottom}
+.play .grow{animation:grow .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes grow{to{transform:scaleY(1)}}
+.wide{transform:scaleX(0);transform-origin:left}
+.play .wide{animation:wide 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes wide{to{transform:scaleX(1)}}
+.draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.play .draw{animation:draw 1.6s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:var(--to,0)}}
+.tabbar{position:absolute;left:12px;right:12px;bottom:12px;height:62px;border-radius:24px;display:flex;align-items:center;justify-content:space-around;font:600 10px Geist,system-ui,sans-serif}
+.tabbar i{display:block;width:20px;height:20px;margin:0 auto 3px;border-radius:6px;background:currentColor;opacity:.9;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.ai{width:50px;height:50px;border-radius:25px;margin-top:-24px;display:grid;place-items:center}
+
+/* ============ A · Revolut ============ */
+.A{background:#120A0E;color:#fff}
+.A .hero{padding:58px 20px 26px;background:radial-gradient(120% 90% at 20% 0%,#C25A7C 0%,#8A3F55 38%,#3B1726 75%,#120A0E 100%);position:relative;overflow:hidden}
+.A .blob{position:absolute;width:260px;height:260px;border-radius:50%;filter:blur(60px);opacity:.55;animation:float 9s ease-in-out infinite alternate}
+@keyframes float{to{transform:translate(60px,40px) scale(1.15)}}
+.A .seg{display:flex;gap:4px;background:rgba(255,255,255,.1);border-radius:14px;padding:4px;backdrop-filter:blur(10px)}
+.A .seg span{flex:1;text-align:center;font:600 12px Geist,system-ui,sans-serif;padding:7px 0;border-radius:10px;color:rgba(255,255,255,.7)}
+.A .seg .on{background:#fff;color:#3B1726}
+.A .big{font-size:52px;font-weight:700;letter-spacing:-2.4px;margin-top:22px}
+.A .sub{color:rgba(255,255,255,.7);font-size:13px}
+.A .chip{display:inline-flex;gap:6px;align-items:center;background:rgba(159,211,181,.18);color:#AEE3C4;border-radius:999px;padding:5px 10px;font:600 12px Geist,system-ui,sans-serif;margin-top:10px}
+.A .acts{display:flex;justify-content:space-between;margin-top:22px}
+.A .act{width:23%;text-align:center;font:500 11px Geist,system-ui,sans-serif;color:rgba(255,255,255,.85)}
+.A .act div{width:48px;height:48px;border-radius:24px;margin:0 auto 6px;background:rgba(255,255,255,.14);display:grid;place-items:center;backdrop-filter:blur(8px);font-size:18px}
+.A .body{padding:18px 14px 110px}
+.A .card{background:#1E1418;border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:16px;margin-bottom:12px}
+.A .ct{display:flex;justify-content:space-between;align-items:center;font:600 13px Geist,system-ui,sans-serif;color:rgba(255,255,255,.65)}
+.A .row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.06)}
+.A .row:first-of-type{border-top:0}
+.A .ico{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:17px}
+.A .row .t{flex:1}.A .row .t b{display:block;font-size:15px}.A .row .t small{color:rgba(255,255,255,.55);font-size:12px}
+.A .row .v{text-align:right;font-weight:700}.A .row .v small{display:block;font-size:11px;font-weight:600;color:#AEE3C4}
+.A .tabbar{background:rgba(30,20,24,.82);backdrop-filter:blur(20px);color:rgba(255,255,255,.55)}
+.A .tabbar .on{color:#fff}.A .ai{background:linear-gradient(135deg,#E07A9B,#8A3F55);box-shadow:0 10px 24px rgba(194,90,124,.5)}
+
+/* ============ B · Apple Salud ============ */
+.B{background:#F6F2F1}
+.B .hd{padding:56px 20px 6px}
+.B .hd small{font:600 13px Geist,system-ui,sans-serif;color:#8E8380;text-transform:uppercase;letter-spacing:.5px}
+.B .hd h2{font-size:34px;font-weight:800;letter-spacing:-1.2px}
+.B .seg{display:flex;background:#E9E2E0;border-radius:10px;padding:2px;margin:12px 16px 4px}
+.B .seg span{flex:1;text-align:center;font:600 12px Geist,system-ui,sans-serif;padding:6px 0;border-radius:8px;color:#5c5250}
+.B .seg .on{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.B .body{padding:10px 16px 110px}
+.B .card{background:#fff;border-radius:20px;padding:16px;margin-bottom:12px}
+.B .ct{display:flex;align-items:center;gap:6px;font:700 14px Geist,system-ui,sans-serif}
+.B .ct em{font-style:normal;margin-left:auto;font:500 12px Geist,system-ui,sans-serif;color:#9A8E8B}
+.B .rings{display:flex;align-items:center;gap:18px;margin-top:12px}
+.B .leg div{margin-bottom:10px}.B .leg small{font:600 12px Geist,system-ui,sans-serif}.B .leg b{display:block;font-size:22px;letter-spacing:-.6px}.B .leg b span{font-size:13px;color:#9A8E8B;font-weight:600}
+.B .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.B .grid .card{margin:0}
+.B .kv small{font:700 13px Geist,system-ui,sans-serif}.B .kv b{display:block;font-size:26px;letter-spacing:-.8px;margin-top:6px}.B .kv span{font:500 12px Geist,system-ui,sans-serif;color:#9A8E8B}
+.B .spark{height:38px;margin-top:8px;display:flex;align-items:flex-end;gap:3px}
+.B .spark i{flex:1;border-radius:3px}
+.B .tabbar{background:rgba(255,255,255,.88);backdrop-filter:blur(20px);color:#A69A97;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.B .tabbar .on{color:var(--rasp)}.B .ai{background:var(--rasp);color:#fff;box-shadow:0 10px 20px rgba(138,63,85,.35)}
+
+/* ============ C · Bento editorial ============ */
+.C{background:#F7F0EC}
+.C .hd{padding:54px 18px 0;display:flex;align-items:center;gap:10px}
+.C .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#C25A7C,#5A2236);display:grid;place-items:center;color:#fff;font-weight:800}
+.C .hd b{font-size:17px}.C .hd small{display:block;font-size:12px;color:#8E8380}
+.C .pill{margin-left:auto;background:#fff;border-radius:999px;padding:8px 12px;font:600 12px Geist,system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.C .period{display:flex;gap:8px;padding:16px 18px 4px;overflow:hidden}
+.C .period span{font:600 13px Geist,system-ui,sans-serif;padding:8px 14px;border-radius:999px;background:#fff;color:#6E625E;white-space:nowrap}
+.C .period .on{background:var(--ink);color:#fff}
+.C .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:12px 14px 110px}
+.C .b{border-radius:26px;padding:16px;position:relative;overflow:hidden;background:#fff}
+.C .s6{grid-column:span 6}.C .s4{grid-column:span 4}.C .s3{grid-column:span 3}.C .s2{grid-column:span 2}
+.C .b small{font:600 12px Geist,system-ui,sans-serif;color:#8E8380}.C .b .num{font-size:30px;font-weight:800;letter-spacing:-1.4px;line-height:1.05;margin-top:4px}
+.C .hero{background:linear-gradient(160deg,#2B1A1E,#4A2230 60%,#8A3F55);color:#fff;min-height:210px}
+.C .hero small{color:rgba(255,255,255,.65)}.C .hero .num{font-size:46px}
+.C .ring{position:absolute;right:-30px;top:-30px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,#D98AA3 0%,transparent 70%);opacity:.5;animation:float 8s ease-in-out infinite alternate}
+.C .tag{display:inline-block;font:700 11px Geist,system-ui,sans-serif;padding:4px 8px;border-radius:999px;margin-top:8px}
+.C .bars{display:flex;align-items:flex-end;gap:5px;height:70px;margin-top:14px}
+.C .bars i{flex:1;border-radius:6px 6px 3px 3px}
+.C .tabbar{background:#241B1A;color:rgba(255,255,255,.5)}
+.C .tabbar .on{color:#fff}.C .ai{background:#F2D7B0;color:#241B1A;box-shadow:0 10px 20px rgba(0,0,0,.25)}
+
+.note{max-width:720px;margin:0 auto;padding:0 20px 40px;font-size:14px;color:#5c5250;line-height:1.5}
+@media(min-width:1100px){.rail{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Elige el estilo de Rentia</h1>
+  <p>Desliza para ver las 3 opciones · mismos datos, distinta forma</p>
+  <div class="tabs"><button data-i="0" class="on">A · Oscuro</button><button data-i="1">B · Anillos</button><button data-i="2">C · Mosaico</button></div>
+</div>
+
+<div class="rail" id="rail">
+<!-- ================= A ================= -->
+<section class="opt">
+  <div class="label"><b>A · Oscuro y potente</b><span>estilo Revolut</span></div>
+  <div class="phone A"><div class="scroll">
+    <div class="hero">
+      <div class="blob" style="background:#E07A9B;left:-60px;top:-40px"></div>
+      <div class="blob" style="background:#D9A15B;right:-90px;top:120px;animation-delay:-4s;opacity:.3"></div>
+      <div style="position:relative">
+        <div class="seg rise"><span>Día</span><span>Semana</span><span class="on">Mes</span><span>Trim.</span><span>Año</span></div>
+        <div class="sub rise" style="margin-top:20px;animation-delay:.1s">Noviembre · facturado</div>
+        <div class="big n rise" style="margin-top:4px;animation-delay:.15s"><span class="cu" data-v="32043">0</span> €</div>
+        <div class="chip rise" style="animation-delay:.25s">▲ 5 % vs. octubre</div>
+        <svg viewBox="0 0 350 90" width="100%" height="90" style="margin-top:14px;display:block" class="rise" >
+          <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0 70 C30 64 50 66 70 55 S110 40 140 46 S190 30 215 34 S265 18 290 22 S330 10 350 8 L350 90 L0 90Z" fill="url(#ag)" opacity=".7"/>
+          <path class="draw" style="--len:420" d="M0 70 C30 64 50 66 70 55 S110 40 140 46 S190 30 215 34 S265 18 290 22 S330 10 350 8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M350 8 C365 6 380 4 395 2" stroke="#fff" stroke-dasharray="3 4" opacity=".5" fill="none"/>
+          <circle cx="350" cy="8" r="5" fill="#fff"/>
+        </svg>
+        <div class="acts rise" style="animation-delay:.35s">
+          <div class="act"><div>€</div>Beneficio<br><b class="n">17.089 €</b></div>
+          <div class="act"><div>◎</div>Objetivo<br><b class="n">65 %</b></div>
+          <div class="act"><div>↘</div>Gastos<br><b class="n">14.954 €</b></div>
+          <div class="act"><div>◷</div>Huecos<br><b class="n">52 h</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="card rise" style="animation-delay:.4s">
+        <div class="ct"><span>Tu centro este mes</span><span style="color:#E8A0B6">Ver todo ›</span></div>
+        <div class="row"><div class="ico" style="background:rgba(194,90,124,.25);color:#F2B6C8;font-weight:800">C</div><div class="t"><b>Cabina</b><small>32 clientas al día · 47 €/h</small></div><div class="v n">1.475 €<small>▲ 9 %</small></div></div>
+        <div class="row"><div class="ico" style="background:rgba(217,161,91,.25);color:#F2D7B0;font-weight:800">P</div><div class="t"><b>Venta de producto</b><small>28 % compra · cesta 46 €</small></div><div class="v n">410 €<small style="color:#F0A9A0">▼ 5 %</small></div></div>
+        <div class="row"><div class="ico" style="background:rgba(46,106,138,.35);color:#A9CBE0;font-weight:800">A</div><div class="t"><b>Aparatología</b><small>23 % de uso · 70 €/h</small></div><div class="v n">514 €<small>▲ 10 %</small></div></div>
+      </div>
+      <div class="card rise" style="animation-delay:.5s">
+        <div class="ct"><span>Equipo · facturado al día</span><span>objetivo</span></div>
+        <div id="Ateam"></div>
+      </div>
+      <div class="card rise" style="animation-delay:.6s;background:linear-gradient(135deg,#3B2A12,#1E1418)">
+        <div class="ct"><span style="color:#F2D7B0">✦ Consejo de la IA</span></div>
+        <p style="margin-top:10px;font-size:15px;line-height:1.45">Los martes al mediodía tus aparatos están parados. Una promo de radiofrecuencia en esa franja podría sumar <b style="color:#F2D7B0">~900 € al mes</b>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="tabbar"><div class="on"><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 11l9-8 9 8v10h-6v-6H9v6H3z%22/></svg>')"></i>Resumen</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22/></svg>')"></i>Agenda</div><div class="ai">✦</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 20h4V10H3zm7 0h4V4h-4zm7 0h4v-7h-4z%22/></svg>')"></i>Informes</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect x=%223%22 y=%225%22 width=%2218%22 height=%223%22/><rect x=%223%22 y=%2211%22 width=%2218%22 height=%223%22/><rect x=%223%22 y=%2217%22 width=%2218%22 height=%223%22/></svg>')"></i>Mi centro</div></div>
+  </div>
+  <button class="replay" data-r="0">↻ Repetir animación</button>
+</section>
+
+<!-- ================= B ================= -->
+<section class="opt">
+  <div class="label"><b>B · Claro con anillos</b><span>estilo Apple Salud</span></div>
+  <div class="phone B"><div class="scroll">
+    <div class="hd rise"><small>Viernes 20 nov</small><h2>Resumen</h2></div>
+    <div class="seg rise" style="animation-delay:.05s"><span>D</span><span>S</span><span class="on">M</span><span>T</span><span>A</span></div>
+    <div class="body">
+      <div class="card rise" style="animation-delay:.1s">
+        <div class="ct">Tu mes <em>Ver detalle ›</em></div>
+        <div class="rings">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <g transform="rotate(-90 75 75)" fill="none" stroke-linecap="round" stroke-width="16">
+              <circle cx="75" cy="75" r="62" stroke="#8A3F55" opacity=".15"/><circle class="draw" cx="75" cy="75" r="62" stroke="#8A3F55" style="--len:390;--to:136"/>
+              <circle cx="75" cy="75" r="44" stroke="#D9A15B" opacity=".18"/><circle class="draw" cx="75" cy="75" r="44" stroke="#D9A15B" style="--len:277;--to:199"/>
+              <circle cx="75" cy="75" r="26" stroke="#2E6A8A" opacity=".18"/><circle class="draw" cx="75" cy="75" r="26" stroke="#2E6A8A" style="--len:164;--to:126"/>
+            </g>
+          </svg>
+          <div class="leg">
+            <div><small style="color:#8A3F55">Objetivo</small><b class="n"><span class="cu" data-v="65">0</span><span> %</span></b></div>
+            <div><small style="color:#B9803C">Compran producto</small><b class="n">28<span> %</span></b></div>
+            <div><small style="color:#2E6A8A">Uso aparatos</small><b class="n">23<span> %</span></b></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card kv rise" style="animation-delay:.2s"><small style="color:#8A3F55">Facturado</small><b class="n">32.043 €</b><span>▲ 5 % vs. oct</span>
+          <div class="spark" id="Bs1"></div></div>
+        <div class="card kv rise" style="animation-delay:.25s"><small style="color:#3F6B57">Beneficio</small><b class="n">17.089 €</b><span>te quedan 53 de cada 100 €</span>
+          <div class="spark" id="Bs2"></div></div>
+        <div class="card kv rise" style="animation-delay:.3s"><small style="color:#8A3F55">Cabina · al día</small><b class="n">1.475 €</b><span>32 clientas · 47 €/h</span></div>
+        <div class="card kv rise" style="animation-delay:.35s"><small style="color:#B9803C">Producto · al día</small><b class="n">410 €</b><span>cesta media 46 €</span></div>
+      </div>
+      <div class="card rise" style="animation-delay:.4s;margin-top:12px">
+        <div class="ct">Equipo <em>al día</em></div>
+        <div id="Bteam" style="margin-top:6px"></div>
+      </div>
+      <div class="card rise" style="animation-delay:.45s">
+        <div class="ct">Huecos que vienen</div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <div style="flex:1;background:#FBF3EA;border-radius:14px;padding:10px"><small style="font:600 11px Geist,system-ui,sans-serif;color:#9A8E8B">Mañana</small><b style="display:block;font-size:20px">10 h</b><small style="color:#9B3B3B;font:600 11px Geist,system-ui,sans-serif">467 €</small></div>
+          <div style="flex:1;background:#FBF3EA;border-radius:14px;padding:10px"><small style="font:600 11px Geist,system-ui,sans-serif;color:#9A8E8B">7 días</small><b style="display:block;font-size:20px">52 h</b><small style="color:#9B3B3B;font:600 11px Geist,system-ui,sans-serif">2.338 €</small></div>
+          <div style="flex:1;background:#FBF3EA;border-radius:14px;padding:10px"><small style="font:600 11px Geist,system-ui,sans-serif;color:#9A8E8B">Fin de mes</small><b style="display:block;font-size:20px">84 h</b><small style="color:#9B3B3B;font:600 11px Geist,system-ui,sans-serif">3.777 €</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabbar"><div class="on"><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 11l9-8 9 8v10h-6v-6H9v6H3z%22/></svg>')"></i>Resumen</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22/></svg>')"></i>Agenda</div><div class="ai">✦</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 20h4V10H3zm7 0h4V4h-4zm7 0h4v-7h-4z%22/></svg>')"></i>Informes</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect x=%223%22 y=%225%22 width=%2218%22 height=%223%22/><rect x=%223%22 y=%2211%22 width=%2218%22 height=%223%22/><rect x=%223%22 y=%2217%22 width=%2218%22 height=%223%22/></svg>')"></i>Mi centro</div></div>
+  </div>
+  <button class="replay" data-r="1">↻ Repetir animación</button>
+</section>
+
+<!-- ================= C ================= -->
+<section class="opt">
+  <div class="label"><b>C · Mosaico editorial</b><span>estilo bento</span></div>
+  <div class="phone C"><div class="scroll">
+    <div class="hd rise"><div class="logo">R</div><div><small>Buenas tardes</small><b>Centro Demo</b></div><div class="pill">Todo el equipo ▾</div></div>
+    <div class="period rise" style="animation-delay:.05s"><span>Día</span><span>Semana</span><span class="on">Noviembre</span><span>Trimestre</span><span>Año</span></div>
+    <div class="bento">
+      <div class="b s6 hero rise" style="animation-delay:.1s"><div class="ring"></div>
+        <small>Has facturado este mes</small>
+        <div class="num n"><span class="cu" data-v="32043">0</span> €</div>
+        <span class="tag" style="background:rgba(159,211,181,.2);color:#AEE3C4">▲ 5 % vs. octubre</span>
+        <div style="display:flex;gap:18px;margin-top:22px">
+          <div><small>Beneficio</small><div style="font-size:20px;font-weight:700;color:#AEE3C4" class="n">17.089 €</div></div>
+          <div><small>Gastos</small><div style="font-size:20px;font-weight:700" class="n">14.954 €</div></div>
+        </div>
+        <div style="height:8px;border-radius:4px;background:rgba(255,255,255,.14);margin-top:16px;overflow:hidden"><div class="wide" style="height:8px;width:65%;background:linear-gradient(90deg,#D9A15B,#F2D7B0);border-radius:4px"></div></div>
+        <small style="display:block;margin-top:6px">65 % del objetivo · faltan 17.296 €</small>
+      </div>
+      <div class="b s4 rise" style="animation-delay:.2s"><small>Cabina · al día</small><div class="num n">1.475 €</div><span class="tag" style="background:#E3EEE7;color:#3F6B57">▲ 9 %</span>
+        <div class="bars" id="Cb1"></div></div>
+      <div class="b s2 rise" style="animation-delay:.25s;background:#8A3F55;color:#fff"><small style="color:rgba(255,255,255,.7)">€/hora</small><div class="num n">47</div><small style="color:rgba(255,255,255,.7)">▲ 7 %</small></div>
+      <div class="b s3 rise" style="animation-delay:.3s;background:#F8ECDB"><small style="color:#9A6A2E">Venta producto</small><div class="num n" style="color:#7A4E18">410 €</div><small style="color:#9A6A2E">28 % compra · 46 € cesta</small></div>
+      <div class="b s3 rise" style="animation-delay:.35s;background:#E1ECF2"><small style="color:#2E6A8A">Aparatos</small><div class="num n" style="color:#1F4E66">23 %</div><small style="color:#2E6A8A">de uso · 70 €/h</small></div>
+      <div class="b s6 rise" style="animation-delay:.4s"><small>Equipo · facturado al día</small><div id="Cteam" style="margin-top:10px"></div></div>
+      <div class="b s6 rise" style="animation-delay:.45s;background:#241B1A;color:#fff"><small style="color:#F2D7B0">✦ Consejo de la IA</small>
+        <p style="font-size:16px;line-height:1.45;margin-top:8px">Mañana tienes <b style="color:#F2D7B0">10 horas libres</b> (467 €). Ofrece las sesiones de bono pendientes a 6 clientas.</p></div>
+    </div>
+  </div>
+  <div class="tabbar"><div class="on"><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 11l9-8 9 8v10h-6v-6H9v6H3z%22/></svg>')"></i>Resumen</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22/></svg>')"></i>Agenda</div><div class="ai">✦</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 20h4V10H3zm7 0h4V4h-4zm7 0h4v-7h-4z%22/></svg>')"></i>Informes</div><div><i style="--m:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect x=%223%22 y=%225%22 width=%2218%22 height=%223%22/><rect x=%223%22 y=%2211%22 width=%2218%22 height=%223%22/><rect x=%223%22 y=%2217%22 width=%2218%22 height=%223%22/></svg>')"></i>Mi centro</div></div>
+  </div>
+  <button class="replay" data-r="2">↻ Repetir animación</button>
+</section>
+</div>
+<p class="note">Son maquetas con los datos del centro de ejemplo: lo que importa es el estilo (colores, tamaños, movimiento). Elige A, B o C — o mezcla, por ejemplo «la cabecera de A con los anillos de B» — y lo aplico a toda la app.</p>
+
+<script>
+const team=[['Sara',521,75],['Nerea',485,73],['Laura',441,55],['Marta',438,59]];
+const ini=n=>n.slice(0,2).toUpperCase();
+document.getElementById('Ateam').innerHTML=team.map(([n,v,p],i)=>`<div class="row"><div class="ico" style="background:rgba(255,255,255,.08);font:700 13px Geist,system-ui,sans-serif">${ini(n)}</div><div class="t"><b>${n}</b><div style="height:5px;border-radius:3px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden"><div class="wide" style="height:5px;width:${p}%;background:linear-gradient(90deg,#C25A7C,#F2D7B0);animation-delay:${.5+i*.1}s"></div></div></div><div class="v n">${v} €<small style="color:rgba(255,255,255,.55)">${p} %</small></div></div>`).join('');
+document.getElementById('Bteam').innerHTML=team.map(([n,v,p],i)=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0"><div style="width:32px;height:32px;border-radius:16px;background:#F6E8ED;color:#8A3F55;display:grid;place-items:center;font:700 12px Geist,system-ui,sans-serif">${ini(n)}</div><div style="flex:1"><div style="display:flex;justify-content:space-between;font:600 14px Geist,system-ui,sans-serif"><span>${n}</span><span class="n">${v} €</span></div><div style="height:6px;border-radius:3px;background:#F1EAE8;margin-top:5px;overflow:hidden"><div class="wide" style="height:6px;width:${p}%;background:${p>=70?'#3F6B57':'#D9A15B'};border-radius:3px;animation-delay:${.5+i*.08}s"></div></div></div></div>`).join('');
+document.getElementById('Cteam').innerHTML=`<div style="display:flex;align-items:flex-end;gap:10px;height:120px">`+team.map(([n,v,p],i)=>`<div style="flex:1;text-align:center"><div style="font:700 13px Geist,system-ui,sans-serif" class="n">${v} €</div><div class="grow" style="height:${v/5.6}px;margin-top:6px;border-radius:12px;background:${i==0?'linear-gradient(180deg,#C25A7C,#8A3F55)':'#EBDCD9'};animation-delay:${.5+i*.1}s"></div><div style="font:600 12px Geist,system-ui,sans-serif;margin-top:6px;color:#6E625E">${n}</div></div>`).join('')+'</div>';
+const spark=(id,col,vals)=>document.getElementById(id).innerHTML=vals.map((v,i)=>`<i class="grow" style="height:${v}%;background:${i==vals.length-1?col:col+'55'};animation-delay:${.3+i*.04}s"></i>`).join('');
+spark('Bs1','#8A3F55',[40,55,48,62,58,70,66,80,74,88]);spark('Bs2','#3F6B57',[35,50,45,58,52,64,61,72,70,84]);
+document.getElementById('Cb1').innerHTML=[52,66,58,74,61,80,70,92,77,85,68,96].map((v,i)=>`<i class="grow" style="height:${v}%;background:${i==11?'#8A3F55':'#EBDCD9'};animation-delay:${.3+i*.04}s"></i>`).join('');
+
+const fmt=v=>Math.round(v).toLocaleString('es-ES');
+function play(sec){sec.classList.remove('play');void sec.offsetWidth;sec.classList.add('play');
+  sec.querySelectorAll('.cu').forEach(el=>{const to=+el.dataset.v,t0=performance.now();const s=t=>{const k=Math.min(1,(t-t0)/1300),e=1-Math.pow(1-k,3);el.textContent=fmt(to*e);if(k<1)requestAnimationFrame(s)};requestAnimationFrame(s)})}
+const opts=[...document.querySelectorAll('.opt')], rail=document.getElementById('rail'), tabs=[...document.querySelectorAll('.tabs button')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.6){const i=opts.indexOf(e.target);if(!e.target.classList.contains('play'))play(e.target);tabs.forEach((b,j)=>b.classList.toggle('on',j===i))}}),{root:rail,threshold:[.6]});
+opts.forEach(o=>io.observe(o));
+tabs.forEach(b=>b.onclick=()=>opts[+b.dataset.i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}));
+document.querySelectorAll('.replay').forEach(b=>b.onclick=()=>play(opts[+b.dataset.r]));
+if(innerWidth>=1100)opts.forEach(play);
+</script>
+</body>
+</html>
