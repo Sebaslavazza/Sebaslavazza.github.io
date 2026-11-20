@@ -99,16 +99,7 @@ html,body{background:#EFE7E4;font-family:var(--f);color:var(--ink);-webkit-font-
   <div class="glow" style="width:220px;height:220px;background:#FBE1BE;right:-90px;top:160px;animation-delay:-5s"></div>
   <div class="scroll" id="sc">
     <div class="hd rise"><div class="logo">R</div><div><small>Buenas tardes</small><b>Centro Demo</b></div><div class="bell">🔔<i></i></div></div>
-    <div class="say rise" style="animation-delay:.08s" id="say">Noviembre va <em>bien</em>. Mañana tienes 10 horas libres.</div>
-
-    <div class="stories rise" style="animation-delay:.14s">
-      <div class="st" data-s="0"><div><span>✦</span></div>Tu mes</div>
-      <div class="st" data-s="2"><div><span style="color:var(--rasp)">C</span></div>Cabina</div>
-      <div class="st" data-s="3"><div><span style="color:var(--amber)">E</span></div>Equipo</div>
-      <div class="st" data-s="4"><div><span style="color:var(--blue)">!</span></div>Consejo</div>
-    </div>
-
-    <div class="hero rise" style="animation-delay:.2s">
+    <div class="hero rise" style="animation-delay:.08s;margin-top:16px">
       <div class="seg" id="seg"><span data-p="0">Hoy</span><span data-p="1">Semana</span><span data-p="2" class="on">Mes</span><span data-p="3">Año</span></div>
       <div class="hrow">
         <svg width="96" height="96" viewBox="0 0 96 96" style="flex:0 0 auto"><g transform="rotate(-90 48 48)" fill="none" stroke-width="10" stroke-linecap="round"><circle cx="48" cy="48" r="40" stroke="#F4E3E8"/><circle id="ring" cx="48" cy="48" r="40" stroke="url(#rg)" stroke-dasharray="251" stroke-dashoffset="251" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)"/></g><defs><linearGradient id="rg"><stop offset="0" stop-color="#E07A9B"/><stop offset="1" stop-color="#F2B66B"/></linearGradient></defs>
@@ -122,7 +113,16 @@ html,body{background:#EFE7E4;font-family:var(--f);color:var(--ink);-webkit-font-
       </div>
     </div>
 
+    <div class="say rise" style="animation-delay:.2s;font-size:19px;margin-top:16px" id="say">Noviembre va <em>bien</em>. Mañana tienes 10 horas libres.</div>
+
     <div class="today rise" style="animation-delay:.28s"><div class="ic">🗓️</div><div><b>Mañana: 10 h libres</b><small>467 € sin facturar · 86 sesiones de bono pendientes</small></div><button id="todayBtn">Llenar</button></div>
+
+    <div class="stories rise" style="animation-delay:.3s">
+      <div class="st" data-s="0"><div><span>✦</span></div>Tu mes</div>
+      <div class="st" data-s="2"><div><span style="color:var(--rasp)">C</span></div>Cabina</div>
+      <div class="st" data-s="3"><div><span style="color:var(--amber)">E</span></div>Equipo</div>
+      <div class="st" data-s="4"><div><span style="color:var(--blue)">!</span></div>Consejo</div>
+    </div>
 
     <div class="h2 rise" style="animation-delay:.32s"><b>Tu centro</b><span>Toca para ver más</span></div>
     <div id="areas"></div>
