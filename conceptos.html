@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Rentia · 4 formas nuevas de ver tu centro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--f:Geist,system-ui,-apple-system,sans-serif;--rose:#F2B6C8;--rasp:#C25A7C;--deep:#8A3F55;--amber:#F2D7B0;--blue:#A9CBE0;--green:#AEE3C4}
+html,body{background:#0B0709;font-family:var(--f);color:#fff;-webkit-font-smoothing:antialiased}
+.top{position:sticky;top:0;z-index:50;padding:14px 16px 10px;background:rgba(11,7,9,.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.top h1{font-size:20px;font-weight:700;letter-spacing:-.4px}.top p{font-size:13px;color:#9A8C90;margin-top:2px}
+.tabs{display:flex;gap:6px;margin-top:10px}
+.tabs button{flex:1;border:0;border-radius:12px;padding:10px 2px;font:600 12px var(--f);background:#1C1418;color:#C9B9BE}
+.tabs button.on{background:#fff;color:#1C1418}
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 16px 30px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.opt{scroll-snap-align:center;flex:0 0 min(390px,calc(100vw - 32px));min-width:0;max-width:min(390px,calc(100vw - 32px))}
+.label{margin:6px 4px 10px}.label b{font-size:15px}.label span{display:block;font-size:12px;color:#9A8C90;margin-top:3px;line-height:1.4}
+.phone{position:relative;border-radius:38px;overflow:hidden;height:760px;background:#0F090C;box-shadow:0 30px 70px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.07);user-select:none;-webkit-user-select:none}
+.n{font-variant-numeric:tabular-nums}
+.hint{text-align:center;font:500 12px var(--f);color:#9A8C90;margin-top:12px}
+.note{max-width:720px;margin:0 auto;padding:0 20px 40px;font-size:14px;color:#B9A9AE;line-height:1.5}
+@media(min-width:1100px){.rail{justify-content:center}}
+
+/* ---------- 1 · Historias ---------- */
+.S .bars{position:absolute;top:50px;left:14px;right:14px;display:flex;gap:4px;z-index:5}
+.S .bars i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden}
+.S .bars i b{display:block;height:100%;width:0;background:#fff}
+.S .slide{position:absolute;inset:0;padding:96px 26px 40px;display:flex;flex-direction:column;opacity:0;transition:opacity .5s}
+.S .slide.on{opacity:1}
+.S .eye{font:700 12px var(--f);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.S h2{font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin-top:12px}
+.S .mega{font-size:72px;font-weight:900;letter-spacing:-4px;line-height:1;margin-top:auto}
+.S .sub{font-size:16px;color:rgba(255,255,255,.8);margin-top:10px;line-height:1.4}
+.S .tapL,.S .tapR{position:absolute;top:80px;bottom:0;width:40%;z-index:4}.S .tapL{left:0}.S .tapR{right:0}
+.S .coins{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:auto}
+.S .coins i{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.12);transform:scale(0);transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .3s}
+.S .coins i.on{transform:scale(1)}.S .coins i.keep{background:var(--green)}.S .coins i.cost{background:rgba(255,255,255,.28)}
+.S .pod{display:flex;align-items:flex-end;gap:10px;margin-top:auto;height:300px}
+.S .pod div{flex:1;border-radius:18px 18px 6px 6px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;padding-top:12px;transform:scaleY(0);transform-origin:bottom;transition:transform .9s cubic-bezier(.2,.9,.2,1)}
+.S .pod.go div{transform:scaleY(1)}
+.S .btn{margin-top:18px;align-self:flex-start;background:#fff;color:#2A1220;border-radius:999px;padding:13px 20px;font:700 15px var(--f)}
+
+/* ---------- 2 · Pulso ---------- */
+.P{background:radial-gradient(90% 60% at 50% 38%,#2A1220 0%,#0F090C 70%)}
+.P .stage{position:absolute;left:0;right:0;top:120px;height:420px}
+.P .orb{position:absolute;left:50%;top:50%;width:190px;height:190px;margin:-95px 0 0 -95px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#FFD9E4 0%,#E07A9B 30%,#8A3F55 65%,#3B1726 100%);box-shadow:0 0 80px 10px rgba(224,122,155,.45),inset 0 -20px 40px rgba(0,0,0,.35);
+  animation:breathe 4s ease-in-out infinite;display:grid;place-items:center;text-align:center;transition:background .6s}
+@keyframes breathe{50%{transform:scale(1.06);box-shadow:0 0 120px 24px rgba(224,122,155,.55),inset 0 -20px 40px rgba(0,0,0,.35)}}
+.P .orb b{display:block;font-size:34px;font-weight:900;letter-spacing:-1.5px}.P .orb small{font:600 12px var(--f);color:rgba(255,255,255,.8)}
+.P .ring{position:absolute;left:50%;top:50%;border:1px dashed rgba(255,255,255,.12);border-radius:50%}
+.P .sat{position:absolute;left:50%;top:50%;border-radius:50%;display:grid;place-items:center;text-align:center;font:700 11px var(--f);cursor:pointer;transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .4s}
+.P .sat span{display:block;font:800 14px var(--f)}
+.P .card{position:absolute;left:16px;right:16px;bottom:120px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(20px);border-radius:24px;padding:16px;transform:translateY(20px);opacity:0;transition:.45s cubic-bezier(.2,.9,.2,1)}
+.P .card.on{transform:none;opacity:1}
+.P .dial{position:absolute;left:0;right:0;bottom:30px;height:70px;overflow:hidden;touch-action:none}
+.P .dial .track{position:absolute;top:0;left:50%;display:flex;transition:transform .35s cubic-bezier(.2,.9,.2,1)}
+.P .dial .track span{width:84px;text-align:center;font:700 15px var(--f);color:rgba(255,255,255,.35);padding-top:26px;transition:color .3s,transform .3s}
+.P .dial .track span.on{color:#fff;transform:scale(1.15)}
+.P .dial:before{content:'';position:absolute;left:50%;top:6px;width:2px;height:12px;margin-left:-1px;border-radius:1px;background:var(--rose)}
+.P .ticks{position:absolute;left:0;right:0;top:0;height:14px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,transparent 1px 12px)}
+
+/* ---------- 3 · Cartera ---------- */
+.W{background:#0F090C}
+.W h2{position:absolute;top:56px;left:20px;font-size:30px;font-weight:800;letter-spacing:-1px}
+.W .per{position:absolute;top:100px;left:20px;font:600 13px var(--f);color:#9A8C90}
+.W .wcard{position:absolute;left:14px;right:14px;height:210px;border-radius:24px;padding:18px;cursor:pointer;
+  transition:transform .6s cubic-bezier(.2,.9,.2,1),height .6s cubic-bezier(.2,.9,.2,1);box-shadow:0 -8px 30px rgba(0,0,0,.45);overflow:hidden}
+.W .wcard .h{display:flex;justify-content:space-between;align-items:center;font:700 14px var(--f)}
+.W .wcard .v{font-size:38px;font-weight:800;letter-spacing:-1.6px;margin-top:14px}
+.W .wcard .more{opacity:0;transition:opacity .4s .2s;margin-top:18px}
+.W .wcard.open .more{opacity:1}
+.W .wcard:after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.12) 50%,transparent 60%);transform:translateX(-100%);transition:transform 1s}
+.W .wcard.open:after{transform:translateX(100%)}
+.W .mini{display:flex;align-items:flex-end;gap:4px;height:90px}
+.W .mini i{flex:1;border-radius:4px 4px 2px 2px;background:rgba(255,255,255,.35);transform:scaleY(0);transform-origin:bottom;transition:transform .7s cubic-bezier(.2,.9,.2,1)}
+.W .open .mini i{transform:scaleY(1)}
+.W .kv{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(255,255,255,.15);font-size:14px}
+
+/* ---------- 4 · Asistente ---------- */
+.C{background:linear-gradient(180deg,#1A0E14 0%,#0F090C 40%)}
+.C .feed{position:absolute;inset:0;overflow-y:auto;padding:58px 16px 120px;scrollbar-width:none}.C .feed::-webkit-scrollbar{display:none}
+.C .av{width:34px;height:34px;border-radius:12px;background:conic-gradient(from 210deg,#F2B6C8,#F2D7B0,#A9CBE0,#F2B6C8);animation:spin 6s linear infinite}
+@keyframes spin{to{filter:hue-rotate(360deg)}}
+.C .msg{font-size:17px;line-height:1.45;margin-top:14px}
+.C .msg b{color:var(--amber)}
+.C .w{background:#1C1318;border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:14px;margin-top:12px;opacity:0;transform:translateY(12px);transition:.5s cubic-bezier(.2,.9,.2,1)}
+.C .w.on{opacity:1;transform:none}
+.C .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.C .chips span{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 13px;font:600 13px var(--f);cursor:pointer;opacity:0;transition:.4s}
+.C .chips span.on{opacity:1}
+.C .me{align-self:flex-end;background:#fff;color:#2A1220;border-radius:18px 18px 4px 18px;padding:10px 14px;font-weight:600;margin:16px 0 0 auto;width:fit-content;max-width:80%}
+.C .input{position:absolute;left:12px;right:12px;bottom:14px;height:56px;border-radius:28px;background:#1C1318;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;padding:0 8px 0 18px;color:#8C7F84;font-size:15px}
+.C .input b{margin-left:auto;width:40px;height:40px;border-radius:20px;background:var(--rose);color:#2A1220;display:grid;place-items:center;font-size:18px}
+.cursor-blink:after{content:'▍';animation:blink 1s steps(1) infinite;color:var(--rose)}@keyframes blink{50%{opacity:0}}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>4 formas nuevas de ver tu centro</h1>
+  <p>No son colores distintos: cada una funciona de otra manera. Tócalas.</p>
+  <div class="tabs"><button data-i="0" class="on">Historias</button><button data-i="1">Pulso</button><button data-i="2">Cartera</button><button data-i="3">Asistente</button></div>
+</div>
+<div class="rail" id="rail">
+
+<!-- ========== 1 · HISTORIAS ========== -->
+<section class="opt"><div class="label"><b>1 · Tu mes en historias</b><span>Como Instagram o el «Wrapped» de Spotify: cada día o cada mes, la app te cuenta cómo fue en pantallas a pantalla completa. Toca a la derecha para avanzar.</span></div>
+<div class="phone S" id="S">
+  <div class="bars"></div>
+  <div class="slide" style="background:radial-gradient(120% 80% at 30% 10%,#C25A7C,#5A2236 55%,#1A0A10)">
+    <div class="eye">Noviembre · tu centro</div><h2>Este mes has facturado</h2>
+    <div class="mega n"><span data-cu="32043">0</span> €</div><div class="sub">1.498 € más que en octubre. Vas por buen camino.</div></div>
+  <div class="slide" style="background:radial-gradient(120% 80% at 70% 0%,#3F6B57,#1B3328 55%,#0B1410)">
+    <div class="eye">Lo que te queda</div><h2>De cada 100 € que entran, te quedas <span style="color:var(--green)">53</span></h2>
+    <div class="coins" id="coins"></div><div class="sub">El resto se va en sueldos, local, producto y comisiones.</div></div>
+  <div class="slide" style="background:radial-gradient(120% 80% at 50% 0%,#2E6A8A,#173447 55%,#0A141B)">
+    <div class="eye">Tu tratamiento estrella</div><h2>La depilación láser te deja <span style="color:var(--blue)">71 €</span> cada hora</h2>
+    <div class="mega" style="font-size:96px">⚡︎</div><div class="sub">Es el que más te deja por hora. Si llenas los martes al mediodía, sumarías unos 900 € al mes.</div></div>
+  <div class="slide" style="background:radial-gradient(120% 80% at 50% 0%,#8A6A4F,#3D2C1E 55%,#140E09)">
+    <div class="eye">Tu equipo</div><h2>Sara ha sido la que más ha facturado</h2>
+    <div class="pod" id="pod"><div style="background:#E8D2BC;color:#3D2C1E;height:62%"><b>Nerea</b><small>485 €/día</small></div><div style="background:#F2D7B0;color:#3D2C1E;height:88%"><b>Sara</b><small>521 €/día</small></div><div style="background:#D9BFA4;color:#3D2C1E;height:50%"><b>Laura</b><small>441 €/día</small></div></div></div>
+  <div class="slide" style="background:radial-gradient(120% 80% at 30% 10%,#C25A7C,#2A1220 60%,#0F090C)">
+    <div class="eye">✦ Para esta semana</div><h2>Mañana tienes 10 horas libres</h2>
+    <div class="sub" style="margin-top:auto">Hay 86 sesiones de bono sin hacer. Si avisas a 6 clientas, recuperas unos 467 €.</div>
+    <div class="btn">Avisar a las clientas →</div></div>
+  <div class="tapL"></div><div class="tapR"></div>
+</div><div class="hint">Toca a la derecha o a la izquierda · se reproduce solo</div></section>
+
+<!-- ========== 2 · PULSO ========== -->
+<section class="opt"><div class="label"><b>2 · El pulso de tu centro</b><span>Una esfera que respira: cuanto más grande y rosa, mejor va el mes. Alrededor giran cabina, producto, aparatos y equipo. Toca uno, y gira la rueda de abajo para cambiar de periodo.</span></div>
+<div class="phone P" id="P">
+  <div style="position:absolute;top:56px;left:20px;right:20px"><div style="font:600 13px var(--f);color:#9A8C90">Buenas tardes</div><div style="font-size:26px;font-weight:800;letter-spacing:-.8px" id="Ptitle">Noviembre va bien</div></div>
+  <div class="stage" id="stage"><div class="ring" style="width:330px;height:330px;margin:-165px 0 0 -165px"></div><div class="orb" id="orb"><div><b class="n" id="orbv">65 %</b><small id="orbs">del objetivo</small></div></div></div>
+  <div class="card" id="pcard"></div>
+  <div class="dial" id="dial"><div class="ticks"></div><div class="track" id="track"></div></div>
+</div><div class="hint">Toca los círculos · arrastra la rueda</div></section>
+
+<!-- ========== 3 · CARTERA ========== -->
+<section class="opt"><div class="label"><b>3 · Cartera de tarjetas</b><span>Como la Cartera del iPhone: cada parte de tu centro es una tarjeta apilada. Toca una y sube, se abre con su detalle y su gráfica; toca otra vez para guardarla.</span></div>
+<div class="phone W" id="W"><h2>Noviembre</h2><div class="per">Toca una tarjeta</div></div>
+<div class="hint">Toca las tarjetas</div></section>
+
+<!-- ========== 4 · ASISTENTE ========== -->
+<section class="opt"><div class="label"><b>4 · Tu asistente te lo cuenta</b><span>En vez de pantallas con números, la app te habla: te resume el día con frases sencillas y gráficas dentro de la conversación. Tocas una pregunta y te responde.</span></div>
+<div class="phone C" id="Cph"><div class="feed" id="feed"></div><div class="input">Pregúntale a Rentia…<b>↑</b></div></div>
+<div class="hint">Toca las preguntas</div></section>
+</div>
+<p class="note">Cada una es una manera distinta de usar la app, con el estilo oscuro que te gustó. Se pueden combinar: por ejemplo, el Pulso como pantalla de inicio y las Historias para el resumen del mes. Dime cuál te convence.</p>
+
+<script>
+const fmt=v=>Math.round(v).toLocaleString('es-ES');
+const vib=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
+const count=(el,to,ms=1300)=>{const t0=performance.now();const s=t=>{const k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3);el.textContent=fmt(to*e);if(k<1)requestAnimationFrame(s)};requestAnimationFrame(s)};
+
+/* ---------- 1 · Historias ---------- */
+(()=>{const S=document.getElementById('S'),slides=[...S.querySelectorAll('.slide')],bars=S.querySelector('.bars');
+bars.innerHTML=slides.map(()=>'<i><b></b></i>').join('');const fills=[...bars.querySelectorAll('b')];
+const coins=document.getElementById('coins');coins.innerHTML=Array.from({length:100},()=>'<i></i>').join('');const cs=[...coins.children];
+let i=0,t0=0,raf,DUR=4800,active=false;
+function show(k){i=(k+slides.length)%slides.length;slides.forEach((s,j)=>s.classList.toggle('on',j===i));fills.forEach((f,j)=>f.style.width=j<i?'100%':'0');t0=performance.now();vib(8);
+  const c=slides[i].querySelector('[data-cu]');if(c)count(c,+c.dataset.cu,1600);
+  if(i===1){cs.forEach(x=>x.className='');cs.forEach((x,j)=>setTimeout(()=>x.className='on '+(j<53?'keep':'cost'),j*14))}
+  const pod=document.getElementById('pod');pod.classList.remove('go');if(i===3)setTimeout(()=>pod.classList.add('go'),150)}
+function loop(t){if(!active)return;const k=(t-t0)/DUR;fills[i].style.width=Math.min(100,k*100)+'%';if(k>=1)show(i+1);raf=requestAnimationFrame(loop)}
+S.querySelector('.tapR').onclick=()=>show(i+1);S.querySelector('.tapL').onclick=()=>show(i-1);
+window.startS=()=>{if(active)return;active=true;show(0);raf=requestAnimationFrame(loop)};window.stopS=()=>{active=false;cancelAnimationFrame(raf)}})();
+
+/* ---------- 2 · Pulso ---------- */
+(()=>{const P={dia:[1640,58,'Hoy va algo flojo'],semana:[7820,61,'Esta semana, normal'],mes:[32043,65,'Noviembre va bien'],trimestre:[90520,71,'El trimestre va muy bien'],ano:[318400,78,'Gran año']};
+const keys=['dia','semana','mes','trimestre','ano'],labels=['Día','Semana','Mes','Trimestre','Año'];
+const sats=[['Cabina','1.475 €','#C25A7C',78,0,'32 clientas al día · 47 € cada hora · ▲ 9 %','La cabina es lo que más te deja. La radiofrecuencia y el láser tiran del mes.'],
+ ['Producto','410 €','#D9A15B',58,90,'28 de cada 100 clientas compran · cesta 46 € · ▼ 5 %','La venta baja un poco: recomendar producto al acabar el facial sumaría ~440 €.'],
+ ['Aparatos','23 %','#2E6A8A',52,180,'de uso · ganan 70 € por hora de uso · ▲ 10 %','Los martes al mediodía están parados. Buen momento para una promo.'],
+ ['Equipo','4','#3F6B57',62,270,'Sara 521 € · Nerea 485 € · Laura 441 € · Marta 438 € al día','Sara va al 75 % de su objetivo; Laura necesita un empujón con la venta.']];
+const stage=document.getElementById('stage'),card=document.getElementById('pcard'),orb=document.getElementById('orb');
+let ang=0,sel=null,els=sats.map(([n,v,c,sz])=>{const d=document.createElement('div');d.className='sat';d.style.cssText=`width:${sz}px;height:${sz}px;margin:${-sz/2}px 0 0 ${-sz/2}px;background:radial-gradient(circle at 35% 30%,${c}ee,${c}88 60%,${c}44);box-shadow:0 0 30px ${c}66`;d.innerHTML=`<div>${n}<span class="n">${v}</span></div>`;stage.appendChild(d);return d});
+function place(){els.forEach((d,k)=>{if(sel===k){d.style.transform='translate(0,0) scale(1.9)';d.style.zIndex=3;return}const a=(sats[k][4]+ang)*Math.PI/180,r=165;d.style.transform=`translate(${Math.cos(a)*r}px,${Math.sin(a)*r}px)`;d.style.zIndex=2;d.style.opacity=sel==null?1:.35})}
+(function spin(){if(sel==null)ang+=.08;els.forEach((d,k)=>{if(sel==null){const a=(sats[k][4]+ang)*Math.PI/180;d.style.transition='opacity .4s';d.style.transform=`translate(${Math.cos(a)*165}px,${Math.sin(a)*165}px)`}});requestAnimationFrame(spin)})();
+els.forEach((d,k)=>d.onclick=e=>{e.stopPropagation();vib(10);if(sel===k){sel=null;orb.style.opacity=1;card.classList.remove('on');els.forEach(x=>x.style.transition='transform .6s cubic-bezier(.2,.9,.2,1),opacity .4s');return}
+  sel=k;els.forEach(x=>x.style.transition='transform .6s cubic-bezier(.2,.9,.2,1),opacity .4s');place();orb.style.opacity=.15;
+  card.innerHTML=`<div style="font:700 12px var(--f);color:${sats[k][2]};letter-spacing:1px">${sats[k][0].toUpperCase()}</div><div style="font-size:15px;margin-top:6px;color:rgba(255,255,255,.85)">${sats[k][5]}</div><div style="font-size:14px;margin-top:10px;color:var(--amber)">✦ ${sats[k][6]}</div><div style="font:600 13px var(--f);margin-top:12px;color:#fff">Ver detalle ›</div>`;card.classList.add('on')});
+document.getElementById('P').addEventListener('click',()=>{if(sel!=null){sel=null;orb.style.opacity=1;card.classList.remove('on')}});
+const track=document.getElementById('track');track.innerHTML=labels.map(l=>`<span>${l}</span>`).join('');const spans=[...track.children];let cur=2;
+function setP(k){cur=Math.max(0,Math.min(4,k));track.style.transform=`translateX(${-42-cur*84}px)`;spans.forEach((s,j)=>s.classList.toggle('on',j===cur));const [v,p,t]=P[keys[cur]];
+  document.getElementById('orbv').textContent=p+' %';document.getElementById('Ptitle').textContent=t;const s=0.8+p/250;orb.style.width=orb.style.height=190*s+'px';orb.style.margin=`${-95*s}px 0 0 ${-95*s}px`;
+  orb.style.background=p<60?'radial-gradient(circle at 35% 30%,#F2D7B0 0%,#D9A15B 30%,#8A5A2F 65%,#2E1C0E 100%)':'radial-gradient(circle at 35% 30%,#FFD9E4 0%,#E07A9B 30%,#8A3F55 65%,#3B1726 100%)';vib(6)}
+spans.forEach((s,j)=>s.onclick=()=>setP(j));
+let sx=null,sc=0;const dial=document.getElementById('dial');
+dial.addEventListener('pointerdown',e=>{sx=e.clientX;sc=cur;dial.setPointerCapture(e.pointerId)});
+dial.addEventListener('pointermove',e=>{if(sx==null)return;const k=Math.round(sc-(e.clientX-sx)/60);if(k!==cur)setP(k)});
+dial.addEventListener('pointerup',()=>sx=null);setP(2)})();
+
+/* ---------- 3 · Cartera ---------- */
+(()=>{const W=document.getElementById('W');
+const cards=[['Tu centro','32.043 €','facturado · ▲ 5 %','linear-gradient(135deg,#C25A7C,#5A2236)',[['Beneficio','17.089 €'],['Gastos','14.954 €'],['Objetivo','65 % · faltan 17.296 €']],[40,52,48,61,58,66,72,69,80,77,88,92]],
+ ['Cabina','1.475 € al día','32 clientas · 47 €/h','linear-gradient(135deg,#9E4A64,#3B1726)',[['Mejor tratamiento','Láser · 71 €/h'],['Revisar precio','Manicura · 5 €/h'],['Bonos pendientes','86 sesiones']],[60,72,58,80,66,90,74,85,70,95,78,88]],
+ ['Venta de producto','410 € al día','28 % compra · cesta 46 €','linear-gradient(135deg,#C9924F,#5C3A16)',[['Más vendido','Crema hidratante'],['A punto de agotarse','2 productos'],['Recompra','26 clientas esta semana']],[50,44,58,40,52,47,38,55,49,42,46,41]],
+ ['Aparatología','23 % de uso','gana 70 € por hora de uso','linear-gradient(135deg,#3C7FA3,#12324A)',[['Radiofrecuencia','29 % · amortizándose'],['Láser de diodo','20 % · 60 % pagado'],['Más parados','martes al mediodía']],[22,30,18,35,26,40,24,38,20,33,28,36]],
+ ['Equipo','4 personas','Sara va la primera','linear-gradient(135deg,#4F8069,#1B3328)',[['Sara','521 € al día · 75 %'],['Nerea','485 € al día · 73 %'],['Laura','441 € al día · 55 %']],[75,73,59,55]],
+ ['Huecos que vienen','10 h mañana','467 € sin facturar','linear-gradient(135deg,#5A4A52,#221A1E)',[['Próximos 7 días','52 h · 2.338 €'],['Hasta fin de mes','84 h · 3.777 €'],['Idea','Ofrece sesiones de bono']],[10,52,84]]];
+const els=cards.map(([t,v,s,bg,kv,bars],k)=>{const d=document.createElement('div');d.className='wcard';d.style.background=bg;
+  d.innerHTML=`<div class="h"><span>${t}</span><span style="opacity:.7">R</span></div><div class="v n">${v}</div><div style="font-size:13px;opacity:.8;margin-top:2px">${s}</div><div class="more"><div class="mini">${bars.map((b,i)=>`<i style="height:${b}%;transition-delay:${i*.03}s;${i==bars.length-1?'background:#fff':''}"></i>`).join('')}</div><div style="margin-top:14px">${kv.map(([a,b])=>`<div class="kv"><span style="opacity:.75">${a}</span><b>${b}</b></div>`).join('')}</div><div style="margin-top:14px;font:700 14px var(--f)">Ver detalle completo ›</div></div>`;W.appendChild(d);return d});
+let open=null;
+function lay(){els.forEach((d,k)=>{d.classList.toggle('open',open===k);if(open==null){d.style.transform=`translateY(${140+k*92}px)`;d.style.height='210px';d.style.zIndex=k}
+  else if(open===k){d.style.transform='translateY(130px)';d.style.height='520px';d.style.zIndex=20}
+  else{const rest=els.filter((_,j)=>j!==open).indexOf(d);d.style.transform=`translateY(${668+rest*12}px)`;d.style.height='210px';d.style.zIndex=10+rest}})}
+els.forEach((d,k)=>d.onclick=()=>{vib(10);open=open===k?null:k;lay()});lay()})();
+
+/* ---------- 4 · Asistente ---------- */
+(()=>{const feed=document.getElementById('feed');let started=false;
+const type=(el,html,cb)=>{const txt=html;let i=0;el.classList.add('cursor-blink');const step=()=>{i+=2;let out=txt.slice(0,i);const open=(out.match(/<b>/g)||[]).length,close=(out.match(/<\/b>/g)||[]).length;if(out.lastIndexOf('<')>out.lastIndexOf('>'))out=out.slice(0,out.lastIndexOf('<'));el.innerHTML=out+(open>close?'</b>':'');if(i<txt.length)setTimeout(step,16);else{el.classList.remove('cursor-blink');cb&&cb()}};step()};
+const add=h=>{const d=document.createElement('div');d.innerHTML=h;feed.appendChild(d.firstElementChild);feed.scrollTo({top:feed.scrollHeight,behavior:'smooth'});return feed.lastElementChild};
+const widget=(h)=>{const w=add(`<div class="w">${h}</div>`);requestAnimationFrame(()=>requestAnimationFrame(()=>w.classList.add('on')));return w};
+const W1=`<div style="display:flex;justify-content:space-between;font:600 12px var(--f);color:#9A8C90"><span>Facturado en noviembre</span><span style="color:var(--green)">▲ 5 %</span></div><div class="n" style="font-size:34px;font-weight:800;letter-spacing:-1.4px;margin-top:4px">32.043 €</div><svg viewBox="0 0 320 60" width="100%" height="60" style="margin-top:6px"><path d="M0 50 C30 46 50 48 70 40 S110 30 140 34 S190 22 215 25 S265 12 290 15 S310 8 320 6" fill="none" stroke="#F2B6C8" stroke-width="2.5" stroke-linecap="round" style="stroke-dasharray:400;stroke-dashoffset:400;animation:dr 1.6s .2s forwards"/></svg><div style="height:6px;border-radius:3px;background:#2A1F24;margin-top:8px;overflow:hidden"><div style="height:6px;width:65%;background:linear-gradient(90deg,#C25A7C,#F2D7B0)"></div></div><div style="font-size:12px;color:#9A8C90;margin-top:6px">65 % del objetivo · te faltan 17.296 €</div>`;
+const answers={
+ '¿Por qué baja la venta?':['La venta de producto baja un <b>5 %</b>. Pasa sobre todo en los faciales: solo <b>2 de cada 10</b> clientas se llevan algo.',`<div style="font:600 12px var(--f);color:#9A8C90;margin-bottom:8px">De cada 10 clientas, cuántas compran</div>${[['Facial antiedad',2],['Limpieza facial',3],['Masaje',4]].map(([n,v])=>`<div style="display:flex;align-items:center;gap:8px;margin:6px 0"><span style="width:110px;font-size:13px">${n}</span><span style="flex:1;display:flex;gap:3px">${Array.from({length:10},(_,i)=>`<i style="flex:1;height:8px;border-radius:2px;background:${i<v?'#F2D7B0':'#2A1F24'}"></i>`).join('')}</span><b style="font-size:13px">${v}/10</b></div>`).join('')}<div style="margin-top:10px;font-size:13px;color:var(--amber)">Si llegáis a 4 de cada 10: +440 € al mes</div>`],
+ '¿Quién va mejor?':['<b>Sara</b> es la que más factura: 521 € al día y el 75 % de su objetivo. <b>Laura</b> va más justa, al 55 %.',`${[['Sara',75,521],['Nerea',73,485],['Marta',59,438],['Laura',55,441]].map(([n,p,v],i)=>`<div style="display:flex;align-items:center;gap:10px;margin:8px 0"><span style="width:56px;font-weight:600">${n}</span><span style="flex:1;height:8px;border-radius:4px;background:#2A1F24;overflow:hidden"><span style="display:block;height:8px;width:${p}%;background:${p>=70?'#AEE3C4':'#F2D7B0'};border-radius:4px"></span></span><b class="n" style="font-size:13px">${v} €</b></div>`).join('')}`],
+ '¿Cómo lleno mañana?':['Mañana tienes <b>10 horas libres</b>. Hay <b>86 sesiones de bono</b> sin hacer: te preparo un mensaje para 6 clientas que suelen venir a esa hora.',`<div style="font-size:14px;line-height:1.5;color:rgba(255,255,255,.85)">«Hola 😊 mañana tenemos hueco a las 12:00 y a las 17:00. ¿Te apetece aprovechar una sesión de tu bono?»</div><div style="display:flex;gap:8px;margin-top:12px"><span style="background:#fff;color:#2A1220;border-radius:999px;padding:9px 14px;font:700 13px var(--f)">Enviar a 6 clientas</span><span style="border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:9px 14px;font:600 13px var(--f)">Cambiar</span></div>`]};
+function chips(){const c=add(`<div class="chips">${Object.keys(answers).map(q=>`<span>${q}</span>`).join('')}</div>`);[...c.children].forEach((s,i)=>{setTimeout(()=>s.classList.add('on'),120*i);s.onclick=()=>{vib(8);c.remove();add(`<div class="me">${s.textContent}</div>`);const m=add('<div class="msg"></div>');setTimeout(()=>type(m,answers[s.textContent][0],()=>{widget(answers[s.textContent][1]);setTimeout(chips,700)}),400)}})}
+window.startC=()=>{if(started)return;started=true;
+  add(`<div style="display:flex;align-items:center;gap:10px"><div class="av"></div><div><div style="font:600 12px var(--f);color:#9A8C90">Rentia · ahora</div><b>Buenas tardes</b></div></div>`);
+  const m=add('<div class="msg"></div>');type(m,'Noviembre va <b>bien</b>: llevas <b>32.043 €</b> facturados, un 5 % más que en octubre, y de cada 100 € te quedas 53.',()=>{widget(W1);setTimeout(()=>{const m2=add('<div class="msg"></div>');type(m2,'Una cosa a vigilar: mañana tienes <b>10 horas libres</b>. ¿Te ayudo?',chips)},900)})}})();
+
+/* ---------- navegación ---------- */
+const st=document.createElement('style');st.textContent='@keyframes dr{to{stroke-dashoffset:0}}';document.head.appendChild(st);
+const opts=[...document.querySelectorAll('.opt')],rail=document.getElementById('rail'),tabs=[...document.querySelectorAll('.tabs button')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{const i=opts.indexOf(e.target);if(e.isIntersecting&&e.intersectionRatio>.6){tabs.forEach((b,j)=>b.classList.toggle('on',j===i));if(i===0)startS();if(i===3)startC()}else if(i===0&&!e.isIntersecting)stopS()}),{root:rail,threshold:[0,.6]});
+opts.forEach(o=>io.observe(o));
+tabs.forEach(b=>b.onclick=()=>opts[+b.dataset.i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}));
+if(innerWidth>=1100){startS();startC()}
+</script>
+</body>
+</html>
