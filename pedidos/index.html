@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Pedidos profesionales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet, tactile, editorial — a beauty brand's private order book, not a shop.
+   IDEA: a lookbook spread: left page is a full-bleed skin/texture photograph that changes with the line you browse; right page is the order sheet.
+   PICTURE: the ambient photo (crema, aceite, protección…) tinted to each line's colour, crossfading as you scroll.
+   COLOUR and TYPE: sand #efe7dd ground, ink #2a211c, terracotta #a65a3f accent; Cormorant Garamond light for names, Jost for figures and controls.
+   LAYOUT: two-column spread above 980px (sticky photo 42% / catalogue), stacked below; cart as a side sheet. */
+:root{color-scheme:light dark;
+ --bg:light-dark(#efe7dd,#1b1613);--paper:light-dark(#f7f2ec,#241d19);--ink:light-dark(#2a211c,#efe6dc);
+ --mute:light-dark(#7d6d62,#a8988b);--line:light-dark(#dccfc2,#3a302a);--acc:light-dark(#a65a3f,#d98a6c);--tint:#a65a3f}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Jost,system-ui,sans-serif;overflow-x:clip}
+button,input,select,textarea{font:inherit;color:inherit}
+.spread{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);min-height:100vh}
+.mood{position:sticky;top:0;height:100vh;overflow:hidden;background:#3b2f28}
+.mood img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease,transform 6s ease;transform:scale(1.04)}
+.mood img.on{opacity:1;transform:scale(1)}
+.mood::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,10,.05) 40%,rgba(20,14,10,.55));pointer-events:none}
+.mood .tint{position:absolute;inset:0;background:var(--tint);mix-blend-mode:soft-light;opacity:.35;transition:background .9s}
+.cap{position:absolute;left:clamp(20px,3vw,44px);bottom:clamp(24px,4vw,52px);right:24px;color:#fbf6f0;z-index:2}
+.cap small{font-size:13px;letter-spacing:.02em;opacity:.85}
+.cap h2{font:300 clamp(40px,5vw,72px)/1 'Cormorant Garamond',serif;margin:.15em 0 .1em}
+.cap p{margin:0;max-width:34ch;font-size:15px;opacity:.9}
+.sheet{padding:clamp(20px,3.4vw,48px) clamp(16px,3.4vw,52px) 120px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.brand{font:400 15px Jost;letter-spacing:.32em;text-transform:uppercase}
+h1{font:300 clamp(34px,4vw,52px)/1.05 'Cormorant Garamond',serif;margin:28px 0 6px;text-wrap:balance}
+.who{color:var(--mute);margin:0 0 22px}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px;display:grid;gap:10px}
+.search{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--ink);padding:6px 2px}
+.search input{border:0;background:none;outline:none;font-size:17px;width:100%;padding:6px 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:none;border-radius:999px;padding:8px 15px;font-size:14px;cursor:pointer;min-height:40px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,.qty button:focus-visible,.btn:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.sep{width:1px;background:var(--line);margin:4px 4px}
+.group{margin-top:34px}
+.group h3{font:300 30px/1.1 'Cormorant Garamond',serif;margin:0 0 4px;display:flex;align-items:baseline;gap:12px}
+.group h3 span{font:400 13px Jost;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:14px;margin-top:14px}
+.card{background:var(--paper);border-radius:4px;display:flex;flex-direction:column;overflow:hidden;transition:transform .3s}
+.card:hover{transform:translateY(-2px)}
+.ph{aspect-ratio:1;background:#fff;display:grid;place-items:center;position:relative}
+.ph img{width:100%;height:100%;object-fit:contain;padding:10px}
+.ph.none{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,#f6efe7),color-mix(in srgb,var(--c) 45%,#e9dccf))}
+.ph.none b{font:300 22px/1.1 'Cormorant Garamond',serif;color:#3a2c24;text-align:center;padding:16px}
+.tag{position:absolute;top:8px;left:8px;font-size:12px;background:rgba(255,255,255,.85);color:#3a2c24;padding:2px 8px;border-radius:99px}
+.bd{padding:12px 12px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.nm{font:400 19px/1.15 'Cormorant Garamond',serif}
+.mt{font-size:13px;color:var(--mute)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.pr{font-weight:500;white-space:nowrap}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.qty button{width:36px;height:36px;border:0;background:none;cursor:pointer;font-size:18px;border-radius:999px}
+.qty input{width:34px;text-align:center;border:0;background:none;font-size:16px;-moz-appearance:textfield}
+.qty input::-webkit-inner-spin-button{display:none}
+.card.in{box-shadow:inset 0 0 0 1.5px var(--acc)}
+.empty{padding:60px 0;color:var(--mute);text-align:center}
+.bag{position:fixed;right:clamp(14px,3vw,36px);bottom:clamp(14px,3vw,30px);z-index:20;display:flex;gap:14px;align-items:center;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:14px 22px;cursor:pointer;box-shadow:0 10px 30px rgba(40,25,15,.25);font-size:15px}
+.bag b{font-weight:500}
+.drawer{position:fixed;inset:0;z-index:30;display:none}
+.drawer.open{display:block}
+.drawer .bg{position:absolute;inset:0;background:rgba(30,20,14,.45)}
+.panel{position:absolute;right:0;top:0;bottom:0;width:min(460px,100%);background:var(--paper);display:flex;flex-direction:column;padding:26px 24px}
+.panel h4{font:300 34px 'Cormorant Garamond',serif;margin:0 0 4px}
+.lines{flex:1;overflow:auto;margin:14px -4px;padding:0 4px}
+.li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.li img,.li i{width:52px;height:52px;object-fit:contain;background:#fff;border-radius:3px;display:block}
+.li .nm{font-size:17px}
+.tot{display:flex;justify-content:space-between;font-size:18px;padding:10px 0}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);background:var(--bg);border-radius:4px;padding:10px;font-size:16px;resize:vertical}
+.btn{width:100%;min-height:50px;border:0;border-radius:999px;background:var(--acc);color:#fff;font-size:16px;cursor:pointer;margin-top:12px}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.note{font-size:13px;color:var(--mute);margin:8px 0 0}
+.x{position:absolute;top:14px;right:14px;width:44px;height:44px;border:0;background:none;font-size:26px;cursor:pointer}
+.done{text-align:center;padding:40px 10px}
+.done h4{font-size:40px}
+pre{white-space:pre-wrap;background:var(--bg);padding:12px;border-radius:4px;font-size:13px;max-height:220px;overflow:auto}
+.gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);padding:24px;text-align:center}.gate h2{font:300 44px/1.05 'Cormorant Garamond',serif;margin:0 0 10px}.gate p{color:var(--mute);max-width:36ch;margin:0 auto}
+@media(max-width:980px){.spread{grid-template-columns:1fr}.mood{position:relative;height:46vh;min-height:300px}}
+@media(prefers-reduced-motion:reduce){.mood img{transition:none;transform:none}.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="spread">
+ <aside class="mood" id="mood" aria-hidden="true">
+  <div class="tint" id="tint"></div>
+  <div class="cap"><small id="capB">Pedidos profesionales</small><h2 id="capT">El cuidado de la piel</h2><p id="capP">Esthederm y Natinuel, a precio profesional. Elige, ajusta cantidades y envía tu pedido.</p></div>
+ </aside>
+ <main class="sheet">
+  <header><div class="brand">Aliyá</div><div class="mt">Área privada de clientas</div></header>
+  <h1 id="hello">Tu pedido, sin llamadas</h1>
+  <p class="who" id="who">Precios PVL sin impuestos. Al pasar a Factusol se aplica tu tarifa.</p>
+  <div class="tools">
+   <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Busca por nombre o referencia" autocomplete="off"></label>
+   <div class="chips" id="fm"></div>
+   <div class="chips" id="fl"></div>
+  </div>
+  <div id="list"></div>
+ </main>
+</div>
+<button class="bag" id="bag" type="button"><span>Mi pedido</span><b id="bagN">0 uds</b><span id="bagT">0,00 €</span></button>
+<div class="drawer" id="dr" role="dialog" aria-modal="true" aria-label="Tu pedido">
+ <div class="bg" data-close></div>
+ <div class="panel" id="panel"></div>
+</div>
+<script id="data" type="application/json">[{"r":"ES V9100","n":"Agua Celular Bruma antioxidante con ácido hialurónico","t":"Aerosol 100ml","m":"Esthederm","u":"Venta","l":"agua","p":14.19,"f":true},{"r":"ES V9105","n":"Crema de Agua Celular","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"agua","p":27.73,"f":true},{"r":"ES V9103","n":"Gel de Agua Celular","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"agua","p":27.73,"f":true},{"r":"ES V4585","n":"Aceite Golden Glow","t":"Bote 125ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":34.76,"f":true},{"r":"ES V3715","n":"Bálsamo Reafirmante Alta Nutrición","t":"200ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":null,"f":true},{"r":"ES V3701","n":"Crema Intensiva LipolÍtica","t":"Tubo 200 ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":31.6,"f":true},{"r":"ES V3710","n":"Crema Reductora y Reafirmante","t":"Tarro 200ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":41.92,"f":true},{"r":"ES V6602","n":"Crema Vital A La Jalea Real","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":44.5,"f":true},{"r":"ES V3714","n":"Leche Hidratante Anti-Relajación","t":"200ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":null,"f":true},{"r":"ES V3750","n":"Morpho Fitness","t":"Tubo 100ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":31.6,"f":true},{"r":"ES V6911","n":"Pro-colágeno Crema Intensiva","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":47.72,"f":true},{"r":"ES V6910","n":"Pro-colágeno Serum Intensivo","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":50.94,"f":true},{"r":"ES V3716","n":"Sculpt System Crema Busto Modeladora","t":"Tarro 200ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":44.5,"f":true},{"r":"ES V3717","n":"Sculpt System Leche Hidratante Antiflacidez","t":"Dosificador 400ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":38.69,"f":true},{"r":"ES V3700","n":"Serum Drenante","t":"Dosificador 200 ml","m":"Esthederm","u":"Venta","l":"cuerpo","p":31.6,"f":true},{"r":"ES V2437","n":"Excellage Aceite Bifásico","t":"Cuentagotas, 30ml","m":"Esthederm","u":"Venta","l":"excellage","p":54.81,"f":true},{"r":"ES V2425","n":"Excellage Contorno De Ojos","t":"Tarro 15ml","m":"Esthederm","u":"Venta","l":"excellage","p":50.3,"f":true},{"r":"ES V2422","n":"Excellage Crema Rostro, Cuello Y Escote","t":"Tarro 50 ml","m":"Esthederm","u":"Venta","l":"excellage","p":61.26,"f":true},{"r":"ES V2420","n":"Excellage Serum Concentrado","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"excellage","p":70.93,"f":true},{"r":"ES V6610","n":"AHA concentrado Serum Intensivo","t":"Cuentagotas 30ml","m":"Esthederm","u":"Venta","l":"intensivos","p":48.36,"f":true},{"r":"ES V9840","n":"Age Proteom · Contorno De Ojos","t":"Dosificador 15ml","m":"Esthederm","u":"Venta","l":"intensivos","p":44.5,"f":true},{"r":"ES V9820","n":"Age Proteom · Serum Avanzado","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"intensivos","p":61.26,"f":true},{"r":"ES V6301","n":"Crema Reposo Biomimética","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"intensivos","p":37.4,"f":false},{"r":"ES V6114","n":"Hyaluronic Contorno de labios","t":"Tubo 15ml","m":"Esthederm","u":"Venta","l":"intensivos","p":18.79,"f":true},{"r":"ES V6112","n":"Hyaluronic Mascarilla Intensiva","t":"Tubo 75ml","m":"Esthederm","u":"Venta","l":"intensivos","p":27.79,"f":true},{"r":"ES V6110","n":"Hyaluronic Suero Intensivo","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"intensivos","p":44.5,"f":true},{"r":"ES V6113","n":"Hyaluronic contorno de ojos","t":"Tubo 15ml","m":"Esthederm","u":"Venta","l":"intensivos","p":27.66,"f":true},{"r":"ES V6111","n":"Hyaluronic crema intensiva","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"intensivos","p":42.56,"f":true},{"r":"ES B01010200","n":"NAD+ Crema Intensiva","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"intensivos","p":42.56,"f":true},{"r":"ES B01010600","n":"NAD+ Suero Intensivo","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"intensivos","p":44.5,"f":true},{"r":"ES V6813","n":"Retinol Contorno de Ojos","t":"Tubo 15ml","m":"Esthederm","u":"Venta","l":"intensivos","p":29.66,"f":true},{"r":"ES V6810","n":"Retinol Crema Intensiva","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"intensivos","p":49.01,"f":true},{"r":"ES V6812","n":"Retinol Suero Intensivo","t":"Cuentagotas 15ml","m":"Esthederm","u":"Venta","l":"intensivos","p":41.92,"f":true},{"r":"ES V6300","n":"Sensi Crema Desensibilizante","t":"50ml","m":"Esthederm","u":"Venta","l":"intensivos","p":36.11,"f":true},{"r":"ES V2451","n":"Vitamina C Crema Intensiva","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"intensivos","p":48.36,"f":true},{"r":"ES V6310","n":"Vitamina E Suero Intensivo","t":"Pipeta 30ml","m":"Esthederm","u":"Venta","l":"intensivos","p":48.36,"f":true},{"r":"ES V2452","n":"Vitamina C Serum","t":"Envase 10ml","m":"Esthederm","u":"Venta","l":"intensivos","p":50.3,"f":true},{"r":"ES V6804","n":"L&R Crema Alisadora Absoluta","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"lift","p":57.39,"f":true},{"r":"ES V6408","n":"L&R Parches Lift Contorno De Ojos","t":"Caja 10 Sobres","m":"Esthederm","u":"Venta","l":"lift","p":44.82,"f":true},{"r":"ES V6800","n":"L&R Suero Especial Arrugas","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"lift","p":58.04,"f":true},{"r":"ES V6805","n":"L&R Tratamiento Alisador Contorno De Ojos","t":"Dosificador 15ml","m":"Esthederm","u":"Venta","l":"lift","p":43.85,"f":true},{"r":"ES V6008","n":"Aceite Desmaquillador Micelar","t":"Bote 150ml","m":"Esthederm","u":"Venta","l":"limpieza","p":18.7,"f":true},{"r":"ES V6007","n":"Agua Micelar Osmopure","t":"Bote 200ml","m":"Esthederm","u":"Venta","l":"limpieza","p":14.83,"f":true},{"r":"ES V6000","n":"Crema Desincrustante Suave","t":"Tubo 75ml","m":"Esthederm","u":"Venta","l":"limpieza","p":21.22,"f":true},{"r":"ES V6023","n":"Desmaquillador Alta Tolerancia Ojos Y Labios","t":"Bote 200ml","m":"Esthederm","u":"Venta","l":"limpieza","p":19.02,"f":true},{"r":"ES V6500","n":"Espuma Limpiadora Aclaradora","t":"Frasco 150 ml","m":"Esthederm","u":"Venta","l":"limpieza","p":23.21,"f":false},{"r":"ES V6004","n":"Espuma Limpiadora Pureza","t":"Dosificador 150ml","m":"Esthederm","u":"Venta","l":"limpieza","p":21.99,"f":true},{"r":"ES B01006000","n":"Gelée-en-huile Desmaquillador","t":"Bote 100ml","m":"Esthederm","u":"Venta","l":"limpieza","p":22.57,"f":true},{"r":"ES V6003","n":"Gel Limpiador Pureza","t":"Tubo 150ml","m":"Esthederm","u":"Venta","l":"limpieza","p":18.7,"f":true},{"r":"ES V6001","n":"Leche Desmaquilladora Desensibilizante E Hidratante","t":"Bote 200ml","m":"Esthederm","u":"Venta","l":"limpieza","p":16.77,"f":true},{"r":"ES V6002","n":"Loción Desensibilizante E Hidratante","t":"Bote 200ml","m":"Esthederm","u":"Venta","l":"limpieza","p":16.77,"f":true},{"r":"ES V6009","n":"Mascarilla Exfoliante Aclaradora tratamiento instantáneo","t":"Tubo 75ml","m":"Esthederm","u":"Venta","l":"limpieza","p":22.51,"f":true},{"r":"ES B01016800","n":"Age Pigment Control Contorno de Ojos","t":"Tubo 15ml","m":"Esthederm","u":"Venta","l":"pigment","p":26.44,"f":true},{"r":"ES B01017200","n":"Age Pigment Control Crema","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"pigment","p":43.85,"f":true},{"r":"ES B01016900","n":"Age Pigment Control Serum","t":"Dosificador 30ml","m":"Esthederm","u":"Venta","l":"pigment","p":44.5,"f":true},{"r":"ES V6212","n":"Loción Própolis+","t":"","m":"Esthederm","u":"Venta","l":"propolis","p":24.12,"f":true},{"r":"ES V6211","n":"Própolis Crema Intensiva","t":"Tarro 50ml","m":"Esthederm","u":"Venta","l":"propolis","p":28.37,"f":true},{"r":"ES V6314","n":"Própolis Mascarilla","t":"","m":"Esthederm","u":"Venta","l":"propolis","p":22.57,"f":true},{"r":"ES V6210","n":"Própolis Suero Intensivo","t":"Pipeta 30ml","m":"Esthederm","u":"Venta","l":"propolis","p":34.18,"f":true},{"r":"ES V6213","n":"Própolis+ Gel Limpiador","t":"200ml","m":"Esthederm","u":"Venta","l":"propolis","p":18.7,"f":true},{"r":"ES V4504","n":"Adaptasun Extremo Fluido Facial","t":"Tubo 40ml","m":"Esthederm","u":"Venta","l":"solar","p":31.6,"f":true},{"r":"ES V4807","n":"Autobronceador gel-crema hidratante rostro y cuerpo","t":"Tubo 200ml","m":"Esthederm","u":"Venta","l":"solar","p":29.02,"f":true},{"r":"ES V4511","n":"Adaptasun Leche Normal","t":"200ml","m":"Esthederm","u":"Venta","l":"solar","p":34.05,"f":true},{"r":"ES V4501","n":"Adaptasun Sol Extremo Leche","t":"Bote 200ml","m":"Esthederm","u":"Venta","l":"solar","p":37.4,"f":true},{"r":"ES V4542","n":"Agua Solar Hidra-protectora Sol Extremo","t":"Spray 150ml","m":"Esthederm","u":"Venta","l":"solar","p":32.89,"f":false},{"r":"ES V4704","n":"Après Soleil Glow","t":"Tubo 200ml","m":"Esthederm","u":"Venta","l":"solar","p":32.24,"f":false},{"r":"ES V9600","n":"Bronz Impulse · Reforzar, intensificar y prolongar","t":"Spray de 150ml","m":"Esthederm","u":"Venta","l":"solar","p":33.53,"f":true},{"r":"ES V4500","n":"Bronz Repair Sol Extremo Crema anti-arrugas","t":"Tubo de 50ml","m":"Esthederm","u":"Venta","l":"solar","p":44.5,"f":true},{"r":"ES V4510","n":"Bronz Repair Sol Normal Crema anti-arrugas","t":"Tubo de 50ml","m":"Esthederm","u":"Venta","l":"solar","p":44.5,"f":true},{"r":"ES V4515","n":"Bronz Repair Sun Kissed Sol Extremo Crema antiarrugas con color","t":"Tubo de 50ml","m":"Esthederm","u":"Venta","l":"solar","p":44.5,"f":true},{"r":"ES V4583","n":"Bruma Corporal Sol Extremo","t":"150ml","m":"Esthederm","u":"Venta","l":"solar","p":34.76,"f":true},{"r":"ES V4600","n":"Crema Intolerancias Solares","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":34.82,"f":true},{"r":"ES V4601","n":"Into Repair","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":44.5,"f":true},{"r":"ES V4702","n":"Leche Prolongador Bronceado Leche hidratante y calmante","t":"Bote 200ml","m":"Esthederm","u":"Venta","l":"solar","p":32.24,"f":true},{"r":"ES V4620","n":"No Sun","t":"","m":"Esthederm","u":"Venta","l":"solar","p":34.82,"f":true},{"r":"ES V4563","n":"Photo Regul Especial manchas bronceándose","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":44.5,"f":true},{"r":"ES V4617","n":"Photo Reverse Especial manchas Stick","t":"Stick","m":"Esthederm","u":"Venta","l":"solar","p":34.82,"f":true},{"r":"ES V4611","n":"Photo Reverse Especial manchas sin broncearse","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":44.5,"f":true},{"r":"ES V4615","n":"Photo Reverse Especial manchas sin broncearse · Color Beige Claro","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":45.14,"f":true},{"r":"ES V4616","n":"Photo Reverse Especial manchas sin broncearse · Color Beige Medio","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":45.14,"f":true},{"r":"ES V4618","n":"Photo Reverse Fluido","t":"Tubo 40ml","m":"Esthederm","u":"Venta","l":"solar","p":41.27,"f":true},{"r":"ES V4812","n":"Polvo Protector 2 Soles","t":"Polvera 13gr","m":"Esthederm","u":"Venta","l":"solar","p":34.05,"f":true},{"r":"ES V4811","n":"Polvo Sun Sheen con Color","t":"15g","m":"Esthederm","u":"Venta","l":"solar","p":null,"f":true},{"r":"ES V4700","n":"Repair Après Soleil - Suero Reparador Después del sol","t":"Tubo 50ml","m":"Esthederm","u":"Venta","l":"solar","p":30.31,"f":true},{"r":"ES V4581","n":"Sun Spa Aceite Sol Extremo","t":"Spray 150ml","m":"Esthederm","u":"Venta","l":"solar","p":35.47,"f":true},{"r":"ES V4602","n":"Spray Intolerancias Solares","t":"Spray 150ml","m":"Esthederm","u":"Venta","l":"solar","p":38.05,"f":true},{"r":"ES C9011","n":"Agua Celular fuente continua de vida","t":"Aerosol 200ml","m":"Esthederm","u":"Cabina","l":"agua","p":20.0,"f":true},{"r":"ES C6808","n":"Biolift Repair Parches tratamiento intensivo contorno de ojos","t":"10 sobres x 2","m":"Esthederm","u":"Cabina","l":"excellage","p":43.0,"f":false},{"r":"ES C2422","n":"Excellage · Crema de Juventud rostro y cuello","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"excellage","p":79.0,"f":false},{"r":"ES C2427","n":"Excellage · Elixir De Aceite De Camelia","t":"Bote 200ml","m":"Esthederm","u":"Cabina","l":"excellage","p":31.0,"f":false},{"r":"ES C2434","n":"Excellage · Peeling En Aceite","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"excellage","p":33.0,"f":false},{"r":"ES C2420","n":"Excellage · Serum Concentrado","t":"Dosificador 40ml","m":"Esthederm","u":"Cabina","l":"excellage","p":56.0,"f":false},{"r":"ES C6902","n":"Mascarilla Crio-modelante · revitalización y firmeza","t":"1 sobre","m":"Esthederm","u":"Cabina","l":"excellage","p":5.5,"f":false},{"r":"ES C6920","n":"Activo Hyaluronic · relleno de arrugas","t":"15ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":23.0,"f":false},{"r":"ES C6921","n":"Activo Vitamina C · luminosidad y transparencia","t":"15ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":22.0,"f":false},{"r":"ES C9820","n":"Age Proteom","t":"Dosificador 40ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":49.0,"f":false},{"r":"ES C6918","n":"Gel Péptidos Mascarilla · regeneración profunda","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":25.0,"f":false},{"r":"ES C6916","n":"Gel Peeling Juventud (jeunesse)","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":32.0,"f":false},{"r":"ES C6915","n":"Gel Peeling Luminosidad (eclat)","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":32.0,"f":false},{"r":"ES C6917","n":"Gel Peeling Piel Grasa (imperfections)","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":32.0,"f":false},{"r":"ES C6914","n":"Geles Oxigenantes 1 + 2","t":"1 sobre","m":"Esthederm","u":"Cabina","l":"intensivos","p":6.5,"f":false},{"r":"ES C6111","n":"Hyaluronic+ Crema Intensiva","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":59.0,"f":false},{"r":"ES C6112","n":"Hyaluronic+ Mascarilla Crema","t":"Tubo 150ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":37.0,"f":false},{"r":"ES C6110","n":"Hyaluronic+ Suero Intensivo","t":"Dosificador 40ml","m":"Esthederm","u":"Cabina","l":"intensivos","p":35.0,"f":false},{"r":"ES C6923","n":"Loción Activadora Mascarilla · regeneración profunda","t":"100ml","m":"Esthederm","u":"Cabina","l":"limpieza","p":24.0,"f":false},{"r":"ES C6005","n":"Leche Desmaquillante Desensibilizante","t":"Bote 500ml","m":"Esthederm","u":"Cabina","l":"limpieza","p":36.0,"f":false},{"r":"ES C6000","n":"Osmoclean crema desincrustante suave","t":"Tarro 250ml","m":"Esthederm","u":"Cabina","l":"limpieza","p":29.0,"f":false},{"r":"ES C6905","n":"Osmoderlyse 1 - Pieles equilibradas a sensibles","t":"Tarro 250ml","m":"Esthederm","u":"Cabina","l":"limpieza","p":39.0,"f":false},{"r":"ES C6009","n":"Osmoderlyse 2 - pieles equilibradas a grasas y/o con manchas","t":"Tarro 250ml","m":"Esthederm","u":"Cabina","l":"limpieza","p":36.0,"f":false},{"r":"ES C6507","n":"White · Mascarilla Escayola · Manchas","t":"1 sobre","m":"Esthederm","u":"Cabina","l":"pigment","p":5.5,"f":false},{"r":"ES C6919","n":"Activo Propolis","t":"15ml","m":"Esthederm","u":"Cabina","l":"propolis","p":23.0,"f":false},{"r":"NA VD08","n":"Bio-Delis PHA - AHA 10%","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":46.41,"f":false},{"r":"NA VD11","n":"Bio-Derm 16%","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":53.74,"f":false},{"r":"NA VD35","n":"Bio-Progen AHA 14%","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":58.62,"f":false},{"r":"NA VD07","n":"Bio-Soft Phas 8%","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":43.97,"f":false},{"r":"NA VD02","n":"Cleanser 5%","t":"150ml","m":"Natinuel","u":"Venta","l":"natinuel","p":26.87,"f":false},{"r":"NA VD03","n":"Cleanser 8%","t":"150ml","m":"Natinuel","u":"Venta","l":"natinuel","p":26.87,"f":false},{"r":"NA VD04","n":"Cleanser 9%","t":"150ml","m":"Natinuel","u":"Venta","l":"natinuel","p":28.09,"f":false},{"r":"NA VD16","n":"Defend C 25","t":"2x10ml","m":"Natinuel","u":"Venta","l":"natinuel","p":53.74,"f":false},{"r":"NA VD21","n":"Elisir","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":61.07,"f":false},{"r":"NA VD34","n":"ExoHyal","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":85.49,"f":false},{"r":"NA VD32","n":"Exohyal Intense","t":"15ml","m":"Natinuel","u":"Venta","l":"natinuel","p":72.06,"f":false},{"r":"NA VD27","n":"Firmin Lift strong","t":"30ml","m":"Natinuel","u":"Venta","l":"natinuel","p":47.63,"f":false},{"r":"NA VD19","n":"Genage","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":62.29,"f":false},{"r":"NA VD05","n":"Homeo -Gen","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":48.85,"f":false},{"r":"NA VD25","n":"Homeo-Rose","t":"15ml","m":"Natinuel","u":"Venta","l":"natinuel","p":32.98,"f":false},{"r":"NA VD23","n":"Hydra Moist Cream","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":35.42,"f":false},{"r":"NA VD24","n":"Hydra Moist Mask","t":"30ml","m":"Natinuel","u":"Venta","l":"natinuel","p":21.98,"f":false},{"r":"NA VD06","n":"Hydra-Gen","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":41.52,"f":false},{"r":"NA VD30","n":"Interactive Cream","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":76.94,"f":false},{"r":"NA VD29","n":"Interactive serum","t":"30ml","m":"Natinuel","u":"Venta","l":"natinuel","p":58.62,"f":false},{"r":"NA VD01","n":"Milk Make up","t":"150ml","m":"Natinuel","u":"Venta","l":"natinuel","p":23.2,"f":false},{"r":"NA VD28","n":"Oxy 100","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":50.07,"f":false},{"r":"NA VS01","n":"Protector SPF 50+","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":35.42,"f":false},{"r":"NA VD33","n":"Revinol Night Cream","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":52.52,"f":false},{"r":"NA VD17","n":"Seba fluid 12","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":42.75,"f":false},{"r":"NA VD18","n":"Spot 22 Trx","t":"25ml","m":"Natinuel","u":"Venta","l":"natinuel","p":39.08,"f":false},{"r":"NA VD14","n":"The Look","t":"15ml","m":"Natinuel","u":"Venta","l":"natinuel","p":48.85,"f":false},{"r":"NA VD22","n":"Ultraton","t":"50ml","m":"Natinuel","u":"Venta","l":"natinuel","p":51.29,"f":false},{"r":"NA CP16","n":"Acne Mask","t":"150ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":64.73,"f":false},{"r":"NA CP14","n":"Acne Peeling","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":83.05,"f":false},{"r":"NA CP15","n":"Acne Stop","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":89.16,"f":false},{"r":"NA CP29","n":"Age Spot Mask","t":"100ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":75.72,"f":false},{"r":"NA CP34","n":"Age Spot System","t":"6x3","m":"Natinuel","u":"Cabina","l":"natinuel","p":66.0,"f":false},{"r":"NA CP36","n":"Bi-Phasic Peel, 3x10ml","t":"3X10ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":79.39,"f":false},{"r":"NA CCCS05","n":"Bio-mec","t":"6X3","m":"Natinuel","u":"Cabina","l":"natinuel","p":63.0,"f":false},{"r":"NA CCCS06","n":"Bio-oxi","t":"3X10ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":86.0,"f":false},{"r":"NA CP03","n":"Clean 10%","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":37.86,"f":false},{"r":"NA CP01","n":"Clean Make Up","t":"500ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":58.62,"f":false},{"r":"NA CP02","n":"Clean Phisio","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":35.42,"f":false},{"r":"NA CP12","n":"Definitive Mask","t":"150ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":76.94,"f":false},{"r":"NA CCS07","n":"Exo-hyal Strong","t":"3X10ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":107.0,"f":false},{"r":"NA CCS08","n":"Exo-hyal Xl Strong","t":"2x5ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":139.0,"f":false},{"r":"NA CP40","n":"Exo-Hyal Complex","t":"30ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":108.7,"f":false},{"r":"NA P40","n":"Exo-Hyal Complex","t":"30ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":108.7,"f":false},{"r":"NA CPM4","n":"Future Cream","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":76.94,"f":false},{"r":"NA CPS08/1","n":"G.F. Matrix","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":84.27,"f":false},{"r":"NA CP39","n":"Genial","t":"100ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":75.72,"f":false},{"r":"NA CP63","n":"Glicolat","t":"100ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":103.81,"f":false},{"r":"NA CP23","n":"Homeo Rose mask","t":"150ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":47.63,"f":false},{"r":"NA CP22","n":"Homeo Rose serum","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":46.41,"f":false},{"r":"NA CP20","n":"Hydra Intensity mask","t":"150ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":50.07,"f":false},{"r":"NA CP19","n":"Hydra Intensity serum","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":52.52,"f":false},{"r":"NA CPS00","n":"Interactive Plus G-F P63","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":84.27,"f":false},{"r":"NA CPM1","n":"Mando Complex","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":125.79,"f":false},{"r":"NA CP26","n":"Mando Ferul 45","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":78.16,"f":false},{"r":"NA CP10","n":"Neutralize","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":29.31,"f":false},{"r":"NA CP13","n":"Normal Cream","t":"150ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":76.94,"f":false},{"r":"NA CC11","n":"Ozone Vital","t":"100ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":40.3,"f":false},{"r":"NA CP30","n":"Pirulat Peel 40","t":"50ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":87.93,"f":false},{"r":"NA CP06","n":"Poli Peel Soft","t":"100ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":67.17,"f":false},{"r":"NA CPD03/1","n":"Redoxyl","t":"30ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":62.29,"f":false},{"r":"NA CP38","n":"Reskin","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":79.39,"f":false},{"r":"NA CP31","n":"Revinol","t":"6x2+3x5ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":68.39,"f":false},{"r":"NA CP32","n":"Rx50","t":"6x2+3x5ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":78.16,"f":false},{"r":"NA CP37","n":"RxCarboxy","t":"6x3ml+6x2ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":80.61,"f":false},{"r":"NA CP35","n":"The Look","t":"6X2/6X2ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":74.5,"f":false},{"r":"NA CPM2","n":"Top Gel","t":"200ml","m":"Natinuel","u":"Cabina","l":"natinuel","p":84.27,"f":false}]</script>
+<script>
+{
+const P=JSON.parse(document.getElementById('data').textContent);
+const L={
+ intensivos:{t:'Intensivos',d:'Sérums y cremas de alta concentración: NAD+, Hyaluronic, Pro-Colágeno, Retinol, Vitaminas.',c:'#5b4a8a',img:'hero'},
+ excellage:{t:'Excellage',d:'Antiedad global. Texturas ricas, aceites dorados.',c:'#b8862f',img:'excellage'},
+ solar:{t:'Sol y protección',d:'Adaptasun, Bronz Repair, Photo Reverse, Intolerancias.',c:'#d9822b',img:'proteccion'},
+ propolis:{t:'Própolis',d:'Pieles con imperfecciones, brillos y poro abierto.',c:'#23304f',img:'propolis'},
+ limpieza:{t:'Limpieza',d:'Osmoclean y desmaquillantes. El primer paso de todo tratamiento.',c:'#c9bfb4',img:'hero'},
+ pigment:{t:'Manchas',d:'Age Pigment Control y White: luminosidad y tono uniforme.',c:'#b9a7cf',img:'hero'},
+ lift:{t:'Lift & Repair',d:'Arrugas y firmeza, efecto tensor.',c:'#8e9299',img:'hero'},
+ agua:{t:'Agua Celular',d:'Hidratación y energía celular.',c:'#a9b3ba',img:'hero'},
+ cuerpo:{t:'Cuerpo',d:'Reafirmantes, reductores y anticelulíticos.',c:'#a3262f',img:'hero'},
+ natinuel:{t:'Natinuel',d:'Peelings, activos y tratamientos de cabina.',c:'#7f9a7a',img:'hero'}};
+const IMG=['hero','excellage','proteccion','propolis'];
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const eur=n=>n==null?'Según tarifa':n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const file=r=>'fotos/'+r.replace(/[ \/]/g,'_')+'.jpg';
+const byRef=Object.fromEntries(P.map(p=>[p.r,p]));
+// client from ?c= / ?n= (hosted) or #cliente-CODIGO (preview)
+const qs=new URLSearchParams(location.search);let client={code:qs.get('c')||'',name:qs.get('n')||''};
+const hm=location.hash.match(/^#cliente-([A-Za-z0-9-]+)/);if(hm&&!client.code)client.code=hm[1];
+if(client.name)$('#hello').textContent='Hola, '+client.name;
+if(client.code)$('#who').textContent='Cliente '+client.code+' · Precios PVL sin impuestos. Al pasar a Factusol se aplica tu tarifa.';
+// acceso: solo con enlace de clienta (código en la lista)
+const OK=['4ff006ca6b88e752f08cb7881714505ceb3d2079eea432acfda8e158e0d1d82e'];
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+(async()=>{const okk=client.code&&OK.includes(await sha(client.code.toUpperCase()));if(!okk){const g=document.createElement('div');g.className='gate';g.innerHTML='<div><h2>Área privada</h2><p>Esta página es solo para clientas. Usa el enlace personal que te hemos enviado.</p></div>';document.body.appendChild(g)}})();
+// state
+let cart={};try{cart=JSON.parse(localStorage.getItem('pedido')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('pedido',JSON.stringify(cart))}catch(e){}};
+let f={m:'Todas',u:'Todo',q:''};
+// mood
+const mood=$('#mood');IMG.forEach(k=>{const i=new Image();i.src='amb/'+k+'.jpg';i.alt='';i.dataset.k=k;mood.prepend(i)});
+let curL='';
+function setMood(l){if(l===curL)return;curL=l;const o=L[l]||{t:'El cuidado de la piel',d:'',c:'#a65a3f',img:'hero'};
+ mood.querySelectorAll('img').forEach(i=>i.classList.toggle('on',i.dataset.k===o.img));
+ $('#tint').style.background=o.c;$('#capT').textContent=o.t;$('#capP').textContent=o.d||'Esthederm y Natinuel, a precio profesional.';
+ $('#capB').textContent=l==='natinuel'?'Natinuel':l?'Esthederm':'Pedidos profesionales'}
+setMood('');
+// filters
+const chips=(el,key,opts)=>{el.innerHTML=opts.map(o=>`<button class="chip" type="button" data-k="${key}" data-v="${esc(o)}" aria-pressed="${f[key]===o}">${esc(o)}</button>`).join('')};
+function drawChips(){chips($('#fm'),'m',['Todas','Esthederm','Natinuel']);chips($('#fl'),'u',['Todo','Venta','Cabina','Con foto'])}
+document.addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){f[b.dataset.k]=b.dataset.v;drawChips();render()}});
+$('#q').addEventListener('input',e=>{f.q=e.target.value.trim().toLowerCase();render()});
+// render
+function card(p){const q=cart[p.r]||0;
+ const ph=p.f?`<img loading="lazy" src="${file(p.r)}" alt="${esc(p.n)}">`:`<b>${esc(p.n)}</b>`;
+ return `<article class="card${q?' in':''}" data-l="${p.l}" data-r="${esc(p.r)}"><div class="ph${p.f?'':' none'}" style="--c:${L[p.l].c}">${ph}<span class="tag">${esc(p.u)}</span></div>
+ <div class="bd"><div class="nm">${esc(p.n)}</div><div class="mt">${esc(p.r)}${p.t?' · '+esc(p.t):''}</div>
+ <div class="row"><span class="pr">${eur(p.p)}</span><span class="qty"><button type="button" data-a="-" aria-label="Quitar uno">−</button><input inputmode="numeric" value="${q}" aria-label="Cantidad"><button type="button" data-a="+" aria-label="Añadir uno">+</button></span></div></div></article>`}
+function render(){
+ const list=P.filter(p=>(f.m==='Todas'||p.m===f.m)&&(f.u==='Todo'||(f.u==='Con foto'?p.f:p.u===f.u))&&(!f.q||(p.n+' '+p.r).toLowerCase().includes(f.q)));
+ const groups={};list.forEach(p=>(groups[p.l]??=[]).push(p));
+ const order=Object.keys(L).filter(k=>groups[k]);
+ $('#list').innerHTML=order.length?order.map(k=>`<section class="group" data-l="${k}"><h3>${esc(L[k].t)}<span>${groups[k].length} productos</span></h3><div class="grid">${groups[k].map(card).join('')}</div></section>`).join(''):'<p class="empty">No hay productos con ese filtro.</p>';
+ observe();totals()}
+// qty
+function setQ(r,q){q=Math.max(0,Math.min(999,q|0));if(q)cart[r]=q;else delete cart[r];save();
+ const c=document.querySelector(`.card[data-r="${CSS.escape(r)}"]`);if(c){c.querySelector('input').value=q;c.classList.toggle('in',!!q)}totals()}
+$('#list').addEventListener('click',e=>{const b=e.target.closest('.qty button');if(!b)return;const r=b.closest('.card').dataset.r;setQ(r,(cart[r]||0)+(b.dataset.a==='+'?1:-1))});
+$('#list').addEventListener('change',e=>{if(e.target.matches('.qty input'))setQ(e.target.closest('.card').dataset.r,parseInt(e.target.value)||0)});
+$('#list').addEventListener('mouseover',e=>{const c=e.target.closest('.card');if(c)setMood(c.dataset.l)});
+function totals(){let n=0,t=0;for(const[r,q]of Object.entries(cart)){const p=byRef[r];if(!p)continue;n+=q;t+=(p.p||0)*q}
+ $('#bagN').textContent=n+' uds';$('#bagT').textContent=eur(t);return{n,t}}
+// scroll-linked mood
+let io;function observe(){io&&io.disconnect();io=new IntersectionObserver(es=>{es.forEach(x=>{if(x.isIntersecting)setMood(x.target.dataset.l)})},{rootMargin:'-30% 0px -60% 0px'});document.querySelectorAll('.group').forEach(g=>io.observe(g))}
+// drawer
+const dr=$('#dr'),panel=$('#panel');
+function openCart(){const items=Object.entries(cart).filter(([r])=>byRef[r]);const {n,t}=totals();
+ panel.innerHTML=`<button class="x" data-close aria-label="Cerrar">×</button><h4>Tu pedido</h4><div class="mt">${client.code?'Cliente '+esc(client.code)+' · ':''}${n} unidades</div>
+ <div class="lines">${items.length?items.map(([r,q])=>{const p=byRef[r];return `<div class="li">${p.f?`<img src="${file(r)}" alt="">`:'<i></i>'}<div><div class="nm">${esc(p.n)}</div><div class="mt">${esc(r)} · ${eur(p.p)}</div></div><span class="qty" data-r="${esc(r)}"><button type="button" data-a="-" aria-label="Quitar uno">−</button><input value="${q}" inputmode="numeric" aria-label="Cantidad"><button type="button" data-a="+" aria-label="Añadir uno">+</button></span></div>`}).join(''):'<p class="empty">Aún no has añadido productos.</p>'}</div>
+ <div class="tot"><span>Total PVL</span><b>${eur(t)}</b></div>
+ <label class="mt" for="obs">Observaciones (entrega, horario…)</label><textarea id="obs"></textarea>
+ <button class="btn" id="send" type="button" ${items.length?'':'disabled'}>Enviar pedido</button>
+ <p class="note">El precio final lo ajusta tu tarifa en Factusol. Recibirás la confirmación por correo.</p>`;
+ dr.classList.add('open')}
+$('#bag').addEventListener('click',openCart);
+dr.addEventListener('click',e=>{if(e.target.closest('[data-close]'))dr.classList.remove('open');
+ const b=e.target.closest('.qty button');if(b){const r=b.parentElement.dataset.r;setQ(r,(cart[r]||0)+(b.dataset.a==='+'?1:-1));openCart()}
+ if(e.target.id==='send')send();if(e.target.id==='copy')copy();if(e.target.id==='new'){cart={};save();render();dr.classList.remove('open')}});
+dr.addEventListener('change',e=>{const s=e.target.closest('.qty');if(s){setQ(s.dataset.r,parseInt(e.target.value)||0);openCart()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')dr.classList.remove('open')});
+// order
+const WEBHOOK='';// se rellena al publicar en el hosting definitivo (Neo → Factusol)
+let lastText='';
+function order(){const obs=($('#obs')||{}).value||'';const lines=Object.entries(cart).filter(([r])=>byRef[r]).map(([r,q])=>({ref:r,nombre:byRef[r].n,cantidad:q,pvl:byRef[r].p}));
+ return{cliente:client.code||null,nombre:client.name||null,fecha:new Date().toISOString(),lineas:lines,observaciones:obs,total_pvl:+lines.reduce((a,l)=>a+(l.pvl||0)*l.cantidad,0).toFixed(2)}}
+async function send(){const o=order();lastText='Pedido '+(o.cliente?'cliente '+o.cliente:'')+'\n'+o.lineas.map(l=>`${l.cantidad} x ${l.ref} ${l.nombre}`).join('\n')+(o.observaciones?'\nObs: '+o.observaciones:'')+'\nTotal PVL: '+eur(o.total_pvl);
+ let ok=false;if(WEBHOOK){try{const r=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});ok=r.ok}catch(e){}}
+ panel.innerHTML=`<button class="x" data-close aria-label="Cerrar">×</button><div class="done">${ok?`<h4>Pedido enviado</h4><p>Gracias. Te confirmaremos el pedido por correo.</p><button class="btn" id="new" type="button">Hacer otro pedido</button>`:
+ `<h4>Pedido listo</h4><p class="mt">Vista previa: el envío automático a Neo se activa al publicar la web definitiva. Este es el pedido que se enviaría:</p><pre>${esc(lastText)}</pre><button class="btn" id="copy" type="button">Copiar pedido</button><button class="btn ghost" id="new" type="button">Vaciar y empezar otro</button>`}</div>`}
+async function copy(){try{await navigator.clipboard.writeText(lastText);$('#copy').textContent='Copiado'}catch(e){$('#copy').textContent='Selecciona el texto y cópialo'}}
+drawChips();render();
+}
+</script>
+</body>
+</html>
