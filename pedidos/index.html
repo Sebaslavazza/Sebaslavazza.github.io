@@ -148,7 +148,7 @@ const save=()=>{try{localStorage.setItem('pedido',JSON.stringify(cart))}catch(e)
 let f={m:'Todas',u:'Todo',q:''};
 // mood
 const mood=$('#mood');IMG.forEach(k=>{const i=new Image();i.src='amb/'+k+'.jpg';i.alt='';i.dataset.k=k;mood.prepend(i)});
-let curL='';
+let curL=null;
 function setMood(l){if(l===curL)return;curL=l;const o=L[l]||{t:'El cuidado de la piel',d:'',c:'#a65a3f',img:'hero'};
  mood.querySelectorAll('img').forEach(i=>i.classList.toggle('on',i.dataset.k===o.img));
  $('#tint').style.background=o.c;$('#capT').textContent=o.t;$('#capP').textContent=o.d||'Esthederm y Natinuel, a precio profesional.';
