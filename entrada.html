@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rentia · Opciones de entrada</title>
+<style>
+*{box-sizing:border-box;margin:0}body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:#EFE6E4;color:#2B2024;padding:18px 12px 40px}
+h1{font-size:20px;margin:4px 4px 2px}p.l{color:#7A6A6E;font-size:13px;margin:0 4px 14px}
+.grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.card{flex:0 0 250px;scroll-snap-align:start}.card h2{font-size:15px;margin:10px 4px 2px}.card p{font-size:12.5px;color:#7A6A6E;margin:0 4px}
+.ph{position:relative;width:250px;height:500px;border-radius:34px;overflow:hidden;box-shadow:0 14px 34px rgba(138,63,85,.18);background:#F8F1F0}
+button{margin:8px 4px 0;border:0;background:#8A3F55;color:#fff;font-weight:700;border-radius:999px;padding:8px 14px;font-size:13px}
+.c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.word{font-weight:800;font-size:30px;letter-spacing:-1px;color:#2B2024}
+/* A · Trazo */
+.a svg path{stroke-dasharray:1750;stroke-dashoffset:1750}
+.run .a svg path{animation:draw .9s cubic-bezier(.65,0,.35,1) forwards}
+.a .word{opacity:0;filter:blur(8px);transform:translateY(6px);margin-top:14px}
+.run .a .word{animation:sharp .6s .7s ease-out forwards}
+.a .home{position:absolute;inset:0;background:#F8F1F0;opacity:0}
+.run .a .move{animation:toCorner .6s 1.6s cubic-bezier(.7,0,.2,1) forwards}
+.run .a .word{animation:sharp .6s .7s ease-out forwards, fadeout .3s 1.6s forwards}
+.run .a .ui{animation:uiIn .5s 1.9s ease-out forwards}
+.ui{position:absolute;left:16px;right:16px;top:64px;opacity:0;transform:translateY(10px)}
+.ui .bar{height:120px;border-radius:20px;background:#fff;box-shadow:0 8px 20px rgba(138,63,85,.12)}
+.ui .bar2{height:46px;border-radius:16px;background:#fff;margin-top:10px}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes sharp{to{opacity:1;filter:blur(0);transform:none}}@keyframes fadeout{to{opacity:0}}
+@keyframes toCorner{to{transform:translate(-86px,-206px) scale(.42)}}@keyframes uiIn{to{opacity:1;transform:none}}
+/* B · Cifra */
+.b .line{width:150px;height:60px}.b .line path{stroke-dasharray:240;stroke-dashoffset:240}
+.run .b .line path{animation:draw2 .9s .1s cubic-bezier(.4,0,.2,1) forwards}
+.b .dot{opacity:0;transform:scale(0)}.run .b .dot{animation:pop .35s .95s cubic-bezier(.3,1.6,.5,1) forwards}
+.b .word{margin-top:6px;opacity:0}.run .b .word{animation:sharp .5s 1.1s ease-out forwards}
+.b .num{font-size:13px;color:#3F6B57;font-weight:700;opacity:0;margin-top:6px}.run .b .num{animation:sharp .4s 1.3s forwards}
+@keyframes draw2{to{stroke-dashoffset:0}}@keyframes pop{to{opacity:1;transform:scale(1)}}
+/* C · Silencio */
+.c3 .logo{opacity:0;transform:scale(.94)}.run .c3 .logo{animation:soft .7s cubic-bezier(.2,.8,.2,1) forwards}
+.c3 .word{opacity:0;margin-top:14px;font-size:24px}.run .c3 .word{animation:sharp .5s .35s ease-out forwards}
+@keyframes soft{to{opacity:1;transform:none}}
+.logo{width:76px;height:76px;border-radius:22px;background:#8A3F55;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<h1>Entrada de la app: 3 opciones</h1>
+<p class="l">Fondo claro como el resto de la app y en menos de 2 segundos. Pulsa «Ver otra vez» en cada una. Desliza para ver las tres.</p>
+<div class="grid">
+ <div class="card"><div class="ph" id="pa"><div class="c a"><div class="move" style="display:flex;flex-direction:column;align-items:center">
+   <svg width="96" height="96" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#8A3F55" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+   <div class="word">Rentia</div><div class="ui"><div class="bar"></div><div class="bar2"></div><div class="bar2"></div></div></div></div>
+  <h2>A · Trazo</h2><p>La R se dibuja de un solo trazo, el nombre se enfoca y el logo vuela a su sitio arriba mientras aparece Inicio. Sin pantalla negra ni corte.</p><button onclick="run('pa')">Ver otra vez</button></div>
+ <div class="card"><div class="ph" id="pb"><div class="c b">
+   <svg class="line" viewBox="0 0 150 60"><path d="M6 50 L40 38 L66 44 L98 22 L132 14" fill="none" stroke="#8A3F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle class="dot" cx="132" cy="14" r="8" fill="#3F6B57" style="transform-origin:132px 14px"/></svg>
+   <div class="word">Rentia</div><div class="num">▲ lo que de verdad ganas</div></div></div>
+  <h2>B · La línea que sube</h2><p>Una línea de crecimiento se dibuja y termina en un punto verde: dice de qué va la app antes de abrirla.</p><button onclick="run('pb')">Ver otra vez</button></div>
+ <div class="card"><div class="ph" id="pc"><div class="c c3">
+   <div class="logo"><svg width="48" height="48" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="120" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+   <div class="word">Rentia</div></div></div>
+  <h2>C · Sobria</h2><p>Solo el logo y el nombre, que aparecen suaves en menos de un segundo. Como las apps de bancos o Apple: no hace esperar.</p><button onclick="run('pc')">Ver otra vez</button></div>
+</div>
+<script>function run(id){const e=document.getElementById(id);e.classList.remove('run');void e.offsetWidth;e.classList.add('run')}
+['pa','pb','pc'].forEach((id,i)=>setTimeout(()=>run(id),300+i*150));</script>
+</body></html>
