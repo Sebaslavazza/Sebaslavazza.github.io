@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Rentia · Estilos avanzados (prototipos vivos)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Instrument Sans',-apple-system,Arial,sans-serif;background:#1B1215;color:#F3EAE7;padding:18px 10px 50px}
+.intro{max-width:820px;margin:0 auto 14px}.intro h1{font-size:21px}.intro p{font-size:13px;color:#BFAEB2;margin-top:6px;line-height:1.55}
+.tabs{display:flex;gap:6px;justify-content:center;margin:12px 0 16px;flex-wrap:wrap}.tabs button{border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:9px 15px;font-weight:700;font-size:13px;background:transparent;color:#F3EAE7;font-family:inherit;cursor:pointer}.tabs button.on{background:#F3EAE7;color:#1B1215}
+.wrap{display:flex;gap:26px;justify-content:center;flex-wrap:wrap}.col{width:375px}.col h2{font-size:16px;margin:0 4px 4px}.col .d{font-size:12.5px;color:#BFAEB2;margin:0 4px 6px;line-height:1.5}.col .why{font-size:12px;color:#E9B8C8;margin:0 4px 10px;line-height:1.45;min-height:52px}
+@media(max-width:840px){.col.hide{display:none}}
+.ph{width:375px;max-width:100%;height:812px;border-radius:48px;overflow:hidden;position:relative;box-shadow:0 0 0 10px #000,0 30px 80px rgba(0,0,0,.6)}
+.serif{font-family:'Fraunces',Georgia,serif}
+.sc{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none}.sc::-webkit-scrollbar{display:none}
+.k{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase}
+.row{display:flex;align-items:center}
+/* ---------- H · CRISTAL REAL ---------- */
+.H{background:#F6EEEC;color:#2B2220}
+.H .content{padding:150px 14px 120px}
+.H .bigcard{border-radius:30px;padding:18px;color:#fff;background:linear-gradient(140deg,#5A2236,#8A3F55 45%,#C9708F 80%,#F2B08A);position:relative;overflow:hidden}
+.H .bigcard .shine{position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,.18),transparent 30%);animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.H .tile{border-radius:22px;padding:13px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.H .colorblock{height:120px;border-radius:22px;background:linear-gradient(120deg,#F7C9D6,#C7E6D6 50%,#CFE0F7)}
+.H .glassbar{position:absolute;z-index:10;backdrop-filter:url(#lens) blur(1.5px) saturate(1.8) brightness(1.06);-webkit-backdrop-filter:blur(14px) saturate(1.8);
+  background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.12));box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 1px rgba(255,255,255,.35),inset 0 0 0 1px rgba(255,255,255,.35),0 0 0 .5px rgba(60,20,30,.35),0 12px 30px rgba(60,20,30,.18)}
+.H .hdr{left:12px;right:12px;top:12px;border-radius:30px;padding:12px 14px;transition:all .35s cubic-bezier(.2,.9,.2,1)}
+.H .hdr .mini{transition:all .35s cubic-bezier(.2,.9,.2,1);overflow:hidden}
+.H .nav{left:14px;right:14px;bottom:16px;height:66px;border-radius:33px;display:flex;align-items:center;justify-content:space-around}
+.H .nav span{font-size:11px;font-weight:600;color:#5c4d50}.H .nav .on{color:#8A3F55}
+.H .spec{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(160px 60px at var(--sx,30%) 0%,rgba(255,255,255,.65),transparent 70%);mix-blend-mode:screen}
+/* ---------- J · VASO ---------- */
+.J{background:radial-gradient(120% 80% at 50% 0%,#3A1A26,#170C11 70%);color:#F3EAE7}
+.J canvas{display:block}
+.J .glassv{position:relative;margin:8px auto 0;width:250px;height:330px}
+.J .lbl{position:absolute;right:-6px;font-size:11px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.J .lbl i{width:22px;height:1px;background:rgba(255,255,255,.4)}
+.J .seg{display:flex;gap:4px;padding:4px;border-radius:16px;background:rgba(255,255,255,.06);margin:14px 14px 0}.J .seg span{flex:1;text-align:center;font-size:12.5px;padding:8px 0;border-radius:12px;color:rgba(255,255,255,.55);font-weight:600}.J .seg .on{background:rgba(255,255,255,.12);color:#fff}
+.J .card{margin:10px 14px 0;border-radius:22px;padding:13px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.J .leg{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:6px 0}.J .leg i{width:12px;height:12px;border-radius:4px}
+/* ---------- I · CARTERA 3D ---------- */
+.I{background:#EFE8E5;color:#2B2220}
+.I .stack{position:relative;height:430px;margin:6px 14px 0;perspective:1200px}
+.I .wc{position:absolute;left:0;right:0;height:210px;border-radius:26px;padding:16px;color:#fff;transition:transform .6s cubic-bezier(.2,.9,.2,1),box-shadow .6s;cursor:pointer;transform-origin:50% 0;box-shadow:0 -1px 0 rgba(255,255,255,.25) inset,0 14px 30px rgba(40,10,20,.25);overflow:hidden}
+.I .wc .gl{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.28),transparent 35%,transparent 65%,rgba(255,255,255,.12));pointer-events:none}
+.I .wc .ico{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
+.I .hero3d{margin:12px 14px 0;border-radius:28px;padding:18px;background:#fff;transform-style:preserve-3d;transition:transform .15s ease-out;box-shadow:0 20px 40px rgba(60,20,30,.12)}
+.I .hero3d .lay{transform:translateZ(40px)}
+.I .seg{display:flex;padding:4px;border-radius:16px;background:#E4DAD6;margin:12px 14px 0}.I .seg span{flex:1;text-align:center;font-size:12.5px;padding:8px 0;border-radius:12px;font-weight:600;color:#8C7B7F}.I .seg .on{background:#fff;color:#2B2220;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.hintx{font-size:11px;text-align:center;opacity:.6;margin-top:8px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><filter id="lens" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="1" seed="3" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="nb"/><feDisplacementMap in="SourceGraphic" in2="nb" scale="22" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="intro"><h1>Estilos avanzados: prototipos que funcionan</h1>
+<p>No son dibujos, son pantallas vivas con los <b>mismos datos</b> de Rentia. Cada una usa una técnica que solo se ve en las apps más punteras, y siempre con una utilidad: que la dueña entienda su dinero de un vistazo. Pruébalas tocando, arrastrando y haciendo scroll; en el móvil también responden a la inclinación.</p></div>
+<div class="tabs" id="tabs"><button class="on" onclick="show('h')" id="th">H · Cristal real</button><button onclick="show('j')" id="tj">J · El vaso del mes</button><button onclick="show('i')" id="ti">I · Cartera 3D</button></div>
+<div class="wrap">
+
+<!-- H -->
+<div class="col" id="ch"><h2>H · Cristal real</h2><p class="d">La cabecera y la barra son de cristal que <b>deforma de verdad</b> lo que pasa por debajo, como el iPhone, con un reflejo que sigue al dedo. Al hacer scroll, la cabecera <b>se encoge</b> y se queda con lo esencial: la facturación.</p><p class="why">Para qué sirve: la cifra principal siempre a la vista mientras bajas por la pantalla, sin perder nada de espacio.</p>
+<div class="ph H"><div class="sc" id="hsc"><div class="content">
+ <div class="bigcard"><div class="shine"></div><div style="position:relative"><div class="row"><div class="k" style="opacity:.8">Noviembre 2026 · has facturado</div><div style="margin-left:auto">‹ ›</div></div>
+  <div class="serif" style="font-size:52px;font-weight:700;letter-spacing:-2px;margin-top:10px">39.882 €</div>
+  <div class="row" style="gap:8px;margin-top:8px"><span style="background:rgba(255,255,255,.2);border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700">▲ 8 % vs. octubre</span><span style="font-size:12px;font-weight:700;opacity:.9">Comparar con el año pasado ›</span></div>
+  <div style="margin-top:16px;height:10px;border-radius:6px;background:rgba(255,255,255,.22);overflow:hidden"><div style="width:87%;height:100%;background:#fff;border-radius:6px"></div></div><div style="font-size:11.5px;margin-top:6px;opacity:.9">87 % del objetivo del mes</div></div></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
+  <div class="tile" style="background:#E3F1E8"><div class="k" style="font-size:9.5px;color:#557">Beneficio</div><div class="serif" style="font-size:18px;font-weight:700;color:#2E7D57;margin-top:3px">19.381 €</div></div>
+  <div class="tile" style="background:#F6E7DF"><div class="k" style="font-size:9.5px;color:#755">Gastos</div><div class="serif" style="font-size:18px;font-weight:700;color:#9C4F2C;margin-top:3px">20.501 €</div></div>
+  <div class="tile" style="background:#F4E3E9"><div class="k" style="font-size:9.5px;color:#755">Pendiente objetivo</div><div class="serif" style="font-size:18px;font-weight:700;color:#8A3F55;margin-top:3px">5.990 €</div></div></div>
+ <div class="tile" style="margin-top:10px"><div class="row" style="font-size:12.5px"><span style="color:#7A6A6E">Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div><div style="height:7px;border-radius:4px;background:#EADDE0;margin-top:8px;overflow:hidden"><div style="width:85%;height:100%;background:#2E7D57"></div></div></div>
+ <div class="tile" style="margin-top:10px;display:flex;gap:10px;align-items:center;background:#FDF6E8;border:1.5px solid #EBC77F"><b style="width:32px;height:32px;border-radius:10px;background:#F6E2B5;display:flex;align-items:center;justify-content:center;color:#8A5A0B">!</b><div><b style="font-size:14px">Completa tu centro · 67 %</b><div style="font-size:12px;color:#7A6A6E">Siguiente: conecta tu agenda</div></div><span style="margin-left:auto;background:#B7791F;color:#fff;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12.5px">Seguir</span></div>
+ <div class="k" style="color:#8C7B7F;margin:22px 4px 10px">Hoy</div>
+ <div class="tile" style="display:flex;gap:11px;align-items:center"><b style="width:36px;height:36px;border-radius:12px;background:#E3F1E8;color:#2E7D57;display:flex;align-items:center;justify-content:center">€</b><div><b style="font-size:14.5px">Cobros de hoy</b><div style="font-size:12px;color:#7A6A6E">Tarjeta, efectivo y banco</div></div><span style="margin-left:auto;color:#B5A9A6">›</span></div>
+ <div class="k" style="color:#8C7B7F;margin:22px 4px 10px">Tu negocio por áreas</div>
+  <div id="hareas" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
+ <div class="k" style="color:#8C7B7F;margin:22px 4px 10px">Tu agenda</div>
+ <div class="tile" style="display:flex;gap:10px;align-items:center;background:#F3EEFA;border:1.5px solid #CDBDE6"><b style="width:40px;height:40px;border-radius:12px;background:#E6DCF3;color:#5E4A80;display:flex;align-items:center;justify-content:center;font-size:12px">51h</b><div style="flex:1"><b style="font-size:14px">51 h libres en los próximos 7 días</b><div style="font-size:12px;color:#7A6A6E">2.254 € sin facturar · 203 sesiones de bono pendientes</div></div><span style="background:#7B5EA7;color:#fff;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12.5px">Llenar</span></div>
+ <div class="colorblock" style="margin-top:10px"></div>
+</div></div>
+ <div class="glassbar hdr" id="hhdr"><div class="spec"></div><div class="row" style="gap:10px;position:relative"><div style="width:36px;height:36px;border-radius:12px;background:#8A3F55;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div style="flex:1"><div id="hgreet" style="font-size:12px;color:#5c4d50">Buenos días</div><div style="font-weight:700;font-size:16px">Centro Demo</div></div>
+  <div class="mini" id="hmini" style="max-width:0;opacity:0;text-align:right"><div class="serif" style="font-size:20px;font-weight:700;white-space:nowrap">39.882 €</div><div style="font-size:10.5px;color:#2E7D57;font-weight:700;white-space:nowrap">▲ 8 % · 87 % obj.</div></div>
+  <div id="hteam" style="font-size:12px;font-weight:600;background:rgba(255,255,255,.5);border-radius:999px;padding:6px 11px">Equipo ▾</div></div>
+  <div id="hseg" style="display:flex;margin-top:10px;gap:2px;position:relative"></div></div>
+ <div class="glassbar nav"><div class="spec"></div><span class="on">Inicio</span><span>Agenda</span><span style="width:50px;height:50px;border-radius:18px;background:#8A3F55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px">✦</span><span>Informes</span><span>Mi centro</span></div>
+</div></div>
+
+<!-- J -->
+<div class="col" id="cj"><h2>J · El vaso del mes</h2><p class="d">El mes es un vaso cuya capacidad es el objetivo. Se llena con lo facturado: abajo <b>los gastos</b> y encima <b>el beneficio</b>, y lo vacío es <b>lo que falta</b>. El líquido es físico: se mueve al inclinar el móvil o al arrastrarlo, y se llena al cambiar de periodo.</p><p class="why">Para qué sirve: facturación, gastos, beneficio, objetivo y pendiente en una sola imagen que se entiende sin leer números.</p>
+<div class="ph J"><div class="sc">
+ <div class="row" style="gap:10px;padding:16px 16px 0"><div style="width:38px;height:38px;border-radius:13px;background:#8A3F55;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div style="font-size:12px;opacity:.6">Buenos días</div><div style="font-weight:700;font-size:16px">Centro Demo</div></div><div style="margin-left:auto;font-size:12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 11px">Todo el equipo ▾</div></div>
+ <div class="seg" id="jseg"><span data-i="0">Hoy</span><span data-i="1">Semana</span><span data-i="2" class="on">Mes</span><span data-i="3">Trim.</span><span data-i="4">Año</span></div>
+ <div style="text-align:center;margin-top:14px"><div class="k" style="opacity:.6" id="jlbl">Noviembre 2026 · has facturado</div><div class="serif" style="font-size:46px;font-weight:700;letter-spacing:-1.5px;margin-top:4px" id="jrev">39.882 €</div><div style="font-size:12.5px;color:#8FE3B5;font-weight:700" id="jvs">▲ 8 % vs. octubre · Comparar con el año pasado ›</div></div>
+ <div class="glassv" id="jv"><canvas id="jc" width="250" height="330"></canvas>
+  <div class="lbl" id="lObj" style="top:-8px"><i></i><span>Objetivo <b id="jobj">45.872 €</b></span></div>
+  <div class="lbl" id="lPen" style="top:30px;color:#F3A7BF"><i style="background:#F3A7BF"></i><span>Falta <b id="jpen">5.990 €</b></span></div>
+ </div>
+ <div class="hintx">inclina el móvil o arrastra el vaso</div>
+ <div class="card"><div class="leg"><i style="background:#3FAF7A"></i>Beneficio<b style="margin-left:auto" id="jb">19.381 €</b></div><div class="leg"><i style="background:#C46A44"></i>Gastos<b style="margin-left:auto" id="jg">20.501 €</b></div><div class="leg"><i style="background:transparent;border:1px dashed #F3A7BF"></i>Pendiente objetivo<b style="margin-left:auto" id="jp">5.990 €</b></div>
+  <div style="height:1px;background:rgba(255,255,255,.08);margin:8px 0"></div><div class="row" style="font-size:12.5px"><span style="opacity:.65">Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div></div>
+ <div class="card" style="display:flex;gap:10px;align-items:center;border-color:rgba(232,176,90,.4)"><b style="width:32px;height:32px;border-radius:10px;background:rgba(232,176,90,.15);color:#F2C27A;display:flex;align-items:center;justify-content:center">!</b><div><b style="font-size:14px">Completa tu centro · 67 %</b><div style="font-size:12px;opacity:.6">Siguiente: conecta tu agenda</div></div><span style="margin-left:auto;background:#F2C27A;color:#2A1A06;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12.5px">Seguir</span></div>
+ <div style="height:110px"></div>
+</div><div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,transparent,#170C11 45%);display:flex;align-items:center;justify-content:space-around;font-size:11px;color:rgba(255,255,255,.5);padding-top:16px"><span style="color:#fff">Inicio</span><span>Agenda</span><span style="width:48px;height:48px;border-radius:17px;background:#8A3F55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px">✦</span><span>Informes</span><span>Mi centro</span></div></div></div>
+
+<!-- I -->
+<div class="col" id="ci"><h2>I · Cartera 3D</h2><p class="d">La facturación flota en 3D y se inclina con el móvil o el dedo. Las cuatro áreas son <b>tarjetas apiladas como en Apple Wallet</b>: tocas una y se abre con sus datos mientras las demás se apartan.</p><p class="why">Para qué sirve: las cuatro áreas ocupan el espacio de una sola y se abren al tocarlas, así Inicio es más corto y ordenado.</p>
+<div class="ph I"><div class="sc">
+ <div class="row" style="gap:10px;padding:16px 16px 0"><div style="width:38px;height:38px;border-radius:13px;background:#8A3F55;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div style="font-size:12px;color:#8C7B7F">Buenos días</div><div style="font-weight:700;font-size:16px">Centro Demo</div></div><div style="margin-left:auto;font-size:12px;background:#fff;border-radius:999px;padding:6px 11px;font-weight:600">Todo el equipo ▾</div></div>
+ <div class="seg"><span>Hoy</span><span>Semana</span><span class="on">Mes</span><span>Trim.</span><span>Año</span></div>
+ <div style="perspective:900px"><div class="hero3d" id="h3"><div class="lay"><div class="row"><div class="k" style="color:#8C7B7F">Noviembre 2026 · has facturado</div><div style="margin-left:auto;color:#8C7B7F">‹ ›</div></div>
+  <div class="serif" style="font-size:46px;font-weight:700;letter-spacing:-1.5px;margin-top:8px">39.882 €</div>
+  <div class="row" style="gap:8px;margin-top:6px"><span style="background:#E3F1E8;color:#2E7D57;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700">▲ 8 % vs. octubre</span><span style="font-size:12px;font-weight:700;color:#8A3F55">Comparar ›</span></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;transform:translateZ(20px)">
+   <div style="background:#E3F1E8;border-radius:16px;padding:10px"><div class="k" style="font-size:9px;color:#557">Beneficio</div><div class="serif" style="font-size:16px;font-weight:700;color:#2E7D57">19.381 €</div></div>
+   <div style="background:#F6E7DF;border-radius:16px;padding:10px"><div class="k" style="font-size:9px;color:#755">Gastos</div><div class="serif" style="font-size:16px;font-weight:700;color:#9C4F2C">20.501 €</div></div>
+   <div style="background:#F4E3E9;border-radius:16px;padding:10px"><div class="k" style="font-size:9px;color:#755">Pendiente</div><div class="serif" style="font-size:16px;font-weight:700;color:#8A3F55">5.990 €</div></div></div>
+  <div style="margin-top:12px;transform:translateZ(10px)"><div class="row" style="font-size:12px"><span style="color:#8C7B7F">Objetivo 87 % · beneficio 85 % (faltan 3.499 €)</span></div><div style="height:7px;border-radius:4px;background:#EADDE0;margin-top:6px;overflow:hidden"><div style="width:87%;height:100%;background:linear-gradient(90deg,#C9708F,#8A3F55)"></div></div></div></div></div>
+ <div class="row" style="margin:20px 18px 0"><div class="k" style="color:#8C7B7F">Tu negocio por áreas</div><div style="margin-left:auto;font-size:11.5px;color:#8C7B7F">toca una tarjeta</div></div>
+ <div class="stack" id="stack"></div>
+ <div style="height:110px"></div>
+</div><div style="position:absolute;left:14px;right:14px;bottom:16px;height:64px;border-radius:32px;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-around;font-size:11px;font-weight:600;color:#8C7B7F;box-shadow:0 10px 30px rgba(60,20,30,.15)"><span style="color:#8A3F55">Inicio</span><span>Agenda</span><span style="width:48px;height:48px;border-radius:17px;background:#8A3F55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px">✦</span><span>Informes</span><span>Mi centro</span></div></div></div>
+</div>
+<script>
+const IC={c:'<path d="M3 13h13a4 4 0 0 1 4 4H3zM5 17v3M18 17v3M7 9.5a2 2 0 1 0 0-.01"/>',p:'<path d="M9 3h6M10 3v3.5L8 9v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9l-2-2.5V3M8 13h8"/>',a:'<path d="M4 5h11v9H4zM15 8l5-2.5v11L15 14M8 14v6M11 14v6"/>',e:'<path d="M8.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6M16 11a2.5 2.5 0 1 0 0-5M3 20c0-3 2.5-5.5 5.5-5.5S14 17 14 20M16 14.5c2.8 0 5 2.2 5 5.5"/>'};
+const ic=(k,c,s=18)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const AR=[['c','Cabina','1.398 €','32 clientas al día','▲ 11 %','linear-gradient(140deg,#5A2236,#8A3F55 55%,#C9708F)',[['Hora de cabina facturada','44 €'],['Tu mejor tratamiento','Depilación láser · 65 €/h'],['Menos deja por hora','Depilación cera · −7 €/h']]],
+ ['p','Venta de producto','414 €','30 de cada 100 compran','▲ 1 %','linear-gradient(140deg,#1F5E5A,#2F7F7A 55%,#6BAAA5)',[['Cesta media','46 €'],['Beneficio','168 €'],['Clientas que compraron','207 de 696']]],
+ ['a','Aparatos','498 €','24 % del tiempo en uso','▲ 9 %','linear-gradient(140deg,#39465A,#5B6B82 55%,#8E9CB2)',[['Ganan por hora de uso','61 €'],['Láser de diodo','31 % de uso'],['Radiofrecuencia','18 % de uso']]],
+ ['e','Equipo','4 personas','Sara va la primera','','linear-gradient(140deg,#24497F,#3E6FB0 55%,#7FA4D8)',[['Sara','498 € al día'],['Laura','462 € al día'],['Marta','421 € al día']]]];
+function show(id){['h','j','i'].forEach(k=>{document.getElementById('t'+k).classList.toggle('on',k===id);document.getElementById('c'+k).classList.toggle('hide',innerWidth<=840&&k!==id)})}show('h');
+// ---------- H ----------
+document.getElementById('hareas').innerHTML=AR.map(a=>`<div class="tile"><div class="row" style="gap:8px"><span style="width:30px;height:30px;border-radius:10px;background:${a[5]};display:flex;align-items:center;justify-content:center">${ic(a[0],'#fff',17)}</span><b style="font-size:13px">${a[1]}</b></div><div class="serif" style="font-size:22px;font-weight:700;margin-top:9px">${a[2]}</div><div style="font-size:11.5px;color:#7A6A6E">${a[3]}</div><div style="font-size:11.5px;font-weight:700;color:#2E7D57;min-height:15px">${a[4]}</div></div>`).join('');
+document.getElementById('hseg').innerHTML=['Hoy','Semana','Mes','Trim.','Año'].map(p=>`<span style="flex:1;text-align:center;font-size:12.5px;padding:7px 0;border-radius:14px;font-weight:600;${p=='Mes'?'background:rgba(255,255,255,.85);box-shadow:0 2px 8px rgba(60,20,30,.12)':'color:#5c4d50'}">${p}</span>`).join('');
+const hsc=document.getElementById('hsc'),hdr=document.getElementById('hhdr'),hmini=document.getElementById('hmini'),hseg=document.getElementById('hseg'),hteam=document.getElementById('hteam');
+hsc.addEventListener('scroll',()=>{const t=Math.min(1,hsc.scrollTop/160);hmini.style.maxWidth=t>.6?'140px':'0';hmini.style.opacity=t>.6?1:0;hteam.style.display=t>.6?'none':'';hseg.style.maxHeight=(1-t)*44+'px';hseg.style.opacity=1-t;hseg.style.overflow='hidden';hseg.style.marginTop=(1-t)*10+'px';hdr.style.borderRadius=(30-t*6)+'px';});
+document.querySelectorAll('.H .glassbar').forEach(g=>g.addEventListener('pointermove',e=>{const r=g.getBoundingClientRect();g.querySelector('.spec').style.setProperty('--sx',((e.clientX-r.left)/r.width*100)+'%')}));
+// ---------- J: vaso con física ----------
+const JP=[{l:'Hoy · has facturado',rev:1240,g:628,b:612,obj:1590,vs:'▲ 6 % vs. jueves pasado'},{l:'Esta semana · has facturado',rev:8946,g:4636,b:4310,obj:9724,vs:'▲ 4 % vs. semana pasada'},{l:'Noviembre 2026 · has facturado',rev:39882,g:20501,b:19381,obj:45872,vs:'▲ 8 % vs. octubre'},{l:'Este trimestre · has facturado',rev:112460,g:59440,b:53020,obj:126360,vs:'▲ 6 % vs. trimestre anterior'},{l:'2026 · has facturado',rev:418230,g:218350,b:199880,obj:459600,vs:'▲ 11 % vs. 2025'}];
+const f=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' €';
+const jc=document.getElementById('jc'),x=jc.getContext('2d');const W=250,Hh=330,N=48;
+let lvlG=0,lvlB=0,tG=0,tB=0;const hs=new Array(N).fill(0),vs=new Array(N).fill(0);let tilt=0,tiltT=0;
+function setJ(i){const d=JP[i];document.getElementById('jlbl').textContent=d.l;document.getElementById('jrev').textContent=f(d.rev);document.getElementById('jvs').textContent=d.vs+' · Comparar con el año pasado ›';
+ document.getElementById('jobj').textContent=f(d.obj);document.getElementById('jpen').textContent=f(d.obj-d.rev);document.getElementById('jb').textContent=f(d.b);document.getElementById('jg').textContent=f(d.g);document.getElementById('jp').textContent=f(d.obj-d.rev);
+ tG=d.g/d.obj;tB=d.b/d.obj;lvlG=0;lvlB=0;for(let k=0;k<N;k++)vs[k]+=(Math.random()-.5)*6;}
+document.querySelectorAll('#jseg span').forEach(s=>s.onclick=()=>{document.querySelectorAll('#jseg span').forEach(z=>z.classList.toggle('on',z===s));setJ(+s.dataset.i)});
+// forma del vaso
+const vTop=18,bot=Hh-12,inset=(y)=>{const t=(y-vTop)/(bot-vTop);return 18+ t*22};
+function vesselPath(){x.beginPath();x.moveTo(inset(vTop),vTop);x.lineTo(inset(bot)+6,bot-10);x.quadraticCurveTo(inset(bot)+8,bot,inset(bot)+24,bot);x.lineTo(W-inset(bot)-24,bot);x.quadraticCurveTo(W-inset(bot)-8,bot,W-inset(bot)-6,bot-10);x.lineTo(W-inset(vTop),vTop);}
+function surf(level,amp){const y0=bot-(bot-vTop)*level;const pts=[];for(let k=0;k<N;k++){const px=k/(N-1)*W;pts.push([px,y0+hs[k]*amp+tilt*(px-W/2)*.35])}return pts}
+function loop(){lvlG+=(tG-lvlG)*.035;lvlB+=(tB-lvlB)*.035;tilt+=(tiltT-tilt)*.08;
+ // muelles
+ for(let k=0;k<N;k++){vs[k]+=-hs[k]*.02-vs[k]*.02}for(let p=0;p<2;p++)for(let k=0;k<N;k++){const l=k>0?hs[k-1]:hs[k],r=k<N-1?hs[k+1]:hs[k];vs[k]+=(l+r-2*hs[k])*.12}for(let k=0;k<N;k++)hs[k]+=vs[k];
+ x.clearRect(0,0,W,Hh);x.save();vesselPath();x.clip();
+ // gastos (abajo)
+ const sg=surf(lvlG,.5),sb=surf(lvlG+lvlB,1);
+ let gr=x.createLinearGradient(0,vTop,0,bot);gr.addColorStop(0,'#E08A5E');gr.addColorStop(1,'#8E4426');x.fillStyle=gr;x.beginPath();x.moveTo(0,bot);sg.forEach(([a,b])=>x.lineTo(a,b));x.lineTo(W,bot);x.fill();
+ gr=x.createLinearGradient(0,vTop,0,bot);gr.addColorStop(0,'#8FE3B5');gr.addColorStop(1,'#2E7D57');x.fillStyle=gr;x.beginPath();sb.forEach(([a,b],k)=>k?x.lineTo(a,b):x.moveTo(a,b));for(let k=N-1;k>=0;k--)x.lineTo(sg[k][0],sg[k][1]);x.fill();
+ // brillo superficie
+ x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=2;x.beginPath();sb.forEach(([a,b],k)=>k?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
+ // burbujas
+ x.fillStyle='rgba(255,255,255,.25)';const t=performance.now()/1000;for(let k=0;k<14;k++){const bx=40+((k*53)%170),by=bot-((t*30+k*41)%((bot-vTop)*(lvlG+lvlB)));x.beginPath();x.arc(bx+Math.sin(t*2+k)*3,by,1.5+(k%3),0,7);x.fill()}
+ x.restore();
+ // línea objetivo y pendiente
+ x.setLineDash([5,5]);x.strokeStyle='rgba(255,255,255,.55)';x.beginPath();x.moveTo(inset(vTop)-2,vTop);x.lineTo(W-inset(vTop)+2,vTop);x.stroke();x.setLineDash([]);
+ // vaso
+ x.lineWidth=3;x.strokeStyle='rgba(255,255,255,.55)';vesselPath();x.stroke();
+ x.strokeStyle='rgba(255,255,255,.18)';x.lineWidth=8;x.beginPath();x.moveTo(inset(vTop)+12,vTop+20);x.lineTo(inset(bot)+14,bot-40);x.stroke();
+ // posición etiqueta pendiente
+ const yb=bot-(bot-vTop)*(lvlG+lvlB);document.getElementById('lPen').style.vTop=((vTop+yb)/2-8)+'px';
+ requestAnimationFrame(loop)}
+setJ(2);loop();
+const jv=document.getElementById('jv');let drag=null;jv.addEventListener('pointerdown',e=>{drag=e.clientX;jv.setPointerCapture(e.pointerId)});jv.addEventListener('pointermove',e=>{if(drag!=null){const dx=e.clientX-drag;tiltT=Math.max(-.6,Math.min(.6,dx/120));const k=Math.floor((e.offsetX/W)*N);if(k>=0&&k<N)vs[k]+=dx>0?1:-1}});jv.addEventListener('pointerup',()=>{drag=null;tiltT=0;for(let k=0;k<N;k++)vs[k]+=(Math.random()-.5)*3});
+addEventListener('deviceorientation',e=>{if(e.gamma!=null){tiltT=Math.max(-.6,Math.min(.6,e.gamma/45))}});
+// ---------- I: cartera ----------
+const stack=document.getElementById('stack');let open=-1;
+stack.innerHTML=AR.map((a,i)=>`<div class="wc" data-i="${i}" style="background:${a[5]}"><div class="gl"></div><div class="row" style="gap:10px;position:relative"><span class="ico">${ic(a[0],'#fff',19)}</span><b style="font-size:15px">${a[1]}</b><div style="margin-left:auto;text-align:right"><div class="serif" style="font-size:22px;font-weight:700">${a[2]}</div><div style="font-size:11.5px;font-weight:700;opacity:.9">${a[4]||'&nbsp;'}</div></div></div>
+ <div style="font-size:12px;opacity:.85;margin-top:6px;position:relative">${a[3]}</div><div style="margin-top:14px;position:relative">${a[6].map(([k,v])=>`<div class="row" style="justify-content:space-between;padding:7px 0;border-top:1px solid rgba(255,255,255,.18);font-size:12.5px"><span style="opacity:.85">${k}</span><b>${v}</b></div>`).join('')}</div></div>`).join('');
+function lay(){stack.querySelectorAll('.wc').forEach((c,i)=>{let y,s=1,r=0;if(open<0){y=i*62}else if(i===open){y=0}else{const k=i<open?i:i-1;y=230+k*22;s=.94-k*.02}
+ c.style.transform=`translateY(${y}px) scale(${s}) rotateX(${open<0?-6:0}deg)`;c.style.zIndex=open===i?10:i;c.style.boxShadow=open===i?'0 30px 60px rgba(40,10,20,.35)':'';});
+ stack.style.height=(open<0?62*3+210:230+22*2+210)+'px'}
+stack.querySelectorAll('.wc').forEach(c=>c.onclick=()=>{open=open===+c.dataset.i?-1:+c.dataset.i;lay();try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}});lay();
+const h3=document.getElementById('h3');const tiltTo=(rx,ry)=>h3.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+h3.addEventListener('pointermove',e=>{const r=h3.getBoundingClientRect();tiltTo((.5-(e.clientY-r.vTop)/r.height)*14,((e.clientX-r.left)/r.width-.5)*16)});h3.addEventListener('pointerleave',()=>tiltTo(0,0));
+addEventListener('deviceorientation',e=>{if(e.beta!=null)tiltTo(Math.max(-12,Math.min(12,(e.beta-45)/3)),Math.max(-14,Math.min(14,e.gamma/3)))});
+</script></body></html>
