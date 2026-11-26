@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Rentia · Inicio avanzado (prototipo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Instrument Sans',-apple-system,Arial,sans-serif;background:#E9E1DE;color:#2B2220;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:14px 8px 30px}
+.intro{max-width:680px;margin-bottom:12px;padding:0 6px}.intro h1{font-size:19px}.intro p{font-size:13px;color:#7A6A6E;margin-top:4px}
+.intro ol{font-size:12.5px;color:#5c4d50;margin:8px 0 0 18px;line-height:1.55}
+.ph{width:375px;max-width:100%;height:780px;border-radius:44px;overflow:hidden;position:relative;background:#F8F1F0;box-shadow:0 24px 60px rgba(90,34,54,.25)}
+.scroll{position:absolute;inset:0;overflow-y:auto;padding:14px 14px 110px;scrollbar-width:none}.scroll::-webkit-scrollbar{display:none}
+.top{display:flex;align-items:center;gap:10px}.hi{font-size:12px;color:#8C7B7F}.cn{font-weight:700;font-size:17px}.team{margin-left:auto;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:600}
+/* periodo con píldora que se desliza */
+.per{position:relative;display:flex;background:#F0E5E3;border-radius:16px;padding:3px;margin-top:14px}
+.per span{position:relative;z-index:1;flex:1;text-align:center;font-size:12.5px;padding:8px 0;font-weight:600;color:#8C7B7F;cursor:pointer;transition:color .3s}
+.per span.on{color:#2B2220}.pill{position:absolute;top:3px;bottom:3px;border-radius:13px;background:#fff;box-shadow:0 2px 8px rgba(90,34,54,.12);transition:left .45s cubic-bezier(.3,1.4,.5,1),width .45s cubic-bezier(.3,1.4,.5,1)}
+/* orbe */
+.hero{position:relative;height:330px;margin-top:10px;border-radius:30px;overflow:hidden;background:#2A0F1B}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;pointer-events:none}
+.hero .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.odo{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:50px;letter-spacing:-1.5px;display:flex;height:60px;overflow:hidden;line-height:60px;margin-top:2px;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+.odo .d{display:inline-block;width:.6em;text-align:center;position:relative}.odo .d i{display:block;font-style:normal;transition:transform 1.1s cubic-bezier(.2,.9,.2,1)}
+.odo .s{display:inline-block}
+.chip{margin-top:8px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700}
+.goal{position:absolute;left:16px;right:16px;bottom:14px;display:flex;justify-content:space-between;color:#fff;font-size:11.5px;opacity:.85;pointer-events:none}
+.hint{position:absolute;top:12px;right:14px;color:#fff;font-size:10.5px;opacity:.6;pointer-events:none}
+/* trío */
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.mini{border-radius:18px;padding:11px 10px;position:relative;overflow:hidden}.mini .l{font-size:11px;color:#7A6A6E}.mini .v{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:18px;margin-top:3px}
+.mini svg{position:absolute;right:-4px;bottom:-4px;opacity:.5}
+/* gráfica que se arrastra */
+.card{background:#fff;border-radius:24px;padding:14px;margin-top:10px;box-shadow:0 1px 2px rgba(43,34,32,.05)}
+.ch-h{display:flex;align-items:baseline;gap:8px}.ch-h b{font-size:15px}.ch-h span{margin-left:auto;font-size:12px;color:#8C7B7F}
+.scrub{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:26px;margin-top:4px;transition:color .2s}.scrub small{font-family:'Instrument Sans';font-size:12px;color:#8C7B7F;font-weight:500;margin-left:6px}
+#chart{width:100%;height:150px;display:block;margin-top:6px;touch-action:none;cursor:ew-resize}
+/* aviso */
+.alert{display:flex;gap:10px;align-items:center;border-radius:20px;padding:12px;margin-top:10px;background:#FDF6E8;border:1.5px solid #EBC77F}
+.alert .ic{width:34px;height:34px;border-radius:11px;background:#F6E2B5;display:flex;align-items:center;justify-content:center}.alert b{font-size:14px;display:block}.alert span{font-size:12px;color:#7A6A6E}
+.btn{margin-left:auto;border-radius:999px;padding:8px 13px;font-weight:700;font-size:12.5px;color:#fff;background:#B7791F}
+.sec{display:flex;align-items:center;gap:8px;margin:22px 2px 10px}.sec b{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:600}.sec small{margin-left:auto;font-size:12px;color:#8A3F55;font-weight:700}
+/* áreas con inclinación 3D y luz */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;perspective:800px}
+.area{position:relative;background:#fff;border-radius:22px;padding:13px;cursor:pointer;transform-style:preserve-3d;transition:transform .25s ease-out,box-shadow .25s;overflow:hidden;box-shadow:0 1px 2px rgba(43,34,32,.05)}
+.area .glow{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.area:hover .glow{opacity:1}
+.area .h{display:flex;align-items:center;gap:8px}.area .h span{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center}.area .h b{font-size:13.5px}
+.area .v{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:22px;margin-top:10px}.area .s{font-size:11.5px;color:#7A6A6E}.area em{font-style:normal;font-size:11.5px;font-weight:700;color:#2E7D57}
+.area svg.spark{display:block;margin-top:8px;width:100%;height:28px}
+/* detalle que se abre desde la tarjeta */
+.sheet{position:absolute;z-index:20;background:#fff;overflow:hidden;border-radius:22px;transition:all .55s cubic-bezier(.2,.9,.2,1);box-shadow:0 30px 80px rgba(43,34,32,.3)}
+.sheet .in{padding:18px;opacity:0;transition:opacity .3s .25s}.sheet.open .in{opacity:1}
+.sheet .close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#F4ECEA;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;z-index:2}
+.kv{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid #F1E9E7;font-size:14px}.kv b{font-weight:700}
+/* barra de cristal */
+.nav{position:absolute;left:14px;right:14px;bottom:16px;height:66px;border-radius:26px;display:flex;align-items:center;justify-content:space-around;z-index:10;
+ background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.3));backdrop-filter:blur(18px) saturate(1.8);-webkit-backdrop-filter:blur(18px) saturate(1.8);
+ border:1px solid rgba(255,255,255,.7);box-shadow:0 10px 30px rgba(90,34,54,.18),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -8px 16px rgba(138,63,85,.06)}
+.nav span{font-size:11px;font-weight:600;color:#8C7B7F;display:flex;flex-direction:column;align-items:center;gap:3px}.nav span.on{color:#8A3F55}
+.nav .ia{width:52px;height:52px;border-radius:18px;background:radial-gradient(circle at 30% 25%,#C77E96,#8A3F55 60%,#5A2236);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(138,63,85,.45);animation:breath 3.5s ease-in-out infinite}
+@keyframes breath{50%{transform:scale(1.06);box-shadow:0 10px 28px rgba(138,63,85,.6)}}
+/* isla / widget */
+.extras{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:18px;max-width:780px}
+.box{background:#fff;border-radius:22px;padding:14px;width:360px;max-width:100%}.box h3{font-size:14px}.box p{font-size:12px;color:#7A6A6E;margin-top:2px}
+.lock{margin-top:10px;height:200px;border-radius:24px;background:linear-gradient(160deg,#3A1A28,#8A3F55 60%,#C27B92);position:relative;overflow:hidden;color:#fff}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:#000;border-radius:22px;height:36px;width:120px;display:flex;align-items:center;gap:8px;padding:0 12px;transition:width .6s cubic-bezier(.3,1.3,.5,1),height .6s cubic-bezier(.3,1.3,.5,1);overflow:hidden;white-space:nowrap;font-size:12px}
+.island.big{width:300px;height:64px;border-radius:30px}
+.island .r{width:20px;height:20px;border-radius:7px;background:#8A3F55;display:flex;align-items:center;justify-content:center;flex:none}
+.wg{position:absolute;left:14px;bottom:14px;width:150px;height:150px;border-radius:26px;background:rgba(255,255,255,.18);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.3);padding:12px}
+.wg .n{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;margin-top:4px}
+</style></head><body>
+<div class="intro">
+ <h1>Inicio avanzado: prototipo interactivo</h1>
+ <p>Son los mismos datos de ahora, presentados con técnicas que muy pocas apps de gestión usan. Tócalo y arrástralo:</p>
+ <ol>
+  <li><b>Orbe vivo:</b> su color y su movimiento dependen de cómo va el mes. Al tocarlo, reacciona.</li>
+  <li><b>Cifras que ruedan</b> al cambiar de periodo, como un marcador.</li>
+  <li><b>Gráfica que se recorre con el dedo:</b> arrástralo y ves lo facturado cada día (en Android también vibra).</li>
+  <li><b>Tarjetas en 3D con luz</b> que siguen el dedo, y que al tocarlas <b>se transforman</b> en su detalle.</li>
+  <li><b>Barra de cristal</b> con el botón de la IA respirando.</li>
+  <li>Debajo: <b>la Isla dinámica y el widget</b> del iPhone con la facturación en directo.</li>
+ </ol>
+</div>
+<div class="ph" id="ph"><div class="scroll" id="sc">
+ <div class="top"><svg width="38" height="38" viewBox="0 0 1024 1024"><rect width="1024" height="1024" rx="300" fill="#8A3F55"/><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div><div class="hi">Buenos días</div><div class="cn">Centro Demo</div></div><div class="team">Todo el equipo ▾</div></div>
+ <div class="per" id="per"><div class="pill" id="pill"></div><span data-p="0">Hoy</span><span data-p="1">Semana</span><span data-p="2" class="on">Mes</span><span data-p="3">Trim.</span><span data-p="4">Año</span></div>
+
+ <div class="hero" id="hero"><canvas id="orb"></canvas><div class="hint">toca el orbe</div>
+  <div class="ov"><div class="lbl" id="plbl">Noviembre · has facturado</div><div class="odo" id="odo"></div><div class="chip" id="chip">▲ 8 % vs. octubre · 87 % del objetivo</div></div>
+  <div class="goal"><span>Comparar con el año pasado ›</span><span id="gtxt">Objetivo 45.872 €</span></div></div>
+
+ <div class="trio">
+  <div class="mini" style="background:#E7F3EC"><div class="l">Beneficio</div><div class="v" style="color:#2E7D57" id="v1">19.381 €</div><svg width="60" height="30"><path d="M0 26 C15 20 25 24 35 14 S52 6 60 4" stroke="#2E7D57" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="mini" style="background:#F6EAE3"><div class="l">Gastos</div><div class="v" style="color:#9C4F2C" id="v2">20.501 €</div><svg width="60" height="30"><path d="M0 14 C15 16 25 12 35 15 S52 13 60 14" stroke="#9C4F2C" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="mini" style="background:#F3E4E8"><div class="l">Pendiente objetivo</div><div class="v" style="color:#8A3F55" id="v3">5.990 €</div><svg width="60" height="30"><path d="M0 6 C15 10 25 12 35 18 S52 24 60 26" stroke="#8A3F55" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+ </div>
+
+ <div class="card"><div class="ch-h"><b>Día a día</b><span>arrastra el dedo ↔</span></div>
+  <div class="scrub" id="scrub">39.882 €<small id="scrubd">todo noviembre</small></div>
+  <canvas id="chart"></canvas>
+  <div style="display:flex;font-size:12.5px;margin-top:8px"><span>Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div>
+  <div style="height:7px;border-radius:4px;background:#EADDE0;margin-top:7px;overflow:hidden"><div style="width:85%;height:100%;background:linear-gradient(90deg,#4F9A72,#2E7D57);border-radius:4px"></div></div>
+ </div>
+
+ <div class="alert"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5A0B" stroke-width="2.2" stroke-linecap="round"><path d="M12 4l9 16H3zM12 10v4M12 17v.5"/></svg></div><div><b>Completa tu centro · 67 %</b><span>Siguiente: conecta tu agenda</span></div><div class="btn">Seguir</div></div>
+
+ <div class="sec"><b>Tu negocio por áreas</b><small>toca una</small></div>
+ <div class="grid" id="grid"></div>
+
+ <div class="sec"><b>Hoy</b></div>
+ <div class="card" style="display:flex;gap:11px;align-items:center;margin-top:0"><span style="width:38px;height:38px;border-radius:12px;background:#E7F3EC;display:flex;align-items:center;justify-content:center;font-weight:800;color:#2E7D57">€</span><div><b style="font-size:14.5px">Cobros de hoy</b><div style="font-size:12px;color:#7A6A6E">Tarjeta, efectivo y banco</div></div><span style="margin-left:auto;color:#B5A9A6">›</span></div>
+ <div class="alert" style="background:#F7F3FB;border-color:#CDBDE6"><div class="ic" style="background:#E6DCF3;color:#5E4A80;font-weight:800;font-size:12px">51h</div><div><b>51 h libres en los próximos 7 días</b><span>2.254 € sin facturar · 203 sesiones de bono pendientes</span></div><div class="btn" style="background:#7B5EA7">Llenar</div></div>
+</div>
+<div class="nav"><span class="on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A3F55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Inicio</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C7B7F" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Agenda</span>
+ <div class="ia"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="#fff"/></svg></div>
+ <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C7B7F" stroke-width="2" stroke-linecap="round"><path d="M4 18l5-6 4 3 7-8"/></svg>Informes</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8C7B7F" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Mi centro</span></div>
+</div>
+
+<div class="extras">
+ <div class="box"><h3>Isla dinámica del iPhone</h3><p>Cuando entra un cobro, se abre sola con lo facturado hoy. Toca la isla.</p>
+  <div class="lock"><div class="island" id="isl"><div class="r"><svg width="12" height="12" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span id="islt">1.240 €</span></div>
+   <div style="position:absolute;top:70px;width:100%;text-align:center;font-family:'Fraunces',serif;font-size:54px;font-weight:600">13:32</div></div></div>
+ <div class="box"><h3>Widget en la pantalla de inicio</h3><p>La facturación de hoy y el objetivo, sin abrir la app.</p>
+  <div class="lock"><div class="wg"><div style="font-size:11px;opacity:.85">Rentia · Hoy</div><div class="n">1.240 €</div><div style="font-size:11px;opacity:.85">▲ 6 % vs. jueves pasado</div>
+   <svg width="126" height="34" viewBox="0 0 126 34" style="margin-top:10px"><path d="M2 30 C20 26 30 28 44 20 S70 16 84 10 S110 6 124 4" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+   <div class="wg" style="left:178px;width:150px"><div style="font-size:11px;opacity:.85">Objetivo del mes</div>
+    <svg width="90" height="90" viewBox="0 0 90 90" style="display:block;margin:8px auto 0"><circle cx="45" cy="45" r="36" stroke="rgba(255,255,255,.25)" stroke-width="9" fill="none"/><circle cx="45" cy="45" r="36" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="196.8 226.2" transform="rotate(-90 45 45)"/><text x="45" y="51" text-anchor="middle" fill="#fff" font-family="Fraunces,serif" font-weight="700" font-size="18">87%</text></svg></div></div></div>
+</div>
+
+<script>
+// ---------- datos (los mismos de la demo) ----------
+const P=[{l:'Hoy · has facturado',v:1240,chip:'▲ 6 % vs. jueves pasado · 78 % del objetivo',g:'Objetivo 1.590 €',pct:.78,trio:['612 €','628 €','350 €']},
+ {l:'Esta semana · has facturado',v:8946,chip:'▲ 4 % vs. semana pasada · 92 % del objetivo',g:'Objetivo 9.724 €',pct:.92,trio:['4.310 €','4.636 €','778 €']},
+ {l:'Noviembre · has facturado',v:39882,chip:'▲ 8 % vs. octubre · 87 % del objetivo',g:'Objetivo 45.872 €',pct:.87,trio:['19.381 €','20.501 €','5.990 €']},
+ {l:'Este trimestre · has facturado',v:112460,chip:'▲ 6 % vs. trimestre anterior · 89 % del objetivo',g:'Objetivo 126.360 €',pct:.89,trio:['53.020 €','59.440 €','13.900 €']},
+ {l:'2026 · has facturado',v:418230,chip:'▲ 11 % vs. 2025 · 91 % del objetivo',g:'Objetivo 459.600 €',pct:.91,trio:['199.880 €','218.350 €','41.370 €']}];
+const fmt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+'\u00a0€';
+// ---------- cifras que ruedan ----------
+const odo=document.getElementById('odo');
+function setOdo(n){const s=fmt(n);odo.innerHTML=[...s].map(ch=>/\d/.test(ch)?`<span class="d"><i style="transform:translateY(-${ch*60}px)">${[...Array(10).keys()].map(k=>`<div style="height:60px">${k}</div>`).join('')}</i></span>`:`<span class="s">${ch===' '||ch==='\u00a0'?'&nbsp;':ch}</span>`).join('');
+ // empezar desde 0 y rodar
+ odo.querySelectorAll('.d i').forEach(e=>{const t=e.style.transform;e.style.transition='none';e.style.transform='translateY(0)';requestAnimationFrame(()=>requestAnimationFrame(()=>{e.style.transition='';e.style.transform=t}))});}
+// ---------- periodo ----------
+const per=document.getElementById('per'),pill=document.getElementById('pill');let cur=2;
+function movePill(){const s=per.querySelectorAll('span')[cur];pill.style.left=s.offsetLeft+'px';pill.style.width=s.offsetWidth+'px'}
+per.querySelectorAll('span').forEach(s=>s.onclick=()=>{cur=+s.dataset.p;per.querySelectorAll('span').forEach(x=>x.classList.toggle('on',x===s));movePill();apply();buzz(8)});
+function apply(){const d=P[cur];document.getElementById('plbl').textContent=d.l;document.getElementById('chip').textContent=d.chip;document.getElementById('gtxt').textContent=d.g;setOdo(d.v);
+ ['v1','v2','v3'].forEach((id,i)=>document.getElementById(id).textContent=d.trio[i]);target=d.pct;}
+const buzz=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
+// ---------- orbe (WebGL) ----------
+let target=.87,health=.87,tapT=-10,tx=.5,ty=.5;
+const cv=document.getElementById('orb'),gl=cv.getContext('webgl');
+const fs=`precision highp float;uniform vec2 r;uniform float t,h,tp;uniform vec2 m;
+float n(vec2 p){return sin(p.x)*sin(p.y);}
+void main(){vec2 uv=(gl_FragCoord.xy-.5*r)/r.y;float tt=t*.35;
+ vec2 q=uv;for(int i=0;i<4;i++){q+=.18*vec2(sin(q.y*3.1+tt+float(i)),cos(q.x*2.7-tt*1.2+float(i)*1.7));}
+ float d=length(uv-(m-.5)*vec2(r.x/r.y,1.)*.25);float pulse=exp(-3.*(t-tp))*sin((d-(t-tp)*.9)*28.)*.5;
+ float rr=.36+.03*sin(tt*2.)+pulse*.05;float orb=smoothstep(rr+.02,rr-.12,length(uv+.04*vec2(sin(q.y*4.),cos(q.x*4.))));
+ vec3 bad=vec3(.78,.42,.24),good=vec3(.86,.38,.52),great=vec3(.98,.62,.70);
+ vec3 c=mix(bad,good,smoothstep(.6,.85,h));c=mix(c,great,smoothstep(.88,1.,h));
+ vec3 col=mix(vec3(.16,.05,.10),vec3(.33,.10,.20),.5+.5*sin(q.x*2.+q.y*1.5+tt));
+ col+=orb*(c*(.75+.35*sin(q.x*5.+tt*2.))+.25*vec3(1.,.85,.9)*pow(max(0.,1.-length(uv-vec2(-.12,.14))*3.),2.));
+ col+=.08*vec3(1.,.7,.8)*pow(max(0.,1.-abs(length(uv)-rr-.06)*12.),3.)*(1.+pulse*4.);
+ gl_FragColor=vec4(col,1.);}`;
+if(gl){const sh=(ty,src)=>{const s=gl.createShader(ty);gl.shaderSource(s,src);gl.compileShader(s);return s};
+ const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,'attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}'));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
+ const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+ const loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+ const U=k=>gl.getUniformLocation(pr,k);const t0=performance.now();
+ (function loop(){const dpr=Math.min(2,devicePixelRatio||1),w=cv.clientWidth*dpr,h=cv.clientHeight*dpr;if(cv.width!==w){cv.width=w;cv.height=h;gl.viewport(0,0,w,h)}
+  health+=(target-health)*.04;const t=(performance.now()-t0)/1000;gl.uniform2f(U('r'),w,h);gl.uniform1f(U('t'),t);gl.uniform1f(U('h'),health);gl.uniform1f(U('tp'),tapT);gl.uniform2f(U('m'),tx,ty);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(loop)})();
+ const hero=document.getElementById('hero');hero.addEventListener('pointerdown',e=>{const r=hero.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=1-(e.clientY-r.top)/r.height;tapT=(performance.now()-t0)/1000;buzz(15)});
+}else{document.getElementById('hero').style.background='radial-gradient(circle at 50% 50%,#D9668A,#5A2236 60%,#2A0F1B)'}
+// ---------- gráfica con el dedo ----------
+const days=[];const open=[2,3,4,5,6,7,9,10,11,12,13,14,16,17,18,19,20,21,23,24,25,26];
+let seed=7;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+let tot=0;open.forEach(d=>{const v=1350+rnd()*900+(d%7==6?380:0);days.push({d,v});tot+=v});const k=39882/tot;days.forEach(x=>x.v=Math.round(x.v*k));
+const ch=document.getElementById('chart'),cx=ch.getContext('2d');let sel=-1;
+function draw(){const dpr=devicePixelRatio||1,W=ch.clientWidth,H=ch.clientHeight;ch.width=W*dpr;ch.height=H*dpr;cx.scale(dpr,dpr);cx.clearRect(0,0,W,H);
+ const max=Math.max(...days.map(x=>x.v))*1.1,bw=W/days.length;
+ // línea del objetivo
+ const obj=45872/days.length/ max;cx.setLineDash([4,4]);cx.strokeStyle='rgba(138,63,85,.35)';cx.beginPath();cx.moveTo(0,H-obj*H);cx.lineTo(W,H-obj*H);cx.stroke();cx.setLineDash([]);
+ days.forEach((x,i)=>{const h=x.v/max*(H-10),X=i*bw+bw*.18,w=bw*.64;const g=cx.createLinearGradient(0,H-h,0,H);
+  const on=sel===i,dim=sel>=0&&!on;g.addColorStop(0,dim?'#E9D3DA':on?'#5A2236':'#B05A78');g.addColorStop(1,dim?'#F4E7EB':on?'#8A3F55':'#E7B6C6');
+  cx.fillStyle=g;const r=Math.min(w/2,6);cx.beginPath();cx.moveTo(X,H);cx.lineTo(X,H-h+r);cx.quadraticCurveTo(X,H-h,X+r,H-h);cx.lineTo(X+w-r,H-h);cx.quadraticCurveTo(X+w,H-h,X+w,H-h+r);cx.lineTo(X+w,H);cx.fill();});
+ if(sel>=0){const X=sel*bw+bw/2;cx.strokeStyle='#2B2220';cx.lineWidth=1.5;cx.beginPath();cx.moveTo(X,0);cx.lineTo(X,H);cx.stroke();cx.fillStyle='#2B2220';cx.beginPath();cx.arc(X,H-days[sel].v/max*(H-10),5,0,7);cx.fill();}}
+const DOW=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+function pick(e){const r=ch.getBoundingClientRect();const i=Math.max(0,Math.min(days.length-1,Math.floor((e.clientX-r.left)/(r.width/days.length))));if(i!==sel){sel=i;buzz(6);const x=days[i],dt=new Date(2026,10,x.d);
+ document.getElementById('scrub').innerHTML=fmt(x.v)+`<small>${DOW[dt.getDay()]} ${x.d} de noviembre</small>`;draw();}}
+ch.addEventListener('pointerdown',e=>{ch.setPointerCapture(e.pointerId);pick(e)});ch.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType==='touch')pick(e)});
+ch.addEventListener('pointerup',()=>{setTimeout(()=>{sel=-1;document.getElementById('scrub').innerHTML='39.882 €<small>todo noviembre</small>';draw()},1200)});
+// ---------- áreas: 3D, luz y transformación ----------
+const AR=[['Cabina','1.398 €','32 clientas al día','▲ 11 %','#8A3F55','#F3E4E8','<path d="M3 13h13a4 4 0 0 1 4 4H3zM5 17v3M18 17v3M7 9.5a2 2 0 1 0 0-.01"/>',[['Hora de cabina facturada','44 €'],['Tu mejor tratamiento','Depilación láser · 65 €/h'],['Servicio que menos deja por hora','Depilación cera · −7 €/h']]],
+ ['Venta de producto','414 €','30 de cada 100 compran','▲ 1 %','#2F7F7A','#E2F1F0','<path d="M9 3h6M10 3v3.5L8 9v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9l-2-2.5V3M8 13h8"/>',[['Cesta media','46 €'],['Beneficio','168 €'],['Clientas que compraron','207 de 696']]],
+ ['Aparatos','498 €','24 % del tiempo en uso','▲ 9 %','#5B6B82','#E8ECF2','<path d="M4 5h11v9H4zM15 8l5-2.5v11L15 14M8 14v6M11 14v6"/>',[['Ganan por hora de uso','61 €'],['Láser de diodo','31 % de uso'],['Radiofrecuencia','18 % de uso']]],
+ ['Equipo','4 personas','Sara va la primera','','#3E6FB0','#E5EDF8','<path d="M8.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6M16 11a2.5 2.5 0 1 0 0-5M3 20c0-3 2.5-5.5 5.5-5.5S14 17 14 20M16 14.5c2.8 0 5 2.2 5 5.5"/>',[['Sara','498 € al día'],['Laura','462 € al día'],['Marta','421 € al día']]]];
+const grid=document.getElementById('grid');
+grid.innerHTML=AR.map((a,i)=>`<div class="area" data-i="${i}"><div class="glow"></div><div class="h"><span style="background:${a[5]}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${a[4]}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${a[6]}</svg></span><b>${a[0]}</b></div><div class="v">${a[1]}</div><div class="s">${a[2]}</div>${a[3]?`<em>${a[3]}</em>`:'<em style="color:transparent">.</em>'}
+ <svg class="spark" viewBox="0 0 140 28" preserveAspectRatio="none"><defs><linearGradient id="sg${i}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${a[4]}" stop-opacity=".25"/><stop offset="1" stop-color="${a[4]}" stop-opacity="0"/></linearGradient></defs><path d="M0 22 C20 18 30 21 45 14 S75 12 90 9 S120 5 140 3 V28 H0Z" fill="url(#sg${i})"/><path d="M0 22 C20 18 30 21 45 14 S75 12 90 9 S120 5 140 3" stroke="${a[4]}" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>`).join('');
+grid.querySelectorAll('.area').forEach(el=>{const a=AR[el.dataset.i];
+ el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;el.style.transform=`rotateX(${(.5-y)*14}deg) rotateY(${(x-.5)*14}deg) translateZ(6px)`;el.style.boxShadow=`${(.5-x)*16}px ${(.5-y)*16+10}px 26px rgba(43,34,32,.14)`;
+  el.querySelector('.glow').style.background=`radial-gradient(circle at ${x*100}% ${y*100}%,${a[4]}22,transparent 60%)`});
+ el.addEventListener('pointerleave',()=>{el.style.transform='';el.style.boxShadow=''});
+ el.addEventListener('click',()=>openSheet(el,a))});
+function openSheet(el,a){buzz(12);const ph=document.getElementById('ph').getBoundingClientRect(),r=el.getBoundingClientRect();const s=document.createElement('div');s.className='sheet';
+ Object.assign(s.style,{left:r.left-ph.left+'px',top:r.top-ph.top+'px',width:r.width+'px',height:r.height+'px'});
+ s.innerHTML=`<div class="close">×</div><div class="in"><div style="display:flex;align-items:center;gap:10px"><span style="width:44px;height:44px;border-radius:14px;background:${a[5]};display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${a[4]}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${a[6]}</svg></span><div><div style="font-family:Fraunces,serif;font-size:24px;font-weight:700">${a[0]}</div><div style="font-size:12.5px;color:#7A6A6E">${a[2]}</div></div></div>
+  <div style="font-family:Fraunces,serif;font-size:44px;font-weight:700;margin-top:18px;color:${a[4]}">${a[1]}</div>${a[3]?`<div style="font-weight:700;color:#2E7D57;font-size:13px">${a[3]} vs. octubre</div>`:''}
+  <div style="display:flex;align-items:flex-end;gap:5px;height:90px;margin:18px 0 8px">${[50,62,48,58,55,72,60,52,68,63,74,86].map((h,i)=>`<div style="flex:1;height:${h}%;border-radius:8px;background:${i==11?a[4]:a[5]};transform-origin:bottom;animation:grow .6s ${i*.03+.3}s both cubic-bezier(.3,1.4,.5,1)"></div>`).join('')}</div>
+  ${a[7].map(([k,v])=>`<div class="kv"><span style="color:#7A6A6E">${k}</span><b>${v}</b></div>`).join('')}
+  <div style="margin-top:14px;font-weight:700;color:${a[4]}">Ver detalle completo ›</div></div>`;
+ document.getElementById('ph').appendChild(s);requestAnimationFrame(()=>requestAnimationFrame(()=>{s.classList.add('open');Object.assign(s.style,{left:'0px',top:'0px',width:ph.width+'px',height:ph.height+'px',borderRadius:'44px'})}));
+ s.querySelector('.close').onclick=()=>{s.classList.remove('open');const r2=el.getBoundingClientRect();Object.assign(s.style,{left:r2.left-ph.left+'px',top:r2.top-ph.top+'px',width:r2.width+'px',height:r2.height+'px',borderRadius:'22px'});setTimeout(()=>s.remove(),560)};}
+const st=document.createElement('style');st.textContent='@keyframes grow{from{transform:scaleY(0)}}';document.head.appendChild(st);
+// ---------- isla dinámica ----------
+const isl=document.getElementById('isl');let big=false;
+function toggleIsl(){big=!big;isl.classList.toggle('big',big);document.getElementById('islt').innerHTML=big?'<div><div style="font-size:11px;opacity:.7">Nuevo cobro · Laura · Facial hidratante</div><div style="font-family:Fraunces,serif;font-size:20px;font-weight:700">+65 € · hoy 1.305 €</div></div>':'1.240 €'}
+isl.onclick=toggleIsl;setInterval(toggleIsl,4000);
+// inicio
+movePill();apply();draw();addEventListener('resize',()=>{movePill();draw()});
+</script></body></html>
