@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rentia · Estilo de Inicio: ahora y propuesta</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:#EDE5E3;color:#2B2220;padding:16px 10px 40px}
+h1{font-size:20px;margin:0 6px 4px}.lead{font-size:13px;color:#7A6A6E;margin:0 6px 14px;max-width:560px}
+.tabs{display:flex;gap:6px;margin:0 6px 12px}.tabs button{border:0;border-radius:999px;padding:8px 14px;font-weight:700;font-size:13px;background:#fff;color:#8A3F55}
+.tabs button.on{background:#8A3F55;color:#fff}
+.wrap{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.col h2{font-size:14px;margin:0 6px 8px;color:#7A6A6E;text-transform:uppercase;letter-spacing:.06em}
+.ph{width:360px;height:740px;border-radius:38px;overflow:hidden;background:#F8F1F0;box-shadow:0 16px 40px rgba(138,63,85,.18);position:relative}
+.scroll{height:100%;overflow-y:auto;padding:14px 14px 90px}
+.ph img{width:100%;display:block}
+@media(max-width:780px){.col.hide{display:none}}
+/* --- propuesta --- */
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}.logo{width:34px;height:34px;border-radius:11px;background:#8A3F55;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.hi{font-size:12px;color:#7A6A6E}.cn{font-weight:800;font-size:17px}.team{margin-left:auto;background:#fff;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:600}
+.per{display:flex;background:#F1E7E5;border-radius:14px;padding:3px;margin-bottom:12px}.per span{flex:1;text-align:center;font-size:12.5px;padding:7px 0;border-radius:11px;color:#7A6A6E;font-weight:600}.per .on{background:#fff;color:#2B2220;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sec{display:flex;align-items:center;gap:8px;margin:20px 2px 9px}.sec .dot{width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.sec b{font-size:15px}.sec small{margin-left:auto;font-size:12px;color:#8A3F55;font-weight:700}
+.card{background:#fff;border-radius:20px;padding:14px;box-shadow:0 1px 2px rgba(43,34,32,.04)}
+.hero{background:linear-gradient(180deg,#F3E4E8,#FBF5F6);border:1px solid #EBD3DA}
+.hero .row{display:flex;gap:14px;align-items:center}
+.ring{width:84px;height:84px;border-radius:50%;background:conic-gradient(#8A3F55 0 87%,#EAD7DC 0);display:flex;align-items:center;justify-content:center;flex:none}
+.ring div{width:66px;height:66px;border-radius:50%;background:#FBF5F6;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:17px}.ring small{font-size:10px;color:#7A6A6E;font-weight:500}
+.lbl{font-size:12px;color:#7A6A6E}.big{font-size:34px;font-weight:800;letter-spacing:-1px}.up{display:inline-block;background:#E4F2EA;color:#2E7D57;font-weight:700;font-size:12px;border-radius:8px;padding:3px 7px}
+.link{color:#8A3F55;font-weight:700;font-size:12.5px;margin-top:6px;display:block}
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+.mini{border-radius:16px;padding:10px 10px 11px}.mini .lbl{font-size:11px}.mini .v{font-weight:800;font-size:17px;margin-top:2px}
+.g{background:#E7F3EC}.g .v{color:#2E7D57}.t{background:#F6EAE3}.t .v{color:#9C4F2C}.b{background:#F3E4E8}.b .v{color:#8A3F55}
+.bar{height:7px;border-radius:4px;background:#EADDE0;margin-top:7px;overflow:hidden}.bar i{display:block;height:100%;background:#2E7D57;border-radius:4px}
+.alert{display:flex;gap:10px;align-items:center;border-radius:16px;padding:12px;border:1.5px solid;margin-top:8px}
+.alert .ic{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+.alert b{font-size:14px;display:block}.alert span{font-size:12px;color:#7A6A6E}.btn{margin-left:auto;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12.5px;color:#fff;flex:none}
+.amber{background:#FDF6E8;border-color:#EBC77F}.amber .ic{background:#F6E2B5;color:#8A5A0B}
+.list{padding:0;overflow:hidden}.li{display:flex;align-items:center;gap:11px;padding:12px 14px;border-top:1px solid #F1E9E7}.li:first-child{border-top:0}
+.li .ic{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex:none}
+.li b{font-size:14.5px;display:block}.li span{font-size:12px;color:#7A6A6E}.li .r{margin-left:auto;text-align:right}.li .r b{font-size:15px}.li .r em{font-style:normal;font-size:11.5px;color:#2E7D57;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.area{background:#fff;border-radius:18px;padding:12px;border-left:5px solid}.area .h{display:flex;align-items:center;gap:7px}.area .h i{width:24px;height:24px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;font-size:12px}
+.area .h b{font-size:13.5px}.area .v{font-size:20px;font-weight:800;margin-top:8px}.area .s{font-size:11.5px;color:#7A6A6E;margin-top:1px}.area em{font-style:normal;font-size:11.5px;font-weight:700;color:#2E7D57}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px}.cal div{border-radius:8px;font-size:10px;text-align:center;padding:5px 0;background:#F1ECF7;color:#5E4A80;font-weight:700}.cal .x{background:#F4F0EF;color:#B5A9A6;font-weight:500}.cal .h{background:none;color:#9A8C90}
+.lilac{border-left-color:#7B5EA7}
+.tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}.tile{background:#F1ECF7;border-radius:14px;padding:9px}.tile .lbl{font-size:11px}.tile b{font-size:18px;color:#5E4A80;display:block}.tile span{font-size:11px;color:#7A6A6E}
+.prow{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:12.5px}.prow span{width:48px}.prow i{flex:1;height:7px;border-radius:4px;background:#EEE7F5;overflow:hidden}.prow i u{display:block;height:100%;background:#7B5EA7;text-decoration:none}
+.tip{background:#F1ECF7;border-radius:14px;padding:10px 12px;font-size:12.5px;color:#4B3A67;margin-top:8px}
+.nav{position:absolute;left:0;right:0;bottom:0;height:70px;background:#fff;display:flex;justify-content:space-around;align-items:center;font-size:11px;color:#9A8C90;border-top:1px solid #F1E9E7}.nav .on{color:#8A3F55;font-weight:700}
+.key{display:flex;flex-wrap:wrap;gap:6px;margin:14px auto 0;max-width:740px;justify-content:center}.key span{font-size:12px;background:#fff;border-radius:999px;padding:5px 10px;display:flex;align-items:center;gap:6px}.key i{width:10px;height:10px;border-radius:3px;display:inline-block}
+</style></head><body>
+<h1>Inicio: ahora y propuesta</h1>
+<p class="lead">Es la misma información en el mismo orden; solo cambia el estilo. Cada tema tiene su color e icono, los cuadros tienen tres tamaños según su importancia, hay grupos con título y los avisos tienen un aspecto propio.</p>
+<div class="tabs" id="tabs"><button class="on" onclick="show(1)">Propuesta</button><button onclick="show(0)">Ahora</button></div>
+<div class="wrap">
+ <div class="col" id="c0"><h2>Ahora</h2><div class="ph"><div class="scroll" style="padding:0"><img src="antes0.png"><img src="antes1.png"><img src="antes2.png"></div></div></div>
+ <div class="col" id="c1"><h2>Propuesta</h2><div class="ph"><div class="scroll">
+  <div class="top"><div class="logo">R</div><div><div class="hi">Buenos días</div><div class="cn">Centro Demo</div></div><div class="team">Todo el equipo ▾</div></div>
+  <div class="per"><span>Hoy</span><span>Semana</span><span class="on">Mes</span><span>Trim.</span><span>Año</span></div>
+
+  <div class="sec"><div class="dot" style="background:#F3E4E8;color:#8A3F55">€</div><b>Tu dinero</b><small>‹ Noviembre 2026 ›</small></div>
+  <div class="card hero"><div class="row"><div class="ring"><div>87%<small>objetivo</small></div></div>
+   <div><div class="lbl">Has facturado</div><div class="big">39.882 €</div><span class="up">▲ 8 % vs. octubre</span><span class="link">Comparar con el año pasado ›</span></div></div></div>
+  <div class="trio"><div class="mini g"><div class="lbl">Beneficio</div><div class="v">19.381 €</div></div><div class="mini t"><div class="lbl">Gastos</div><div class="v">20.501 €</div></div><div class="mini b"><div class="lbl">Pendiente objetivo</div><div class="v">5.990 €</div></div></div>
+  <div class="card" style="margin-top:8px;padding:12px 14px"><div style="display:flex;font-size:12.5px"><span>Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div><div class="bar"><i style="width:85%"></i></div></div>
+
+  <div class="alert amber"><div class="ic">!</div><div><b>Completa tu centro · 67 %</b><span>Siguiente: conecta tu agenda</span></div><div class="btn" style="background:#B7791F">Seguir</div></div>
+
+  <div class="sec"><div class="dot" style="background:#E7F3EC;color:#2E7D57">✓</div><b>Hoy</b></div>
+  <div class="card list"><div class="li"><div class="ic" style="background:#E7F3EC;color:#2E7D57">€</div><div><b>Cobros de hoy</b><span>Tarjeta, efectivo y banco</span></div><div class="r" style="color:#B5A9A6">›</div></div></div>
+
+  <div class="sec"><div class="dot" style="background:#F3E4E8;color:#8A3F55">▦</div><b>Tu negocio por áreas</b></div>
+  <div class="grid2">
+   <div class="area" style="border-left-color:#8A3F55"><div class="h"><i style="background:#F3E4E8;color:#8A3F55">C</i><b>Cabina</b></div><div class="v">1.398 €</div><div class="s">32 clientas al día</div><em>▲ 11 %</em></div>
+   <div class="area" style="border-left-color:#2F7F7A"><div class="h"><i style="background:#E2F1F0;color:#2F7F7A">P</i><b>Venta de producto</b></div><div class="v">414 €</div><div class="s">30 de cada 100 compran</div><em>▲ 1 %</em></div>
+   <div class="area" style="border-left-color:#5B6B82"><div class="h"><i style="background:#E8ECF2;color:#5B6B82">A</i><b>Aparatos</b></div><div class="v">498 €</div><div class="s">24 % del tiempo en uso</div><em>▲ 9 %</em></div>
+   <div class="area" style="border-left-color:#3E6FB0"><div class="h"><i style="background:#E5EDF8;color:#3E6FB0">E</i><b>Equipo</b></div><div class="v">4 personas</div><div class="s">Sara va la primera</div></div>
+  </div>
+
+  <div class="sec"><div class="dot" style="background:#F1ECF7;color:#7B5EA7">◷</div><b>Tu agenda</b><small>Abrir mi agenda ›</small></div>
+  <div class="alert" style="background:#F7F3FB;border-color:#CDBDE6;margin-top:0"><div class="ic" style="background:#E6DCF3;color:#5E4A80;font-size:12px">51h</div><div><b>51 h libres en los próximos 7 días</b><span>2.254 € sin facturar · 203 sesiones de bono pendientes</span></div><div class="btn" style="background:#7B5EA7">Llenar</div></div>
+  <div class="card" style="margin-top:8px"><b style="font-size:14px">Cómo de llena va tu agenda</b><div class="lbl">Lo ocupada que está cada día</div>
+   <div style="display:flex;gap:10px;font-size:11px;color:#7A6A6E;margin-top:8px"><span>■ <span style="color:#7B5EA7">Tratamiento</span></span><span>■ <span style="color:#3E6FB0">Aparatología</span></span><span>□ Huecos</span></div>
+   <div class="cal"><div class="h">L</div><div class="h">M</div><div class="h">X</div><div class="h">J</div><div class="h">V</div><div class="h">S</div><div class="h">D</div>
+   <div class="x">·</div><div class="x">·</div><div class="x">·</div><div class="x">·</div><div class="x">·</div><div class="x">·</div><div class="x">1</div>
+   <div>83%</div><div>83%</div><div>89%</div><div>86%</div><div>89%</div><div>94%</div><div class="x">8</div>
+   <div>83%</div><div>89%</div><div>92%</div><div>83%</div><div>92%</div><div>94%</div><div class="x">15</div>
+   <div>86%</div><div>83%</div><div>89%</div><div>89%</div><div>86%</div><div>83%</div><div class="x">22</div>
+   <div>89%</div><div>94%</div><div>89%</div><div>86%</div><div class="x">27</div><div class="x">28</div><div class="x">29</div></div>
+   <div class="lbl" style="margin-top:8px">Toca un día para ver su detalle</div></div>
+  <div class="card" style="margin-top:8px"><b style="font-size:14px">Huecos que vienen</b>
+   <div class="tip">✦ Consejo: en los próximos 7 días hay 51 horas libres (2.254 €). Ofrece las sesiones de bono pendientes para llenarlas.</div>
+   <div class="tiles"><div class="tile"><div class="lbl">Mañana</div><b>3 h</b><span>133 € sin facturar</span></div><div class="tile"><div class="lbl">Próximos 7 días</div><b>51 h</b><span>2.254 €</span></div><div class="tile"><div class="lbl">Hasta fin de mes</div><b>24 h</b><span>1.061 €</span></div></div>
+   <div class="lbl" style="margin-top:10px">Próximos 7 días, por profesional</div>
+   <div class="prow"><span>Laura</span><i><u style="width:100%"></u></i><b>16 h</b></div><div class="prow"><span>Marta</span><i><u style="width:69%"></u></i><b>11 h</b></div><div class="prow"><span>Nerea</span><i><u style="width:81%"></u></i><b>13 h</b></div><div class="prow"><span>Sara</span><i><u style="width:69%"></u></i><b>11 h</b></div>
+  </div>
+ </div><div class="nav"><span class="on">Inicio</span><span>Agenda</span><span>Informes</span><span>Mi centro</span></div></div></div>
+</div>
+<div class="key"><span><i style="background:#8A3F55"></i>Dinero y cabina</span><span><i style="background:#2E7D57"></i>Beneficio y cobros</span><span><i style="background:#9C4F2C"></i>Gastos</span><span><i style="background:#2F7F7A"></i>Venta</span><span><i style="background:#5B6B82"></i>Aparatos</span><span><i style="background:#3E6FB0"></i>Equipo</span><span><i style="background:#7B5EA7"></i>Agenda</span><span><i style="background:#B7791F"></i>Avisos</span></div>
+<script>function show(i){if(innerWidth>780)return;document.getElementById('c0').classList.toggle('hide',i!==0);document.getElementById('c1').classList.toggle('hide',i!==1);[...document.querySelectorAll('#tabs button')].forEach((b,k)=>b.classList.toggle('on',k===(i?0:1)))}
+show(1);</script>
+</body></html>
