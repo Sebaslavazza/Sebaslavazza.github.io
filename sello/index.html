@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rentia · Aspecto propio: 3 versiones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:'Instrument Sans',-apple-system,Arial,sans-serif;background:#ECE4E1;color:#2B2220;padding:16px 10px 40px}
+h1{font-size:20px;margin:0 6px 4px}.lead{font-size:13px;color:#7A6A6E;margin:0 6px 14px;max-width:640px}
+.tabs{display:flex;gap:6px;margin:0 6px 12px;flex-wrap:wrap}.tabs button{border:0;border-radius:999px;padding:8px 14px;font-weight:700;font-size:13px;background:#fff;color:#8A3F55;font-family:inherit}.tabs button.on{background:#8A3F55;color:#fff}
+.wrap{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.col{width:360px}.col h2{font-size:15px;margin:0 6px 2px}.col p{font-size:12.5px;color:#7A6A6E;margin:0 6px 8px;min-height:34px}
+.ph{width:360px;height:740px;border-radius:38px;overflow:hidden;position:relative;box-shadow:0 16px 40px rgba(138,63,85,.18)}
+.scroll{height:100%;overflow-y:auto;padding:14px 14px 90px}
+@media(max-width:780px){.col.hide{display:none}}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}.hi{font-size:12px;opacity:.7}.cn{font-weight:700;font-size:17px}.team{margin-left:auto;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:600}
+.per{display:flex;border-radius:14px;padding:3px;margin-bottom:6px}.per span{flex:1;text-align:center;font-size:12.5px;padding:7px 0;border-radius:11px;font-weight:600;opacity:.65}.per .on{opacity:1}
+.sec{display:flex;align-items:center;gap:8px;margin:20px 2px 9px}.sec svg{flex:none}.sec b{font-size:15px}.sec small{margin-left:auto;font-size:12px;font-weight:700}
+.hero{border-radius:22px;padding:16px;display:flex;gap:14px;align-items:center}
+.lbl{font-size:12px;opacity:.7}.up{display:inline-block;font-weight:700;font-size:12px;border-radius:8px;padding:3px 7px;margin-top:4px}
+.link{font-weight:700;font-size:12.5px;margin-top:6px;display:block}
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}.mini{border-radius:16px;padding:10px}.mini .lbl{font-size:11px}.mini .v{margin-top:3px}
+.card{border-radius:18px;padding:12px 14px;margin-top:8px}
+.alert{display:flex;gap:10px;align-items:center;border-radius:16px;padding:12px;margin-top:8px}.alert b{font-size:14px;display:block}.alert span{font-size:12px;opacity:.75}.btn{margin-left:auto;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12.5px;color:#fff;flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.area{border-radius:18px;padding:12px}.area .h{display:flex;align-items:center;gap:7px}.area .h b{font-size:13.5px}.area .s{font-size:11.5px;opacity:.7;margin-top:2px}.area em{font-style:normal;font-size:11.5px;font-weight:700}
+.nav{position:absolute;left:0;right:0;bottom:0;height:68px;display:flex;justify-content:space-around;align-items:center;font-size:11px}
+.bars{display:flex;align-items:flex-end;gap:5px;height:46px;margin-top:10px}
+</style></head><body>
+<h1>Aspecto propio de Rentia: 3 versiones</h1>
+<p class="lead">Mismos datos y mismo orden que ahora. Cambian la letra, los iconos, los colores y el «trazo» de la R. Muestro solo la parte de arriba de Inicio, que es suficiente para ver el estilo.</p>
+<div class="tabs" id="tabs"></div>
+<div class="wrap" id="wrap"></div>
+<script>
+const IC={
+ euro:'<path d="M17 6.5A6.5 6.5 0 1 0 17 17.5M4 10h9M4 14h9"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ grid:'<path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/>',
+ cabina:'<path d="M3 13h13a4 4 0 0 1 4 4v0H3zM5 17v3M18 17v3M7 9.5a2 2 0 1 0 0-.01"/>',
+ frasco:'<path d="M9 3h6M10 3v3.5L8 9v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9l-2-2.5V3M8 13h8"/>',
+ aparato:'<path d="M4 5h11v9H4zM15 8l5-2.5v11L15 14M8 14v6M11 14v6"/>',
+ equipo:'<path d="M8.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6M16 11a2.5 2.5 0 1 0 0-5M3 20c0-3 2.5-5.5 5.5-5.5S14 17 14 20M16 14.5c2.8 0 5 2.2 5 5.5"/>',
+ alerta:'<path d="M12 4l9 16H3zM12 10v4M12 17v.5"/>'};
+const ico=(k,c,s=18,w=1.8)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+// Anillo con remate del trazo de la R (punta redondeada y cola)
+const ring=(c,track,ink,font)=>{const L=2*Math.PI*36,v=.87;return `<div style="position:relative;width:88px;height:88px;flex:none"><svg width="88" height="88" viewBox="0 0 88 88"><circle cx="44" cy="44" r="36" stroke="${track}" stroke-width="7" fill="none"/><circle cx="44" cy="44" r="36" stroke="${c}" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${L*v} ${L}" transform="rotate(-90 44 44)"/><path d="M44 8 q10 2 14 9" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".5"/></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-family:${font};font-weight:700;font-size:20px;color:${ink}">87%</div><div style="font-size:10px;opacity:.65">objetivo</div></div></div>`};
+const bars=(c,soft)=>'<div class="bars">'+[52,64,48,58,55,70,60,50,66,62,72,80].map((h,i)=>`<svg width="14" height="46" viewBox="0 0 14 46" style="flex:1"><path d="M7 ${46-h*.55} V43" stroke="${i==11?c:soft}" stroke-width="9" stroke-linecap="round"/></svg>`).join('')+'</div>';
+const V=[
+ {id:'a',name:'A · Editorial',desc:'Cifras en letra de revista de cosmética, iconos de línea propios y el anillo con el trazo de la R.',
+  font:"'Fraunces',Georgia,serif",bg:'#F8F1F0',ink:'#2B2220',card:'#fff',brand:'#8A3F55',tint:'#F3E4E8',per:'#F1E7E5',nav:'#fff',
+  money:'#2E7D57',moneyBg:'#E7F3EC',cost:'#9C4F2C',costBg:'#F6EAE3',warn:'#B7791F',warnBg:'#FDF6E8',warnLine:'#EBC77F',
+  areas:[['cabina','Cabina','#8A3F55','#F3E4E8'],['frasco','Venta de producto','#2F7F7A','#E2F1F0'],['aparato','Aparatos','#5B6B82','#E8ECF2'],['equipo','Equipo','#3E6FB0','#E5EDF8']],shadow:'0 1px 2px rgba(43,34,32,.05)',stripe:true},
+ {id:'b',name:'B · Empolvado',desc:'Colores de la piel (nude, rosa empolvado y crema), letra de revista y tarjetas suaves sin bordes duros.',
+  font:"'Fraunces',Georgia,serif",bg:'#F6EEE8',ink:'#3A2A26',card:'#FFFBF7',brand:'#8A3F55',tint:'#F1DDD9',per:'#EFE3DB',nav:'#FFFBF7',
+  money:'#5E7F5A',moneyBg:'#E9EFE3',cost:'#A0624A',costBg:'#F4E4DA',warn:'#B0814A',warnBg:'#FAF0E3',warnLine:'#E7CFA9',
+  areas:[['cabina','Cabina','#8A3F55','#F1DDD9'],['frasco','Venta de producto','#9C7A5B','#F1E6DA'],['aparato','Aparatos','#7D7A8C','#ECEAF0'],['equipo','Equipo','#6F8295','#E6ECF0']],shadow:'0 6px 18px rgba(120,80,60,.08)',stripe:false},
+ {id:'c',name:'C · Trazo',desc:'Letra moderna y gruesa; las barras, el anillo y los separadores con el trazo redondeado de la R en toda la app.',
+  font:"'Instrument Sans',Arial,sans-serif",bg:'#FAF6F5',ink:'#241B1A',card:'#fff',brand:'#8A3F55',tint:'#F3E4E8',per:'#F0E8E6',nav:'#fff',
+  money:'#2E7D57',moneyBg:'#E7F3EC',cost:'#9C4F2C',costBg:'#F6EAE3',warn:'#B7791F',warnBg:'#FDF6E8',warnLine:'#EBC77F',
+  areas:[['cabina','Cabina','#8A3F55','#F3E4E8'],['frasco','Venta de producto','#2F7F7A','#E2F1F0'],['aparato','Aparatos','#5B6B82','#E8ECF2'],['equipo','Equipo','#3E6FB0','#E5EDF8']],shadow:'0 1px 2px rgba(43,34,32,.05)',stripe:false,trazo:true}];
+const AV=[['1.398 €','32 clientas al día','▲ 11 %'],['414 €','30 de cada 100 compran','▲ 1 %'],['498 €','24 % del tiempo en uso','▲ 9 %'],['4 personas','Sara va la primera','']];
+const sep=(c)=>`<svg width="100%" height="8" viewBox="0 0 300 8" preserveAspectRatio="none" style="display:block;margin:12px 0 2px"><path d="M2 5 C60 1 120 7 180 4 S270 2 298 4" stroke="${c}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".35"/></svg>`;
+function phone(v){
+ const num=(s,size,color)=>`<div style="font-family:${v.font};font-weight:${v.id=='c'?700:600};font-size:${size}px;letter-spacing:${v.id=='c'?'-1px':'-.5px'};color:${color}">${s}</div>`;
+ const sec=(k,t,c,bg,right='')=>`<div class="sec"><span style="width:26px;height:26px;border-radius:9px;background:${bg};display:flex;align-items:center;justify-content:center">${ico(k,c,15,2)}</span><b style="font-family:${v.id=='c'?'inherit':v.font};font-size:${v.id=='c'?15:17}px;font-weight:${v.id=='c'?700:600}">${t}</b>${right}</div>`;
+ return `<div class="ph" style="background:${v.bg};color:${v.ink}"><div class="scroll">
+ <div class="top"><svg width="36" height="36" viewBox="0 0 1024 1024"><rect width="1024" height="1024" rx="300" fill="${v.brand}"/><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div class="hi">Buenos días</div><div class="cn" style="font-family:${v.id=='c'?'inherit':v.font}">Centro Demo</div></div><div class="team" style="background:${v.card};box-shadow:${v.shadow}">Todo el equipo ▾</div></div>
+ <div class="per" style="background:${v.per}">${['Hoy','Semana','Mes','Trim.','Año'].map(x=>`<span class="${x=='Mes'?'on':''}" style="${x=='Mes'?`background:${v.card};box-shadow:${v.shadow}`:''}">${x}</span>`).join('')}</div>
+ ${sec('euro','Tu dinero',v.brand,v.tint,`<small style="color:${v.brand}">‹ Noviembre 2026 ›</small>`)}
+ <div class="hero" style="background:${v.id=='b'?'#F3E3DD':v.tint};${v.id=='a'?'border:1px solid #EBD3DA':''}">${ring(v.brand,v.id=='b'?'#E8D0C9':'#EAD7DC',v.ink,v.font)}
+  <div><div class="lbl">Has facturado</div>${num('39.882 €',v.id=='c'?36:34,v.ink)}<span class="up" style="background:${v.moneyBg};color:${v.money}">▲ 8 % vs. octubre</span><span class="link" style="color:${v.brand}">Comparar con el año pasado ›</span></div></div>
+ <div class="trio">${[['Beneficio','19.381 €',v.money,v.moneyBg],['Gastos','20.501 €',v.cost,v.costBg],['Pendiente objetivo','5.990 €',v.brand,v.tint]].map(([l,x,c,bg])=>`<div class="mini" style="background:${bg}"><div class="lbl">${l}</div><div class="v">${num(x,17,c)}</div></div>`).join('')}</div>
+ <div class="card" style="background:${v.card};box-shadow:${v.shadow}"><div style="display:flex;font-size:12.5px"><span>Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div>
+  <svg width="100%" height="12" viewBox="0 0 300 12" preserveAspectRatio="none" style="display:block;margin-top:6px"><path d="M6 6H294" stroke="${v.id=='b'?'#EADDD5':'#EADDE0'}" stroke-width="7" stroke-linecap="round"/><path d="M6 6H${6+288*.85}" stroke="${v.money}" stroke-width="7" stroke-linecap="round"/></svg></div>
+ <div class="alert" style="background:${v.warnBg};border:1.5px solid ${v.warnLine}"><span style="width:32px;height:32px;border-radius:10px;background:${v.warnLine}55;display:flex;align-items:center;justify-content:center">${ico('alerta',v.warn,17,2)}</span><div><b>Completa tu centro · 67 %</b><span>Siguiente: conecta tu agenda</span></div><div class="btn" style="background:${v.warn}">Seguir</div></div>
+ ${v.trazo?sep(v.brand):''}
+ ${sec('check','Hoy',v.money,v.moneyBg)}
+ <div class="card" style="background:${v.card};box-shadow:${v.shadow};display:flex;gap:11px;align-items:center;margin-top:0"><span style="width:36px;height:36px;border-radius:12px;background:${v.moneyBg};display:flex;align-items:center;justify-content:center">${ico('euro',v.money,18,2)}</span><div><b style="font-size:14.5px">Cobros de hoy</b><div style="font-size:12px;opacity:.7">Tarjeta, efectivo y banco</div></div><span style="margin-left:auto;opacity:.4">›</span></div>
+ ${v.trazo?sep(v.brand):''}
+ ${sec('grid','Tu negocio por áreas',v.brand,v.tint)}
+ <div class="grid2">${v.areas.map(([k,t,c,bg],i)=>`<div class="area" style="background:${v.card};box-shadow:${v.shadow};${v.stripe?`border-left:5px solid ${c}`:''}"><div class="h"><span style="width:28px;height:28px;border-radius:9px;background:${bg};display:flex;align-items:center;justify-content:center">${ico(k,c,17,1.8)}</span><b>${t}</b></div><div style="margin-top:9px">${num(AV[i][0],20,v.ink)}</div><div class="s">${AV[i][1]}</div>${AV[i][2]?`<em style="color:${v.money}">${AV[i][2]}</em>`:''}${v.trazo&&i==0?bars(c,bg):''}</div>`).join('')}</div>
+ </div><div class="nav" style="background:${v.nav};border-top:1px solid rgba(0,0,0,.05)"><span style="color:${v.brand};font-weight:700">Inicio</span><span style="opacity:.5">Agenda</span><span style="opacity:.5">Informes</span><span style="opacity:.5">Mi centro</span></div></div>`;
+}
+document.getElementById('wrap').innerHTML=V.map(v=>`<div class="col" id="c${v.id}"><h2>${v.name}</h2><p>${v.desc}</p>${phone(v)}</div>`).join('');
+document.getElementById('tabs').innerHTML=V.map((v,i)=>`<button onclick="show('${v.id}')" class="${i==0?'on':''}" id="t${v.id}">${v.name}</button>`).join('');
+function show(id){if(innerWidth>780)return;V.forEach(v=>{document.getElementById('c'+v.id).classList.toggle('hide',v.id!==id);document.getElementById('t'+v.id).classList.toggle('on',v.id===id)})}
+show('a');
+</script></body></html>
