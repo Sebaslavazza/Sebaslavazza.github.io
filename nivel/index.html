@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Rentia · Visualizaciones de otro nivel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Instrument Sans',-apple-system,Arial,sans-serif;background:#0F0A0C;color:#F3EAE7;padding:18px 10px 50px}
+.intro{max-width:860px;margin:0 auto 14px}.intro h1{font-size:22px}.intro p{font-size:13px;color:#BFAEB2;margin-top:6px;line-height:1.55}
+.tabs{display:flex;gap:6px;justify-content:center;margin:12px 0 16px;flex-wrap:wrap}.tabs button{border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:9px 15px;font-weight:700;font-size:13px;background:transparent;color:#F3EAE7;font-family:inherit;cursor:pointer}.tabs button.on{background:#F3EAE7;color:#0F0A0C}
+.wrap{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}.col{width:375px}.col h2{font-size:16px;margin:0 4px 4px}.col .d{font-size:12.5px;color:#BFAEB2;margin:0 4px 6px;line-height:1.5}.col .why{font-size:12px;color:#E9B8C8;margin:0 4px 10px;line-height:1.45;min-height:36px}
+@media(max-width:840px){.col.hide{display:none}}
+.ph{width:375px;max-width:100%;height:812px;border-radius:48px;overflow:hidden;position:relative;box-shadow:0 0 0 10px #000,0 30px 80px rgba(0,0,0,.6)}
+.sc{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none}.sc::-webkit-scrollbar{display:none}
+.serif{font-family:'Fraunces',Georgia,serif}.k{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase}.row{display:flex;align-items:center}
+.top{display:flex;align-items:center;gap:10px;padding:16px 16px 0}.logo{width:38px;height:38px;border-radius:13px;background:#8A3F55;display:flex;align-items:center;justify-content:center}
+.seg{display:flex;gap:3px;padding:4px;border-radius:16px;margin:12px 14px 0}.seg span{flex:1;text-align:center;font-size:12.5px;padding:8px 0;border-radius:12px;font-weight:600}
+canvas{display:block;touch-action:none}
+.tip{position:absolute;pointer-events:none;padding:8px 11px;border-radius:12px;font-size:12px;white-space:nowrap;transform:translate(-50%,-110%);transition:opacity .2s;opacity:0;z-index:5}
+.nav{position:absolute;left:14px;right:14px;bottom:16px;height:64px;border-radius:32px;display:flex;align-items:center;justify-content:space-around;font-size:11px;font-weight:600;z-index:6}
+.ia{width:48px;height:48px;border-radius:17px;background:#8A3F55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+.card{margin:10px 14px 0;border-radius:22px;padding:13px 14px}
+/* temas */
+.K{background:#120B0E;color:#F3EAE7}.K .seg{background:rgba(255,255,255,.06)}.K .seg span{color:rgba(255,255,255,.5)}.K .seg .on{background:rgba(255,255,255,.12);color:#fff}.K .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}.K .nav{background:rgba(30,20,24,.8);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.5)}.K .tip{background:#fff;color:#2B2220}
+.L{background:#FBF6F3;color:#2B2220}.L .seg{background:#F1E8E4}.L .seg span{color:#8C7B7F}.L .seg .on{background:#fff;color:#2B2220;box-shadow:0 2px 8px rgba(0,0,0,.06)}.L .card{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}.L .nav{background:rgba(255,255,255,.85);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(60,20,30,.12);color:#8C7B7F}.L .tip{background:#2B2220;color:#fff}
+.M{background:linear-gradient(180deg,#EDE4F0,#F7EEEA 50%,#F3E6E1);color:#2B2220}.M .seg{background:rgba(255,255,255,.5)}.M .seg span{color:#8C7B7F}.M .seg .on{background:#fff;color:#2B2220}.M .card{background:rgba(255,255,255,.75);backdrop-filter:blur(10px)}.M .nav{background:rgba(255,255,255,.8);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(60,20,30,.12);color:#8C7B7F}.M .tip{background:#2B2220;color:#fff}
+.hint{font-size:11px;text-align:center;opacity:.55;margin-top:4px}
+</style></head><body>
+<div class="intro"><h1>Visualizaciones de otro nivel</h1>
+<p>Aquí ya no cambio colores ni tarjetas: cambio <b>la forma de ver el negocio</b>. Son tres visualizaciones a medida, programadas desde cero (sin plantillas ni librerías), con los mismos totales de Rentia. Así trabajan los estudios que hacen apps de bancos o de salud premium, y es lo que no sale de una herramienta sencilla.</p></div>
+<div class="tabs"><button id="tk" class="on" onclick="show('k')">K · El río del dinero</button><button id="tl" onclick="show('l')">L · La flor del mes</button><button id="tm" onclick="show('m')">M · Tu centro en 3D</button></div>
+<div class="wrap">
+
+<div class="col" id="ck"><h2>K · El río del dinero</h2><p class="d">Cada euro facturado <b>fluye como una partícula</b> desde de dónde viene (cabina, aparatos, venta) hasta a dónde va (personal, local y fijos, producto) y lo que <b>queda de beneficio</b>. El grosor de cada río es su importe. Toca un río para ver su cifra.</p><p class="why">Para qué sirve: entender de un vistazo de dónde viene el dinero y a dónde se va, que es la pregunta que más se hace una dueña.</p>
+<div class="ph K"><div class="sc">
+ <div class="top"><div class="logo"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div style="font-size:12px;opacity:.6">Buenos días</div><div style="font-weight:700;font-size:16px">Centro Demo</div></div><div style="margin-left:auto;font-size:12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 11px">Todo el equipo ▾</div></div>
+ <div class="seg"><span>Hoy</span><span>Semana</span><span class="on">Mes</span><span>Trim.</span><span>Año</span></div>
+ <div style="text-align:center;margin-top:16px"><div class="k" style="opacity:.6">Noviembre 2026 · has facturado</div><div class="serif" style="font-size:44px;font-weight:700;letter-spacing:-1.5px;margin-top:4px">39.882 €</div><div style="font-size:12.5px;color:#8FE3B5;font-weight:700">▲ 8 % vs. octubre · 87 % del objetivo</div></div>
+ <div style="position:relative;margin-top:8px"><canvas id="kc" width="375" height="420"></canvas><div class="tip" id="ktip"></div></div>
+ <div class="card"><div class="row" style="font-size:12.5px"><span style="opacity:.65">Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div><div class="row" style="font-size:12.5px;margin-top:8px"><span style="opacity:.65">Pendiente objetivo de facturación</span><b style="margin-left:auto">5.990 €</b></div></div>
+ <div class="card" style="display:flex;gap:10px;align-items:center;border-color:rgba(232,176,90,.4)"><b style="width:32px;height:32px;border-radius:10px;background:rgba(232,176,90,.15);color:#F2C27A;display:flex;align-items:center;justify-content:center">!</b><div><b style="font-size:14px">Completa tu centro · 67 %</b><div style="font-size:12px;opacity:.6">Siguiente: conecta tu agenda</div></div><span style="margin-left:auto;background:#F2C27A;color:#2A1A06;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12.5px">Seguir</span></div>
+ <div style="height:110px"></div></div>
+ <div class="nav"><span style="color:#fff">Inicio</span><span>Agenda</span><span class="ia">✦</span><span>Informes</span><span>Mi centro</span></div></div></div>
+
+<div class="col hide" id="cl"><h2>L · La flor del mes</h2><p class="d">Cada mes dibuja <b>una flor única</b>: cada pétalo es un día y su largo es lo facturado. Los colores de cada pétalo son el reparto entre cabina, aparatos y venta. En el centro, el % del objetivo. <b>Recorre la flor con el dedo</b> para leer cada día.</p><p class="why">Para qué sirve: ver de un vistazo qué días van fuertes y cuáles flojos. Además es una imagen de marca que la dueña puede compartir.</p>
+<div class="ph L"><div class="sc">
+ <div class="top"><div class="logo"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div style="font-size:12px;color:#8C7B7F">Buenos días</div><div class="serif" style="font-weight:600;font-size:18px">Centro Demo</div></div><div style="margin-left:auto;font-size:12px;background:#fff;border-radius:999px;padding:6px 11px;font-weight:600">Todo el equipo ▾</div></div>
+ <div class="seg"><span>Hoy</span><span>Semana</span><span class="on">Mes</span><span>Trim.</span><span>Año</span></div>
+ <div class="row" style="margin:16px 18px 0"><div><div class="k" style="color:#8C7B7F">Noviembre 2026 · has facturado</div><div class="serif" style="font-size:38px;font-weight:700;letter-spacing:-1.2px" id="lrev">39.882 €</div><div style="font-size:12.5px;color:#2E7D57;font-weight:700" id="lsub">▲ 8 % vs. octubre</div></div></div>
+ <div style="position:relative"><canvas id="lc" width="375" height="375"></canvas><div class="tip" id="ltip"></div></div>
+ <div class="hint">recorre la flor con el dedo</div>
+ <div class="row" style="justify-content:center;gap:14px;font-size:11.5px;margin-top:8px"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#B04A6E"></i> Cabina</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#7C93B8"></i> Aparatos</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#5FA39E"></i> Venta</span></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 14px 0">
+  <div style="background:#E3F1E8;border-radius:18px;padding:11px 10px"><div class="k" style="font-size:9.5px;color:#557">Beneficio</div><div class="serif" style="font-size:17px;font-weight:700;color:#2E7D57">19.381 €</div></div>
+  <div style="background:#F6E7DF;border-radius:18px;padding:11px 10px"><div class="k" style="font-size:9.5px;color:#755">Gastos</div><div class="serif" style="font-size:17px;font-weight:700;color:#9C4F2C">20.501 €</div></div>
+  <div style="background:#F4E3E9;border-radius:18px;padding:11px 10px"><div class="k" style="font-size:9.5px;color:#755">Pendiente objetivo</div><div class="serif" style="font-size:17px;font-weight:700;color:#8A3F55">5.990 €</div></div></div>
+ <div class="card"><div class="row" style="font-size:12.5px"><span style="color:#8C7B7F">Objetivo de beneficio a hoy</span><b style="margin-left:auto">85 % · faltan 3.499 €</b></div></div>
+ <div style="height:110px"></div></div>
+ <div class="nav"><span style="color:#8A3F55">Inicio</span><span>Agenda</span><span class="ia">✦</span><span>Informes</span><span>Mi centro</span></div></div></div>
+
+<div class="col hide" id="cm"><h2>M · Tu centro en 3D</h2><p class="d">Tu centro como <b>una maqueta en 3D</b>: cada profesional es una cabina, su altura es lo que factura y su color, lo llena que tiene la agenda. <b>Gírala con el dedo</b> y toca una cabina para ver a esa persona.</p><p class="why">Para qué sirve: ver el equipo y la ocupación como si miraras tu centro desde arriba, y detectar enseguida la cabina floja.</p>
+<div class="ph M"><div class="sc">
+ <div class="top"><div class="logo"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M330 770V254h220c110 0 180 64 180 160 0 74-42 126-110 148l140 208" fill="none" stroke="#fff" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div style="font-size:12px;color:#8C7B7F">Buenos días</div><div style="font-weight:700;font-size:16px">Centro Demo</div></div><div style="margin-left:auto;font-size:12px;background:#fff;border-radius:999px;padding:6px 11px;font-weight:600">Todo el equipo ▾</div></div>
+ <div class="seg"><span>Hoy</span><span>Semana</span><span class="on">Mes</span><span>Trim.</span><span>Año</span></div>
+ <div class="row" style="margin:16px 18px 0"><div><div class="k" style="color:#8C7B7F">Noviembre 2026 · has facturado</div><div class="serif" style="font-size:38px;font-weight:700;letter-spacing:-1.2px">39.882 €</div><div style="font-size:12.5px;color:#2E7D57;font-weight:700">▲ 8 % vs. octubre · 87 % del objetivo</div></div></div>
+ <div style="position:relative"><canvas id="mc" width="375" height="360"></canvas><div class="tip" id="mtip"></div></div>
+ <div class="hint">gira con el dedo · toca una cabina</div>
+ <div class="card" id="mcard" style="margin-top:10px"><div style="font-size:12.5px;color:#8C7B7F">Toca una cabina para ver a la profesional</div></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 14px 0">
+  <div style="background:rgba(227,241,232,.85);border-radius:18px;padding:11px 10px"><div class="k" style="font-size:9.5px;color:#557">Beneficio</div><div class="serif" style="font-size:17px;font-weight:700;color:#2E7D57">19.381 €</div></div>
+  <div style="background:rgba(246,231,223,.85);border-radius:18px;padding:11px 10px"><div class="k" style="font-size:9.5px;color:#755">Gastos</div><div class="serif" style="font-size:17px;font-weight:700;color:#9C4F2C">20.501 €</div></div>
+  <div style="background:rgba(244,227,233,.85);border-radius:18px;padding:11px 10px"><div class="k" style="font-size:9.5px;color:#755">Pendiente objetivo</div><div class="serif" style="font-size:17px;font-weight:700;color:#8A3F55">5.990 €</div></div></div>
+ <div style="height:110px"></div></div>
+ <div class="nav"><span style="color:#8A3F55">Inicio</span><span>Agenda</span><span class="ia">✦</span><span>Informes</span><span>Mi centro</span></div></div></div>
+</div>
+<script>
+const f=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' €';
+function show(id){['k','l','m'].forEach(k=>{document.getElementById('t'+k).classList.toggle('on',k===id);document.getElementById('c'+k).classList.toggle('hide',innerWidth<=840?k!==id:false)})}
+if(innerWidth>840)['l','m'].forEach(k=>document.getElementById('c'+k).classList.remove('hide'));
+const hi=(cv,w,h)=>{const d=Math.min(2,devicePixelRatio||1);cv.width=w*d;cv.height=h*d;cv.style.width=w+'px';cv.style.height=h+'px';const c=cv.getContext('2d');c.scale(d,d);return c};
+
+// ================= K · RÍO DEL DINERO =================
+(function(){const cv=document.getElementById('kc'),W=375,H=420,x=hi(cv,W,H),tip=document.getElementById('ktip');
+ const SRC=[['Cabina',26650,'#C25B80'],['Aparatos',8900,'#7C93B8'],['Venta',4332,'#5FA39E']];
+ const DST=[['Personal',13900,'#C46A44'],['Local y fijos',4200,'#B9844E'],['Producto',2401,'#9E7A68'],['Beneficio',19381,'#3FAF7A']];
+ const TOT=39882,X0=74,X1=W-104,TOPY=22,SPAN=H-60,GAP=10;
+ const lay=(arr)=>{let y=TOPY;const sp=SPAN-GAP*(arr.length-1);return arr.map(a=>{const h=a[1]/TOT*sp,o={n:a[0],v:a[1],c:a[2],y,h};y+=h+GAP;return o})};
+ const S=lay(SRC),D=lay(DST);
+ // flujos proporcionales
+ const flows=[];const sOff=S.map(s=>s.y),dOff=D.map(d=>d.y);
+ S.forEach((s,i)=>D.forEach((d,j)=>{const v=s.v*d.v/TOT,h=v/TOT*(SPAN-GAP*2.5);flows.push({i,j,v,h,y0:sOff[i],y1:dOff[j],c0:s.c,c1:d.c});sOff[i]+=h*(SPAN-GAP*2)/(SPAN-GAP*2.5)*0+h;dOff[j]+=h}));
+ // reescalar para que encajen
+ S.forEach((s,i)=>{const fl=flows.filter(q=>q.i===i);const sum=fl.reduce((a,q)=>a+q.h,0);let y=s.y;fl.forEach(q=>{q.h0=q.h*s.h/sum;q.y0=y;y+=q.h0})});
+ D.forEach((d,j)=>{const fl=flows.filter(q=>q.j===j);const sum=fl.reduce((a,q)=>a+q.h,0);let y=d.y;fl.forEach(q=>{q.h1=q.h*d.h/sum;q.y1=y;y+=q.h1})});
+ const bez=(t,a,b)=>{const m=(a+b)/2;return {x:(1-t)**3*X0+3*(1-t)**2*t*(X0+(X1-X0)*.45)+3*(1-t)*t*t*(X1-(X1-X0)*.45)+t**3*X1}};
+ const P=[];flows.forEach((q,k)=>{const n=Math.max(2,Math.round(q.v/220));for(let a=0;a<n;a++)P.push({k,t:Math.random(),o:Math.random(),s:.0025+Math.random()*.003})});
+ let sel=-1;
+ const yAt=(q,t,o)=>{const e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;const ya=q.y0+q.h0*o,yb=q.y1+q.h1*o;return ya+(yb-ya)*e};
+ const xAt=t=>X0+(X1-X0)*t;
+ function band(q){x.beginPath();const N=24;for(let a=0;a<=N;a++){const t=a/N;const X=xAt(t),Y=yAt(q,t,0);a?x.lineTo(X,Y):x.moveTo(X,Y)}for(let a=N;a>=0;a--){const t=a/N;x.lineTo(xAt(t),yAt(q,t,1))}x.closePath()}
+ function draw(){x.clearRect(0,0,W,H);
+  flows.forEach((q,k)=>{band(q);const g=x.createLinearGradient(X0,0,X1,0);const on=sel<0||(sel<3?q.i===sel:q.j===sel-3);g.addColorStop(0,q.c0+(on?'55':'14'));g.addColorStop(1,q.c1+(on?'55':'14'));x.fillStyle=g;x.fill()});
+  P.forEach(p=>{p.t+=p.s;if(p.t>1){p.t=0;p.o=Math.random()}const q=flows[p.k];const on=sel<0||(sel<3?q.i===sel:q.j===sel-3);const X=xAt(p.t),Y=yAt(q,p.t,.1+p.o*.8);x.fillStyle=on?'rgba(255,255,255,.85)':'rgba(255,255,255,.12)';x.beginPath();x.arc(X,Y,on?1.6:1.1,0,7);x.fill()});
+  const node=(n,X,al,idx)=>{const on=sel<0||sel===idx;x.fillStyle=n.c;x.globalAlpha=on?1:.35;x.beginPath();x.roundRect(X-5,n.y,10,n.h,5);x.fill();x.globalAlpha=1;
+   x.textAlign=al;x.fillStyle=on?'#fff':'rgba(255,255,255,.4)';x.font='600 11.5px Instrument Sans,Arial';const tx=al==='right'?X-10:X+10;x.fillText(n.n,tx,n.y+n.h/2-2);x.font='700 12px Fraunces,Georgia,serif';x.fillStyle=on?(idx===6?'#8FE3B5':'#F3EAE7'):'rgba(255,255,255,.35)';x.fillText(f(n.v),tx,n.y+n.h/2+12)};
+  S.forEach((n,i)=>node(n,X0,'right',i));D.forEach((n,j)=>node(n,X1,'left',3+j));
+  x.font='600 10px Instrument Sans,Arial';x.fillStyle='rgba(255,255,255,.4)';x.textAlign='left';x.fillText('DE DÓNDE VIENE',8,12);x.textAlign='right';x.fillText('A DÓNDE VA',W-8,12);
+  requestAnimationFrame(draw)}
+ draw();
+ cv.addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect(),X=e.clientX-r.left,Y=e.clientY-r.top;let hit=-1;
+  if(X<W/2){S.forEach((n,i)=>{if(Y>=n.y-6&&Y<=n.y+n.h+6)hit=i})}else{D.forEach((n,j)=>{if(Y>=n.y-6&&Y<=n.y+n.h+6)hit=3+j})}
+  sel=hit===sel?-1:hit;if(sel>=0){const n=sel<3?S[sel]:D[sel-3];tip.innerHTML=`<b>${n.n}</b> · ${f(n.v)} · ${Math.round(n.v/TOT*100)} %`;tip.style.left=(sel<3?X0+60:X1-60)+'px';tip.style.top=(n.y+n.h/2)+'px';tip.style.opacity=1}else tip.style.opacity=0;try{navigator.vibrate&&navigator.vibrate(8)}catch(_){}});
+})();
+
+// ================= L · FLOR DEL MES =================
+(function(){const cv=document.getElementById('lc'),W=375,H=375,x=hi(cv,W,H),tip=document.getElementById('ltip');const cx=W/2,cy=H/2;
+ let seed=11;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+ const days=[];let tot=0;for(let d=1;d<=30;d++){const dow=new Date(2026,10,d).getDay();const closed=dow===0||d>26;const v=closed?0:1300+rnd()*900+(dow===6?420:0);const cab=.62+rnd()*.12,ap=.18+rnd()*.08;days.push({d,dow,closed,future:d>26,v,cab,ap});tot+=v}
+ days.forEach(o=>o.v=o.v*39882/tot);const max=Math.max(...days.map(o=>o.v));
+ let grow=0,sel=-1;const DOW=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+ function petal(a,len,w,c){x.save();x.translate(cx,cy);x.rotate(a);x.beginPath();x.moveTo(0,-36);x.bezierCurveTo(w,-36-len*.35,w*.7,-36-len*.9,0,-36-len);x.bezierCurveTo(-w*.7,-36-len*.9,-w,-36-len*.35,0,-36);x.fillStyle=c;x.fill();x.restore()}
+ function draw(t){grow=Math.min(1,grow+.012);x.clearRect(0,0,W,H);
+  // anillos guía
+  x.strokeStyle='rgba(43,34,32,.06)';[.33,.66,1].forEach(k=>{x.beginPath();x.arc(cx,cy,36+130*k,0,7);x.stroke()});
+  days.forEach((o,i)=>{const a=i/30*Math.PI*2;const e=Math.max(0,Math.min(1,grow*1.6-i/30*.6));const ease=1-Math.pow(1-e,3);
+   if(o.closed){x.fillStyle=o.future?'rgba(43,34,32,.12)':'rgba(43,34,32,.2)';x.beginPath();x.arc(cx+Math.sin(a)*44,cy-Math.cos(a)*44,o.future?2:2.5,0,7);x.fill();return}
+   const L=130*o.v/max*ease,dim=sel>=0&&sel!==i;const breathe=1+Math.sin(t/900+i)*.015;
+   const al=dim?'40':'';petal(a,L*breathe,15,'#B04A6E'+(al||'E6'));petal(a,L*(o.ap+1-o.cab)*breathe,11,'#7C93B8'+(al||'F0'));petal(a,L*(1-o.cab-o.ap)*breathe,7,'#5FA39E'+(al||'FF'));
+   if(sel===i){x.save();x.translate(cx,cy);x.rotate(a);x.strokeStyle='#2B2220';x.lineWidth=1.5;x.beginPath();x.moveTo(0,-36-L-6);x.lineTo(0,-36-L-16);x.stroke();x.restore()}});
+  // centro
+  const g=x.createRadialGradient(cx-8,cy-8,4,cx,cy,34);g.addColorStop(0,'#fff');g.addColorStop(1,'#F3E1E7');x.fillStyle=g;x.beginPath();x.arc(cx,cy,32,0,7);x.fill();
+  x.strokeStyle='#EAD7DC';x.lineWidth=4;x.beginPath();x.arc(cx,cy,27,0,7);x.stroke();x.strokeStyle='#8A3F55';x.lineCap='round';x.beginPath();x.arc(cx,cy,27,-Math.PI/2,-Math.PI/2+Math.PI*2*.87*grow);x.stroke();
+  x.fillStyle='#2B2220';x.textAlign='center';x.font='700 14px Fraunces,Georgia,serif';x.fillText('87%',cx,cy+3);x.font='9px Instrument Sans,Arial';x.fillStyle='#8C7B7F';x.fillText('objetivo',cx,cy+14);
+  requestAnimationFrame(draw)}
+ requestAnimationFrame(draw);
+ function pick(e){const r=cv.getBoundingClientRect(),X=e.clientX-r.left-cx,Y=e.clientY-r.top-cy;const dist=Math.hypot(X,Y);if(dist<36){sel=-1;tip.style.opacity=0;resetTxt();return}
+  let a=Math.atan2(X,-Y);if(a<0)a+=Math.PI*2;const i=Math.round(a/(Math.PI*2)*30)%30;if(i===sel)return;sel=i;const o=days[i];try{navigator.vibrate&&navigator.vibrate(5)}catch(_){}
+  document.getElementById('lrev').textContent=o.closed?(o.future?'—':'Cerrado'):f(o.v);document.getElementById('lsub').textContent=`${DOW[o.dow]} ${o.d} de noviembre`+(o.closed?'':` · cabina ${Math.round(o.cab*100)} % · aparatos ${Math.round(o.ap*100)} % · venta ${Math.round((1-o.cab-o.ap)*100)} %`);
+  tip.style.opacity=0}
+ function resetTxt(){document.getElementById('lrev').textContent='39.882 €';document.getElementById('lsub').textContent='▲ 8 % vs. octubre'}
+ cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);pick(e)});cv.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType==='touch')pick(e)});cv.addEventListener('pointerup',()=>setTimeout(()=>{sel=-1;resetTxt()},1600));
+})();
+
+// ================= M · CENTRO EN 3D =================
+(function(){const cv=document.getElementById('mc'),W=375,H=360,x=hi(cv,W,H),tip=document.getElementById('mtip');
+ const P=[['Sara',13450,94,'Facial hidratante'],['Laura',12470,89,'Depilación láser'],['Marta',11370,86,'Masaje relajante'],['Nerea',2592,62,'Manicura semipermanente']];
+ // nota: Nerea entró a mitad de mes (ejemplo de cabina floja)
+ let rot=-.7,vrot=0,tilt=.72,sel=-1,grow=0,drag=null;
+ const occCol=o=>{const t=Math.max(0,Math.min(1,(o-60)/35));const a=[196,120,90],b=[138,63,85],c=[63,150,110];const m=t<.5?a.map((v,i)=>v+(b[i]-v)*t*2):b.map((v,i)=>v+(c[i]-v)*(t-.5)*2);return m.map(Math.round)};
+ const proj=(X,Y,Z)=>{const cr=Math.cos(rot),sr=Math.sin(rot);const x1=X*cr-Z*sr,z1=X*sr+Z*cr;const ct=Math.cos(tilt),st=Math.sin(tilt);const y1=Y*ct-z1*st,z2=Y*st+z1*ct;const s=700/(700+z2);return [W/2+x1*s,H*.66-y1*s,z2]};
+ const shade=(c,k)=>`rgb(${c.map(v=>Math.min(255,Math.round(v*k))).join(',')})`;
+ function box(cx,cz,w,d,h,col,hl){const pts=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([a,b])=>[cx+a*w/2,cz+b*d/2]);
+  const bot=pts.map(([X,Z])=>proj(X,0,Z)),top=pts.map(([X,Z])=>proj(X,h,Z));
+  const faces=[[0,1],[1,2],[2,3],[3,0]].map(([a,b],i)=>({pts:[bot[a],bot[b],top[b],top[a]],z:(bot[a][2]+bot[b][2])/2,k:[.78,.92,.7,.86][i]}));
+  faces.sort((p,q)=>q.z-p.z).forEach(fc=>{x.beginPath();fc.pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath();x.fillStyle=shade(col,fc.k*(hl?1.08:1));x.fill()});
+  x.beginPath();top.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath();const g=x.createLinearGradient(top[0][0],top[0][1],top[2][0],top[2][1]);g.addColorStop(0,shade(col,1.25));g.addColorStop(1,shade(col,1.05));x.fillStyle=g;x.fill();
+  if(hl){x.strokeStyle='#fff';x.lineWidth=2;x.stroke()}return top}
+ const slots=[[-55,-55],[55,-55],[-55,55],[55,55]];
+ function draw(){grow=Math.min(1,grow+.015);if(drag==null){rot+=vrot;vrot*=.95;rot+=.0018}x.clearRect(0,0,W,H);
+  // suelo
+  const fl=[[-125,-125],[125,-125],[125,125],[-125,125]].map(([X,Z])=>proj(X,0,Z));x.beginPath();fl.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath();x.fillStyle='rgba(255,255,255,.7)';x.fill();
+  x.strokeStyle='rgba(138,63,85,.12)';for(let g=-125;g<=125;g+=25){let a=proj(g,0,-125),b=proj(g,0,125);x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke();a=proj(-125,0,g);b=proj(125,0,g);x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()}
+  // sombras y cajas ordenadas por profundidad
+  const order=slots.map((s,i)=>({i,z:proj(s[0],0,s[1])[2]})).sort((a,b)=>b.z-a.z);
+  order.forEach(({i})=>{const [sx,sz]=slots[i],p=P[i];const h=Math.max(6,p[1]/13450*105*(1-Math.pow(1-grow,3)));
+   const sh=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([a,b])=>proj(sx+a*40+18,0,sz+b*40+18));x.beginPath();sh.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.fillStyle='rgba(60,20,30,.10)';x.fill();
+   const top=box(sx,sz,70,70,h,occCol(p[2]),sel===i);
+   const c=top.reduce((a,q)=>[a[0]+q[0]/4,a[1]+q[1]/4],[0,0]);x.textAlign='center';x.fillStyle='#fff';x.font='700 12px Instrument Sans,Arial';x.fillText(p[0],c[0],c[1]-2);x.font='700 11px Fraunces,Georgia,serif';x.fillText(f(p[1]),c[0],c[1]+12);p._c=c});
+  requestAnimationFrame(draw)}
+ draw();
+ cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,r:rot,t:tilt,moved:false};cv.setPointerCapture(e.pointerId)});
+ cv.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>6)drag.moved=true;const nr=drag.r+dx*.01;vrot=nr-rot;rot=nr;tilt=Math.max(.25,Math.min(1.1,drag.t+dy*.005))});
+ cv.addEventListener('pointerup',e=>{if(drag&&!drag.moved){const r=cv.getBoundingClientRect(),X=e.clientX-r.left,Y=e.clientY-r.top;let best=-1,bd=60;P.forEach((p,i)=>{if(!p._c)return;const d=Math.hypot(p._c[0]-X,p._c[1]-Y);if(d<bd){bd=d;best=i}});sel=best===sel?-1:best;
+   const card=document.getElementById('mcard');if(sel>=0){const p=P[sel];card.innerHTML=`<div class="row"><b style="font-size:15px">${p[0]}</b><span style="margin-left:auto" class="serif"><b>${f(p[1])}</b></span></div><div class="row" style="font-size:12.5px;margin-top:6px;color:#7A6A6E"><span>Agenda llena al ${p[2]} %</span><span style="margin-left:auto">Lo que más hace: ${p[3]}</span></div>${p[2]<70?'<div style="margin-top:8px;font-size:12.5px;color:#9B3B3B;font-weight:700">Cabina floja: tiene huecos para llenar esta semana</div>':''}`;try{navigator.vibrate&&navigator.vibrate(10)}catch(_){}}else card.innerHTML='<div style="font-size:12.5px;color:#8C7B7F">Toca una cabina para ver a la profesional</div>'}drag=null});
+})();
+</script></body></html>
